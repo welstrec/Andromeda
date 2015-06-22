@@ -37,6 +37,10 @@ public struct RECT
     [DllImport("user32.dll", SetLastError = true)]
     private static extern int GetWindowRect(IntPtr hwnd, out RECT rc);
 
+
+
+
+
         private Boolean invalidateClick = false;
         private Animate mikuAnim;
         public Listener listener;
@@ -47,7 +51,18 @@ public struct RECT
         private Thread clkThr;
         private Thread monThr;
         private int[] pixels = { 1024,768};
-        List<Bitmap> fall = new List<Bitmap>();
+
+
+
+        public List<Bitmap> fall = new List<Bitmap>();
+
+        public List<Bitmap> cpuUsgL = new List<Bitmap>();
+        public List<Bitmap> cpuRamL = new List<Bitmap>();
+        public List<Bitmap> gpuUsgL = new List<Bitmap>();
+        public List<Bitmap> gpuRamL = new List<Bitmap>();
+
+
+
         private int offsetx;
         private int offsety;
         public static int VU_INCREASE_INTERVAL = 10;
@@ -243,68 +258,22 @@ public struct RECT
                 List<Bitmap> dates = new List<Bitmap>();
                 fall = new List<Bitmap>();
                 Image bck = Image.FromFile(@"miku/bck.png");
-                DirectoryInfo dir = new DirectoryInfo("miku/sleep");
-                FileInfo[] files = dir.GetFiles();
 
-                foreach (FileInfo file in files)
-                {
-                    MemoryStream stream = new MemoryStream();
-                    Image Dummy = Image.FromFile(file.FullName);
-                  
-                    Dummy.Save(stream, ImageFormat.Bmp);
-                    Bitmap bb = new Bitmap(pixels[0],pixels[1] );
-                    
-                    using (Graphics g = Graphics.FromImage(bb))
-                    {
-                        g.DrawImage(bck, 0, 0, pixels[0], pixels[1]);
-                        g.DrawImage(Dummy, 0, 0, pixels[0], pixels[1]);
-                        
-                    }
-                    animSleep.Add(bb);
-                    stream.Dispose();
-                    //animSleep.Add(new Bitmap(file.FullName));
-                }
 
-                dir = new DirectoryInfo("./dates");
-                files = dir.GetFiles();
-                foreach (FileInfo file in files)
-                {
-                    MemoryStream stream = new MemoryStream();
-                    Image Dummy = Image.FromFile(file.FullName);
 
-                    Dummy.Save(stream, ImageFormat.Bmp);
-                    Bitmap bb = new Bitmap(72, 79);
+                //On memory uncompressed Resources Load
 
-                    using (Graphics g = Graphics.FromImage(bb))
-                    {
 
-                        g.DrawImage(Dummy, 0, 0, 72, 79);
-                    }
-                    dates.Add(bb);
-                    stream.Dispose();
-                    //animTrans.Add(new Bitmap(file.FullName));
-                }
+                loadUncompressedAnimations(animSleep, new DirectoryInfo("miku/sleep"), pixels[0], pixels[1]);
+                loadUncompressedAnimations(dates, new DirectoryInfo("./dates"),72,79);
+                loadUncompressedAnimations(fall, new DirectoryInfo("./fall"),64,64);
+                loadUncompressedAnimations(cpuUsgL, new DirectoryInfo("./cpugau/usage"),375,11);
+                loadUncompressedAnimations(cpuRamL, new DirectoryInfo("./cpugau/ram"),322,7);
+                loadUncompressedAnimations(gpuUsgL, new DirectoryInfo("./gpugau/usage"), 375, 11);
+                loadUncompressedAnimations(gpuRamL, new DirectoryInfo("./gpugau/ram"), 322, 7);
+                
 
-                dir = new DirectoryInfo("./fall");
-                files = dir.GetFiles();
-                foreach (FileInfo file in files)
-                {
-                    MemoryStream stream = new MemoryStream();
-                    Image Dummy = Image.FromFile(file.FullName);
-
-                    Dummy.Save(stream, ImageFormat.Bmp);
-                    Bitmap bb = new Bitmap(64, 64);
-
-                    using (Graphics g = Graphics.FromImage(bb))
-                    {
-
-                        g.DrawImage(Dummy, 0, 0, 64, 64);
-                    }
-                    fall.Add(bb);
-                    stream.Dispose();
-                    //animTrans.Add(new Bitmap(file.FullName));
-                }
-
+                //compressed Resources Load
                
                 loadAnimations(animSing,new DirectoryInfo("miku/sing"));
                 loadAnimations(animPoint,new DirectoryInfo("miku/point"));
@@ -328,6 +297,33 @@ public struct RECT
                 System.Windows.Forms.MessageBox.Show(e.Message);
             }
         }
+
+
+        private void loadUncompressedAnimations(List<Bitmap> list, DirectoryInfo dir,int w,int h)
+        {
+            FileInfo[] files = dir.GetFiles();
+            files = dir.GetFiles();
+            foreach (FileInfo file in files)
+            {
+                MemoryStream stream = new MemoryStream();
+                Image Dummy = Image.FromFile(file.FullName);
+
+                Dummy.Save(stream, ImageFormat.Bmp);
+                Bitmap bb = new Bitmap(w,h);
+
+                using (Graphics g = Graphics.FromImage(bb))
+                {
+
+                    g.DrawImage(Dummy, 0, 0, w, h);
+                }
+                list.Add(bb);
+                stream.Dispose();
+                //animTrans.Add(new Bitmap(file.FullName));
+
+
+            }
+        }
+
 
         private void loadAnimations(List<List<FileInfo>> list, DirectoryInfo dir)
         {
@@ -383,45 +379,95 @@ public struct RECT
            soundDate.Month.Text = month.ToUpper();
            soundDate.Year.Text = yr;
         }
-       
 
+        public void setGauge(PictureBox gau, int val, List<Bitmap> bmStr)
+        {
+            if (val <= 10)
+            {
+                gau.Image = bmStr[1];
+            } else if (val <= 20)
+            {
+                gau.Image = bmStr[2];
+            } else if (val <= 30)
+            {
+                gau.Image = bmStr[3];
+            } else if (val <= 40)
+            {
+                gau.Image = bmStr[4];
+            }
+            else if (val <= 50)
+            {
+                gau.Image = bmStr[5];
+            }
+            else if (val <= 60)
+            {
+                gau.Image = bmStr[6];
+            }
+            else if (val <= 70)
+            {
+                gau.Image = bmStr[7];
+            }
+            else if (val <= 80)
+            {
+                gau.Image = bmStr[8];
+            }
+            else if (val <= 90)
+            {
+                gau.Image = bmStr[9];
+            }
+            else if (val <= 100)
+            {
+                gau.Image = bmStr[10];
+            }
+            else
+            {
+                gau.Image = bmStr[0];
+            }
+
+
+        }
 
         public void setMonitor(int valCPU, int valRAM, int valCPUT, int valCPUF,int valGPU,int valVRam, int valGPUT,int valGPUF,double valGPUCLK, double valCPUCLK)
         {
             //vuAvg.Level = ((int)((valL + valR) / 2));
-            updateVU(vuRam, valRAM);
-            updateVU(vuCPU, valCPU);
-            updateVU(vuCPUT, valCPUT);
+            setGauge(pictureCpuUsage,valCPU,cpuUsgL);
+            setGauge(pictureGpuUsage, valGPU, gpuUsgL);
+            setGauge(pictureCpuRam, valRAM, cpuRamL);
+            setGauge(pictureGpuRam, valVRam, gpuRamL);
+            //updateVU(vuRam, valRAM);
+            //updateVU(vuCPU, valCPU);
+            //updateVU(vuCPUT, valCPUT);
             cpuLbl.Text = valCPU.ToString("D3");
             gpuLbl.Text = valGPU.ToString("D3");
             ramLbl.Text = valRAM.ToString("D3");
             vramLbl.Text = valVRam.ToString("D3");
             cpuTempLbl.Text = valCPUT.ToString("D3");
-            updateVU(vuCPUF, valCPUF);
+            cpuFan.Text = valCPUF.ToString("D4");
+            
 
-            updateVU(vuGPU, valGPU);
+            //updateVU(vuGPU, valGPU);
             gpuTempLbl.Text = valGPUT.ToString("D3");
-            updateVU(vuVRam, valVRam);
-            updateVU(vuGPUF, valGPUF);
-            updateVU(vuGPUT, valGPUT);
-            gpuCLK.Text = valGPUCLK.ToString("F1");
-            cpuCLK.Text = valCPUCLK.ToString("F1");
+            //updateVU(vuVRam, valVRam);
+            gpuFan.Text = valGPUF.ToString("D4");
+            //updateVU(vuGPUT, valGPUT);
+            gpuCLK.Text = valGPUCLK.ToString();
+            cpuCLK.Text = valCPUCLK.ToString();
 
             if (valRAM > ALERT_RAM)
             {
-                ramLbl.ForeColor = Color.Red;
+                ramLbl.ForeColor = Color.Orange;
             }
             else
             {
-                ramLbl.ForeColor = Color.Green;
+                ramLbl.ForeColor = Color.White;
             }
             if (valVRam > ALERT_RAM)
             {
-                vramLbl.ForeColor = Color.Red;
+                vramLbl.ForeColor = Color.Orange;
             }
             else
             {
-                vramLbl.ForeColor = Color.Green;
+                vramLbl.ForeColor = Color.White;
             }
 
 
@@ -798,6 +844,11 @@ public struct RECT
             }
 
             return runningFullScreen;
+        }
+
+        private void ampmLbl_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

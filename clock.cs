@@ -111,7 +111,7 @@ class clock
                             if (sensor.SensorType == SensorType.Clock && sensor.Name.ToLower().Contains("core"))
                             {
 
-                                gpuclk  = sensor.Value.HasValue ? (Convert.ToDouble(sensor.Value))/1000 : 0;
+                                gpuclk  = sensor.Value.HasValue ? (Convert.ToDouble(sensor.Value)) : 0;
 
 
                             }
@@ -123,7 +123,7 @@ class clock
 
 
                             }
-                            if (sensor.SensorType == SensorType.Control && sensor.Name.ToLower().Contains("fan"))
+                            if (sensor.SensorType == SensorType.Fan && sensor.Name.ToLower().Contains("gpu"))
                             {
                                 
                                 gpuf = sensor.Value.HasValue ? Convert.ToInt32(sensor.Value) : 0;
@@ -199,7 +199,7 @@ class clock
 
 
                                 }
-                                if (sensor.SensorType == SensorType.Control && sensor.Name.ToLower().Contains("#" + conectedFan))
+                                if (sensor.SensorType == SensorType.Fan && sensor.Name.ToLower().Contains("#" + conectedFan))
                                 {
 
                                     cpuf = sensor.Value.HasValue ? Convert.ToInt32(sensor.Value) : 0;
@@ -211,9 +211,9 @@ class clock
                     }
                 }
                 
-                cpuclk = (cpuclkThick / cpuclkcounter ) / 1000;
-                cpuclk = Math.Round(cpuclk , 1);
-                gpuclk = Math.Round(gpuclk , 1);
+                cpuclk = (cpuclkThick / cpuclkcounter);
+                cpuclk = Math.Round(cpuclk , 0);
+                gpuclk = Math.Round(gpuclk , 0);
                 cpuclkcounter = 0;
                 cpuclkThick = 0;
                 frame.BeginInvoke(new setMonitor(frame.setMonitor), new Object[] { (int)cpuCounter.NextValue(), (int)ramCounter.NextValue(), cput, cpuf, gpu,vram, gput, gpuf,gpuclk,cpuclk   });
