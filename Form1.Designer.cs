@@ -69,7 +69,7 @@
             this.cpuTempLbl.BackColor = System.Drawing.Color.Transparent;
             this.cpuTempLbl.Font = new System.Drawing.Font("Consolas", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.cpuTempLbl.ForeColor = System.Drawing.Color.White;
-            this.cpuTempLbl.Location = new System.Drawing.Point(246, 53);
+            this.cpuTempLbl.Location = new System.Drawing.Point(261, 52);
             this.cpuTempLbl.Name = "cpuTempLbl";
             this.cpuTempLbl.Size = new System.Drawing.Size(51, 20);
             this.cpuTempLbl.TabIndex = 8;
@@ -129,7 +129,7 @@
             this.gpuTempLbl.BackColor = System.Drawing.Color.Transparent;
             this.gpuTempLbl.Font = new System.Drawing.Font("Consolas", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.gpuTempLbl.ForeColor = System.Drawing.Color.White;
-            this.gpuTempLbl.Location = new System.Drawing.Point(939, 53);
+            this.gpuTempLbl.Location = new System.Drawing.Point(925, 52);
             this.gpuTempLbl.Name = "gpuTempLbl";
             this.gpuTempLbl.Size = new System.Drawing.Size(51, 20);
             this.gpuTempLbl.TabIndex = 16;
@@ -244,7 +244,7 @@
             this.cpuCLK.BackColor = System.Drawing.Color.Transparent;
             this.cpuCLK.Font = new System.Drawing.Font("Consolas", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.cpuCLK.ForeColor = System.Drawing.Color.White;
-            this.cpuCLK.Location = new System.Drawing.Point(142, 46);
+            this.cpuCLK.Location = new System.Drawing.Point(151, 46);
             this.cpuCLK.Name = "cpuCLK";
             this.cpuCLK.Size = new System.Drawing.Size(54, 32);
             this.cpuCLK.TabIndex = 30;
@@ -256,7 +256,7 @@
             this.gpuCLK.BackColor = System.Drawing.Color.Transparent;
             this.gpuCLK.Font = new System.Drawing.Font("Consolas", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.gpuCLK.ForeColor = System.Drawing.Color.White;
-            this.gpuCLK.Location = new System.Drawing.Point(1165, 47);
+            this.gpuCLK.Location = new System.Drawing.Point(1156, 46);
             this.gpuCLK.Name = "gpuCLK";
             this.gpuCLK.Size = new System.Drawing.Size(54, 32);
             this.gpuCLK.TabIndex = 31;
@@ -273,7 +273,7 @@
             this.gpuFan.BackColor = System.Drawing.Color.Transparent;
             this.gpuFan.Font = new System.Drawing.Font("Consolas", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.gpuFan.ForeColor = System.Drawing.Color.White;
-            this.gpuFan.Location = new System.Drawing.Point(1042, 53);
+            this.gpuFan.Location = new System.Drawing.Point(1028, 52);
             this.gpuFan.Name = "gpuFan";
             this.gpuFan.Size = new System.Drawing.Size(51, 20);
             this.gpuFan.TabIndex = 33;
@@ -285,7 +285,7 @@
             this.cpuFan.BackColor = System.Drawing.Color.Transparent;
             this.cpuFan.Font = new System.Drawing.Font("Consolas", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.cpuFan.ForeColor = System.Drawing.Color.White;
-            this.cpuFan.Location = new System.Drawing.Point(349, 53);
+            this.cpuFan.Location = new System.Drawing.Point(364, 52);
             this.cpuFan.Name = "cpuFan";
             this.cpuFan.Size = new System.Drawing.Size(51, 20);
             this.cpuFan.TabIndex = 32;

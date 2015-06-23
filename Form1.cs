@@ -123,17 +123,10 @@ public struct RECT
             //mikuBox.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
             //mikuBox.SetStyle(ControlStyles.OptimizedDoubleBuffer, true); 
             loadAnimations();
-            
-            listener = new Listener(mikuAnim,spr,soundDate);
-            listenThr = new Thread(new ThreadStart(listener.listen));
-            listenThr.Start();
-            mikuAnim.lstnr = listener;
-            
-            clkThr = new Thread(new ThreadStart(clk.getTime));
-            clkThr.Start();
 
-            monThr = new Thread(new ThreadStart(clk.monitorSystem));
-            monThr.Start();
+            startThreads();
+
+         
             soundAnimation.Visible = true;
             soundDate.Visible = true;
             enableClicks();
@@ -223,17 +216,34 @@ public struct RECT
         
         public void close()
         {
-            listener.stopAnim();
-            
-
-            listener.tListen = false;
-
-            clkThr.Abort();
-            monThr.Abort();
+            terminateThreads();
+       
             soundDate.Dispose();
             soundAnimation.Dispose();
             this.Dispose();
           
+
+        }
+
+        public void terminateThreads()
+        {
+            listener.stopAnim();
+
+
+            listenThr.Abort();
+
+            clkThr.Abort();
+        }
+
+        public void startThreads()
+        {
+            listener = new Listener(mikuAnim, spr, soundDate);
+            listenThr = new Thread(new ThreadStart(listener.listen));
+            listenThr.Start();
+            mikuAnim.lstnr = listener;
+
+           clkThr = new Thread(new ThreadStart(clk.getTime));
+            clkThr.Start();
 
         }
 
@@ -427,7 +437,7 @@ public struct RECT
 
         }
 
-        public void setMonitor(int valCPU, int valRAM, int valCPUT, int valCPUF,int valGPU,int valVRam, int valGPUT,int valGPUF,double valGPUCLK, double valCPUCLK)
+        public void setMonitor(int valCPU, int valRAM, int valCPUT, int valCPUF,int valGPU,int valVRam, int valGPUT,int valGPUF,int valGPUCLK, int valCPUCLK)
         {
             //vuAvg.Level = ((int)((valL + valR) / 2));
             setGauge(pictureCpuUsage,valCPU,cpuUsgL);
@@ -450,8 +460,8 @@ public struct RECT
             //updateVU(vuVRam, valVRam);
             gpuFan.Text = valGPUF.ToString("D4");
             //updateVU(vuGPUT, valGPUT);
-            gpuCLK.Text = valGPUCLK.ToString();
-            cpuCLK.Text = valCPUCLK.ToString();
+            gpuCLK.Text = valGPUCLK.ToString("D4");
+            cpuCLK.Text = valCPUCLK.ToString("D4");
 
             if (valRAM > ALERT_RAM)
             {
@@ -636,6 +646,8 @@ public struct RECT
         public void showApps()
         {
             loadCoords();
+            terminateThreads();
+            startThreads();
             fadeInAnim.Enabled = true;
         }
 

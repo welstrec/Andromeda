@@ -11,9 +11,12 @@ using MikuDash;
 
 class clock
 {
+
+    public bool runLoop = true;
     private MikuDashMain frame;
     public bool date = false;
     private bool dots = false;
+    private int reloadMonitor = 80;
     PerformanceCounter cpuCounter;
     PerformanceCounter ramCounter;
     Computer cpt;
@@ -33,10 +36,8 @@ class clock
         ramCounter.CounterName = "% Committed Bytes In Use";
         ramCounter.CategoryName = "Memory";
 
-        cpt = new Computer() { MainboardEnabled = true, GPUEnabled = true, CPUEnabled = true };
-
-        cpt.Open();
-
+        
+      
 
 
     }
@@ -44,7 +45,7 @@ class clock
     public delegate void setDate(Bitmap time, String month,String yr);
     public void getTime()
     {
-        while (true)
+        while (runLoop)
         {
             try
             {
@@ -68,19 +69,39 @@ class clock
 
 
                 dots = !dots;
-                System.Threading.Thread.Sleep(700);
 
+                
+                    
+
+                    if (reloadMonitor == 100)
+                    {
+                        if (cpt != null)
+                        {
+                            cpt.Close();
+                        }
+                        cpt = new Computer() { MainboardEnabled = true, GPUEnabled = true, CPUEnabled = true };
+                        cpt.Open();
+                        reloadMonitor = 0;
+                      
+                    }
+                    if (cpt != null)
+                    {
+                    monitorSystem();
+                    } 
+                System.Threading.Thread.Sleep(700);
+                reloadMonitor++;
+                
             }
             catch (Exception e)
             {
+                //System.Windows.Forms.MessageBox.Show(e.Message);
             }
         }
     }
-    public delegate void setMonitor(int valCPU, int valRAM, int valCPUT, int valCPUF, int valGPU, int valVRam, int valGPUT, int valGPUF, double valGPUCLK, double valCPUCLK);
+    public delegate void setMonitor(int valCPU, int valRAM, int valCPUT, int valCPUF, int valGPU, int valVRam, int valGPUT, int valGPUF, int valGPUCLK, int valCPUCLK);
     public void monitorSystem()
     {
-        try
-        {
+       
             int cput = 0;
             int cpuf = 0;
             int gpu = 0;
@@ -88,14 +109,12 @@ class clock
             int gput = 0;
             int gpuf = 0;
 
-            double cpuclk = 0;
-            double gpuclk = 0;
-            double cpuclkThick = 0;
-            double cpuclkcounter = 0;
+            int cpuclk = 0;
+            int gpuclk = 0;
+            int cpuclkThick = 0;
+            int cpuclkcounter = 0;
 
-            while (true)
-            {
-
+          
 
                 foreach (var hardwareItem in cpt.Hardware)
                 {
@@ -111,7 +130,7 @@ class clock
                             if (sensor.SensorType == SensorType.Clock && sensor.Name.ToLower().Contains("core"))
                             {
 
-                                gpuclk  = sensor.Value.HasValue ? (Convert.ToDouble(sensor.Value)) : 0;
+                                gpuclk = sensor.Value.HasValue ? (Convert.ToInt32(sensor.Value)) : 0;
 
 
                             }
@@ -212,21 +231,16 @@ class clock
                 }
                 
                 cpuclk = (cpuclkThick / cpuclkcounter);
-                cpuclk = Math.Round(cpuclk , 0);
-                gpuclk = Math.Round(gpuclk , 0);
+                
                 cpuclkcounter = 0;
                 cpuclkThick = 0;
                 frame.BeginInvoke(new setMonitor(frame.setMonitor), new Object[] { (int)cpuCounter.NextValue(), (int)ramCounter.NextValue(), cput, cpuf, gpu,vram, gput, gpuf,gpuclk,cpuclk   });
-                System.Threading.Thread.Sleep(700);
+                //System.Threading.Thread.Sleep(700);
 
             }
-        }
-        catch (Exception e)
-        {
-            //System.Windows.Forms.MessageBox.Show(e.Message);
-
-        }
+        
+       
 
     }
-}
+
 
