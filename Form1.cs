@@ -392,6 +392,10 @@ public struct RECT
 
         public void setGauge(PictureBox gau, int val, List<Bitmap> bmStr)
         {
+            if (val <= 0)
+            {
+                gau.Image = bmStr[0];
+            }
             if (val <= 10)
             {
                 gau.Image = bmStr[1];
@@ -429,9 +433,9 @@ public struct RECT
             {
                 gau.Image = bmStr[10];
             }
-            else
+            else if (val > 100)
             {
-                gau.Image = bmStr[0];
+                gau.Image = bmStr[10];
             }
 
 
