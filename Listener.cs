@@ -24,16 +24,23 @@ public class Listener
         mikuAnim.sing = false;
         mikuAnim.sleep = true;
         spRec = spr;
-         moveMiku = new Thread(new ThreadStart(mikuAnim.doSleep));
+         moveMiku = new Thread(new ThreadStart(mikuAnim.doWelcome));
          moveMiku.Start();
+        
          //getSession();
     }
     public void stopAnim()
     {
+        
         moveMiku.Abort();
+        mikuAnim.sing = false;
+        mikuAnim.sleep = false;
+       
+        
+
     }
 
-    public delegate void setLevel(int valL, int valR);
+    public delegate void setLevel(int valL, int valR, int l, int r, int c, int sl, int sr, int rl, int rr, int sw);
     public delegate void listenerLedOper();
     public void listen()
     {
@@ -52,12 +59,13 @@ public class Listener
                 try
                 {
 
-                    System.Threading.Thread.Sleep(50);
+                    System.Threading.Thread.Sleep(500);
                     devDel++;
               
                     int val = 0;
                     int lc = 0;
-                    if (devDel == 4800)
+                    //4800
+                    if (devDel == 1500)
                     {
                        
                         getSession();
@@ -67,12 +75,82 @@ public class Listener
                     }
 
                     val = (int)(device.AudioMeterInformation.MasterPeakValue * 100);
+                        lc = (int)(device.AudioMeterInformation.PeakValues.Count);
+
+                    int l = 0;
+                    int r = 0;
+                    int c = 0;
+                    int sl = 0;
+                    int sr = 0;
+                    int rr = 0;
+                    int rl = 0;
+                    int sw = 0;
+
+                    if (lc == 1)
+                    {
+                        c = (int)((device.AudioMeterInformation.PeakValues[0]) * 100);
+                    }
+                    else if (lc == 2)
+                    {
+
+                    l = (int)((device.AudioMeterInformation.PeakValues[0]) * 100);
+                    r = (int)((device.AudioMeterInformation.PeakValues[1]) * 100);
+                    }
+                    else if (lc == 3) { 
+                     c = (int)((device.AudioMeterInformation.PeakValues[2]) * 100);
+                     l = (int)((device.AudioMeterInformation.PeakValues[0]) * 100);
+                     r = (int)((device.AudioMeterInformation.PeakValues[1]) * 100);
+                    }
+                    else if (lc == 4) {
+                        
+                        l = (int)((device.AudioMeterInformation.PeakValues[0]) * 100);
+                        r = (int)((device.AudioMeterInformation.PeakValues[1]) * 100);
+                       sl = (int)((device.AudioMeterInformation.PeakValues[2]) * 100);
+                        sr = (int)((device.AudioMeterInformation.PeakValues[3]) * 100);
+                    }else if(lc == 5){
+                        l = (int)((device.AudioMeterInformation.PeakValues[0]) * 100);
+                        r = (int)((device.AudioMeterInformation.PeakValues[1]) * 100);
+                        c = (int)((device.AudioMeterInformation.PeakValues[2]) * 100);
+                        sl = (int)((device.AudioMeterInformation.PeakValues[3]) * 100);
+                        sr = (int)((device.AudioMeterInformation.PeakValues[4]) * 100);
+                    }
+                    else if (lc == 6) {
+                        l = (int)((device.AudioMeterInformation.PeakValues[0]) * 100);
+                        r = (int)((device.AudioMeterInformation.PeakValues[1]) * 100);
+                        c = (int)((device.AudioMeterInformation.PeakValues[2]) * 100);
+                        sw = (int)((device.AudioMeterInformation.PeakValues[3]) * 100);
+                        sl = (int)((device.AudioMeterInformation.PeakValues[4]) * 100);
+                        sr = (int)((device.AudioMeterInformation.PeakValues[5]) * 100);
+                    }
+                    else if (lc == 7) {
+                        l = (int)((device.AudioMeterInformation.PeakValues[0]) * 100);
+                        r = (int)((device.AudioMeterInformation.PeakValues[1]) * 100);
+                        c = (int)((device.AudioMeterInformation.PeakValues[2]) * 100);
+                        sl = (int)((device.AudioMeterInformation.PeakValues[3]) * 100);
+                        sr = (int)((device.AudioMeterInformation.PeakValues[4]) * 100);
+                        rl = (int)((device.AudioMeterInformation.PeakValues[5]) * 100);
+                        rr = (int)((device.AudioMeterInformation.PeakValues[6]) * 100);
+                        
+                    }
+                    else if (lc == 8)
+                    {
+                        l = (int)((device.AudioMeterInformation.PeakValues[0]) * 100);
+                        r = (int)((device.AudioMeterInformation.PeakValues[1]) * 100);
+                        c = (int)((device.AudioMeterInformation.PeakValues[2]) * 100);
+                        sl = (int)((device.AudioMeterInformation.PeakValues[4]) * 100);
+                        sr = (int)((device.AudioMeterInformation.PeakValues[5]) * 100);
+                        rl = (int)((device.AudioMeterInformation.PeakValues[6]) * 100);
+                        rr = (int)((device.AudioMeterInformation.PeakValues[7]) * 100);
+                        sw = (int)((device.AudioMeterInformation.PeakValues[3]) * 100);
+                    }
+
+                    //onsole.WriteLine(l + " - " + r + " - " +c+ " - " +sl+ " - " +sr+ " - " +rl+ " - " +rr+ " - " +sw);
                    
-                    lc = (int)(device.AudioMeterInformation.PeakValues.Count);
+                
                     
 
 
-                    mdm.BeginInvoke(new setLevel(mikuAnim.frameMain.soundDate.setLevel), new Object[] { val, lc});
+                    mdm.BeginInvoke(new setLevel(mikuAnim.frameMain.soundDate.setLevel), new Object[] { val, lc,l,r,c,sl,sr,rl,rr,sw});
 
                     if (spRec.active)
                     {
@@ -153,7 +231,7 @@ public class Listener
 
                             //System.Windows.Forms.MessageBox.Show("-->" + val);
 
-                            if (val > 20)
+                            if (val > 1)
                             {
                                 mikuAnim.listen = false;
                                 mikuAnim.sing = true;

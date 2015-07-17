@@ -18,12 +18,21 @@ namespace MikuDash
             this.Top = (resolution.Height - this.Height)-40;
             this.Left = (resolution.Width - this.Width);
             calendarCtrl.TodayDate = DateTime.Now;
-          
+
+            calendarCtrl.Width = this.Width;
+            calendarCtrl.Height = this.Height;
+            calendarCtrl.Top = 0;
+            calendarCtrl.Left = 0;
         }
 
         private void btnClose_Click(object sender, EventArgs e)
         {
             Dispose();
+        }
+
+        private void CalendarFrm_Load(object sender, EventArgs e)
+        {
+
         }
 
        

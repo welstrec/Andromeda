@@ -45,11 +45,12 @@ class clock
     public delegate void setDate(Bitmap time, String month,String yr);
     public void getTime()
     {
+       
         while (runLoop)
         {
             try
             {
-
+                
                 String data = "";
                 if (!date)
                 {
@@ -94,7 +95,7 @@ class clock
             }
             catch (Exception e)
             {
-                //System.Windows.Forms.MessageBox.Show(e.Message);
+               
             }
         }
     }

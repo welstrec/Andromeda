@@ -12,18 +12,21 @@ using System.IO;
 
 public class Animate
 {
+
+
+    public static int ANIM_SPEED = 33;
     private List<Bitmap> animSleep;
     private List<List<FileInfo>> animSing;
-    private List<List<FileInfo>> animPoint;
-    private List<List<FileInfo>> animStartle;
-    private List<List<FileInfo>> animTrans;
-    private List<List<FileInfo>> animWake;
-    private List<List<FileInfo>> animListenFromSing;
-    private List<List<FileInfo>> animListenFromWake;
-    private List<List<FileInfo>> animListenLoop;
-    private List<List<FileInfo>> animCancelListen;
-    private List<List<FileInfo>> animCommand;
-    private List<List<FileInfo>> animWakeSleep;
+    private List<List<FileInfo>> animIdle;
+    private List<List<FileInfo>> animlisten;
+    private List<List<FileInfo>> animSleepToIdle;
+    private List<List<FileInfo>> animIdleToSing;
+    private List<List<FileInfo>> animIdleToListen;
+    private List<List<FileInfo>> animDoCommand;
+    private List<List<FileInfo>> animListenToIdle;
+    private List<List<FileInfo>> animSingToIdle;
+    private List<List<FileInfo>> animIdleToSleep;
+    private List<List<FileInfo>> animWelcome;
 
 
 
@@ -45,34 +48,56 @@ public class Animate
     public int cmdId = 0;
     public SpeechRecognizer sprs;
     public int selectedDance = 0;
+    public int danceDelay = 1;
     public Random rndDance = new Random();
 
-    public Animate(MikuAnim frame, MikuDashMain framem, List<Bitmap> animSleep, List<List<FileInfo>> animSing, List<List<FileInfo>> animPoint, List<List<FileInfo>> animStartle, List<List<FileInfo>> animTrans, List<List<FileInfo>> animWake, List<List<FileInfo>> animListenFromSing, List<List<FileInfo>> animListenFromWake, List<List<FileInfo>> animListenLoop, List<List<FileInfo>> animCancelListen, List<List<FileInfo>> animCommand, List<List<FileInfo>> animWakeSleep, Listener ls, SpeechRecognizer spr, CommandImpl cmdImpl)
+    public Animate(MikuAnim frame, MikuDashMain framem,    List<Bitmap> animSleep,   List<List<FileInfo>> animSing,   List<List<FileInfo>> animIdle,   List<List<FileInfo>> animlisten,   List<List<FileInfo>> animSleepToIdle,   List<List<FileInfo>> animIdleToSing,   List<List<FileInfo>> animIdleToListen,   List<List<FileInfo>> animDoCommand,    List<List<FileInfo>> animListenToIdle,    List<List<FileInfo>> animSingToIdle,    List<List<FileInfo>> animIdleToSleep,List<List<FileInfo>> animWelcome,   Listener ls, SpeechRecognizer spr, CommandImpl cmdImpl)
     {
         lstnr = ls;
         sprs = spr;
         cmdExec = cmdImpl;
         this.animSleep = animSleep;
         this.animSing = animSing;
-        this.animPoint = animPoint;
-        this.animStartle = animStartle;
-        this.animTrans = animTrans;
+        this.animIdle = animIdle;
+        this.animlisten = animlisten;
+        this.animSleepToIdle = animSleepToIdle;
         this.frame = frame;
         this.frameMain = framem;
-        this.animWake = animWake;
-        this.animListenFromSing = animListenFromSing;
-        this.animListenFromWake = animListenFromWake;
-        this.animListenLoop = animListenLoop;
-        this.animCancelListen = animCancelListen;
-        this.animCommand = animCommand;
-        this.animWakeSleep = animWakeSleep;
+        this.animIdleToSing = animIdleToSing;
+        this.animIdleToListen = animIdleToListen;
+        this.animDoCommand = animDoCommand;
+        this.animListenToIdle = animListenToIdle;
+        this.animSingToIdle = animSingToIdle;
+        this.animIdleToSleep = animIdleToSleep;
+        this.animWelcome = animWelcome;
+    
 
 
     }
     public delegate void changeBox(Bitmap img);
     public delegate void changePlay(String pl);
-    
-    
+
+
+
+    public void playAnimation(List<List<FileInfo>> histo,Boolean switchAnim)
+    {
+        if (switchAnim)
+        {
+            selectedDance = rndDance.Next(0, histo.Count);
+        }
+
+        
+            for (int i = 0; i < histo[selectedDance].Count; i++)
+            {
+                System.Threading.Thread.Sleep(ANIM_SPEED);
+                frame.BeginInvoke(new changeBox(frame.changeBox), new Object[] { Image.FromFile(histo[selectedDance][i].FullName) });
+
+            }
+        
+
+    }
+
+
     public void executeCommand(){
         Console.WriteLine("cmdsz: " + cmdStack.Count);
         Console.WriteLine("prgsz: " + programCmds.Count);
@@ -135,196 +160,181 @@ public class Animate
         cmdExecuted = true;
     }
     
-    public void wakeUpAndSingOrListen(){
+    public void decideFromSleep(){
         animLock = true;
-        //frame.BeginInvoke(new changePlay(frame.changePlay), new Object[] { ">>" });
+    
 
         if (listen)
         {
-            doWake();
-            listenFromWake();
+            doIdleToListen();
         }
         else if (sing)
         {
-            doStartle();
-            doSing();
+            doIdleToSing();
+        }
+        
+        else
+        {
+            idleLoop();
+        }
+        
+     
+    
+        
+        
+    }
+
+    public void decideFromSing()
+    {
+        animLock = true;
+
+
+        if (sing && !listen)
+        {
+            singLoop ();
+        }
+        else if (listen)
+        {
+            decideFromListen ();
         }
         else
         {
-            doSleep();
+            doSingToIdle();
         }
-        
-        
-        
-        
-        
+
     }
-    public void doStartle()
+
+
+    public void decideFromListen()
     {
-        selectedDance = rndDance.Next(0, animStartle.Count); // creates a number between 1 and 12
-
-        for (int i = 0; i < animStartle[selectedDance].Count; i++)
+        listenLock = true;
+        animLock = true;
+        if (command)
         {
-            System.Threading.Thread.Sleep(20);
-            //frame.changeBox(animStartle[i]);
-            frame.BeginInvoke(new changeBox(frame.changeBox), new Object[] { Image.FromFile(animStartle[selectedDance][i].FullName) });
-
+            doCommand();
+        }
+        else if (listen)
+        {
+            listenLoop();
+        }
+        else if (sing)
+        {
+            decideFromSing();
+        }
+        else
+        {
+            doListenToIdle ();
         }
     }
 
-    public void doWake()
+    public void decideFromIdle()
     {
-     
-        selectedDance = rndDance.Next(0, animWake.Count); // creates a number between 1 and 12
+        animLock = true;
 
-        for (int i = 0; i < animWake[selectedDance].Count; i++)
+
+        if (listen)
         {
-            System.Threading.Thread.Sleep(20);
-            //frame.changeBox(animStartle[i]);
-            frame.BeginInvoke(new changeBox(frame.changeBox), new Object[] { Image.FromFile(animWake[selectedDance][i].FullName) });
-
+            doIdleToListen();
         }
+        else if (sing)
+        {
+            doIdleToSing();
+        }
+
+        else
+        {
+            doIdleToSleep();
+        }
+
     }
-    public void listenFromSing()
+    public void doWelcome()
     {
+        System.Threading.Thread.Sleep(800);
+        animLock = true;
+        playAnimation(animWelcome, true);
+        idleLoop();
+    }
+
+
+    public void doSleepToIdle()
+    {
+        animLock = true;
+        playAnimation(animSleepToIdle,true);
+        decideFromSleep();
+    }
+
+    public void doIdleToSing()
+    {
+        animLock = true;
+        playAnimation(animIdleToSing, true);
+        decideFromSing();
         
-        selectedDance = rndDance.Next(0, animListenFromSing.Count); // creates a number between 1 and 12
-           
-        for (int i = 0; i < animListenFromSing[selectedDance].Count; i++)
-        {
-            System.Threading.Thread.Sleep(20);
-            //frame.changeBox(animStartle[i]);
-            frame.BeginInvoke(new changeBox(frame.changeBox), new Object[] { Image.FromFile(animListenFromSing[selectedDance][i].FullName) });
-
-        }
-       
-        listenLoop();
-
     }
-
-    public void listenFromWake()
+   
+    public void doIdleToListen()
     {
-        
-        selectedDance = rndDance.Next(0, animListenFromWake.Count); // creates a number between 1 and 12
-
-        for (int i = 0; i < animListenFromWake[selectedDance].Count; i++)
-        {
-            System.Threading.Thread.Sleep(20);
-            //frame.changeBox(animStartle[i]);
-            frame.BeginInvoke(new changeBox(frame.changeBox), new Object[] { Image.FromFile(animListenFromWake[selectedDance][i].FullName) });
-
-        }
-        
-        listenLoop();
-
-    
-
-
+        animLock = true;
+        playAnimation(animIdleToListen, true);
+        decideFromListen();
     }
-
-    public void cancelListenToWake()
-    {
-        selectedDance = rndDance.Next(0, animCancelListen.Count); // creates a number between 1 and 12
-
-        for (int i = 0; i < animCancelListen[selectedDance].Count; i++)
-        {
-            System.Threading.Thread.Sleep(20);
-            //frame.changeBox(animStartle[i]);
-            frame.BeginInvoke(new changeBox(frame.changeBox), new Object[] { Image.FromFile(animCancelListen[selectedDance][i].FullName) });
-
-        }
-
-        wakeToSleep();
-    }
-
     public void doCommand()
     {
-        selectedDance = rndDance.Next(0, animCommand.Count); // creates a number between 1 and 12
-
-        for (int i = 0; i < animCommand[selectedDance].Count; i++)
-        {
-            System.Threading.Thread.Sleep(20);
-            //frame.changeBox(animStartle[i]);
-            frame.BeginInvoke(new changeBox(frame.changeBox), new Object[] { Image.FromFile(animCommand[selectedDance][i].FullName) });
-
-        }
+        animLock = true;
+        playAnimation(animDoCommand, true);
         executeCommand();
         listen = true;
         command = false;
-        listenLoop();
+        decideFromListen();
     }
 
-    public void wakeToSleep()
-    {
-        selectedDance = rndDance.Next(0, animWakeSleep.Count); // creates a number between 1 and 12
-
-        for (int i = 0; i < animWakeSleep[selectedDance].Count; i++)
-        {
-            System.Threading.Thread.Sleep(20);
-            //frame.changeBox(animStartle[i]);
-            frame.BeginInvoke(new changeBox(frame.changeBox), new Object[] { Image.FromFile(animWakeSleep[selectedDance][i].FullName) });
-
-        }
-        doSleep();
-    }
-
-    public void goSleepOrListen()
+    public void doListenToIdle()
     {
         animLock = true;
-        frame.normalRegion();
-        
-       //frame.BeginInvoke(new changePlay(frame.changePlay), new Object[] { "" });
-  
-        doPoint();
-        if(listen){
-            listenFromSing();
-
-        }else{
-            
-            doTrans();
-    
-            doSleep();
-        }
+        playAnimation(animListenToIdle, true);
+        idleLoop();
     }
-    public void doTrans()
-    {
-        selectedDance = rndDance.Next(0, animTrans.Count); // creates a number between 1 and 12
 
-        for (int i = 0; i < animTrans[selectedDance].Count; i++)
+    public void doSingToIdle()
+    {
+        animLock = true;
+        playAnimation(animSingToIdle, true);
+        idleLoop();
+    }
+
+    public void doIdleToSleep()
+    {
+        animLock = true;
+        playAnimation(animIdleToSleep, true);
+        sleepLoop();
+    }
+
+
+    public void idleLoop()
+    {
+
+        frame.normalRegion();
+        int to = 0;
+        while (!listen && !sing && to < 7)
         {
-
-            System.Threading.Thread.Sleep(20);
-            //frame.changeBox(animTrans[i]);
-            frame.BeginInvoke(new changeBox(frame.changeBox), new Object[] { Image.FromFile(animTrans[selectedDance][i].FullName) });
+            animLock = false;
+            playAnimation(animIdle, true);
+            to++;
 
         }
-    }
-    public void doPoint()
-    {
-      
-        frame.normalRegion();
-        selectedDance = rndDance.Next(0, animPoint.Count); // creates a number between 1 and 12
-            
-            for (int i = 0; i < animPoint[selectedDance].Count; i++)
-            {
-                System.Threading.Thread.Sleep(20);
-                //frame.changeBox(animPoint[i]);
-                frame.BeginInvoke(new changeBox(frame.changeBox), new Object[] { Image.FromFile(animPoint[selectedDance][i].FullName) });
 
-            }
-            
-        
-      
+        decideFromIdle();
+
     }
-    public void doSleep()
+
+    public void sleepLoop()
     {
    
         frame.normalRegion();
         
-        while (sleep && !listen)
+        while (sleep && !listen && !sing)
         {
             animLock = false;
-            System.Threading.Thread.Sleep(50);
+            System.Threading.Thread.Sleep(ANIM_SPEED);
             for (int i = 0; i < animSleep.Count; i++)
             {
                 //frame.changeBox(animSleep[i]);
@@ -334,67 +344,52 @@ public class Animate
                 
             
         }
-        wakeUpAndSingOrListen();
+
+        doSleepToIdle();
+        
         
     }
 
-    public void doSing()
+    public void singLoop()
     {
         
         frame.normalRegion();
        
-        //frame.BeginInvoke(new changePlay(frame.changePlay), new Object[] { ">>" });
+        int t = 1;
         while (sing && !listen)
         {
             animLock = false;
-            System.Threading.Thread.Sleep(20);
-            selectedDance = rndDance.Next(0, animSing.Count); // creates a number between 1 and 12
-            
-            for (int i = 0; i < animSing[selectedDance].Count; i++)
-            {
-                
-                //frame.changeBox(animSing[i]);
-                //frame.BeginInvoke(new changeBox(frame.changeBox), new Object[] { animSing[i] });
-                frame.BeginInvoke(new changeBox(frame.changeBox), new Object[] { Image.FromFile(animSing[selectedDance][i].FullName) });
-                
-                System.Threading.Thread.Sleep(20);
+
+            if(t ==danceDelay){
+                danceDelay = rndDance.Next(1, 6);
+                playAnimation(animSing,true );
+                t=0;
+            }else{
+
+
+           playAnimation(animSing, false);
+                t++;
             }
 
         }
-     
-        goSleepOrListen();
+
+        decideFromSing();
     }
 
 
     public void listenLoop()
     {
-        selectedDance = rndDance.Next(0, animListenLoop.Count); // creates a number between 1 and 12
+        
         
         while (listen)
         {
-            selectedDance = rndDance.Next(0, animListenLoop.Count); // creates a number between 1 and 12
-        
+            
             animLock = false;
             listenLock = false;
-            for (int i = 0; i < animListenLoop[selectedDance].Count; i++)
-            {
-                System.Threading.Thread.Sleep(20);
-                //frame.changeBox(animStartle[i]);
-                frame.BeginInvoke(new changeBox(frame.changeBox), new Object[] { Image.FromFile(animListenLoop[selectedDance][i].FullName) });
-
-            }
+            playAnimation(animlisten, true);
             
         }
-        listenLock = true;
-        animLock = true;
-        if (command)
-        {
-            doCommand();
-        }
-        else
-        {
-            cancelListenToWake();
-        }
+        decideFromListen();
         
     }
        

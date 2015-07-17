@@ -70,7 +70,12 @@ namespace MikuDash
                 {
                 }
             }
-           
+            public void closeRecognizer(){
+
+                sre.Dispose();
+    
+            }
+
             public void loadPrograms()
             {
 

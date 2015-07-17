@@ -15,6 +15,7 @@ namespace MikuDash
     {
         public static int VU_INCREASE_INTERVAL = 8;
         public static int VU_DECREASE_INTERVAL = 6;
+        public static int SPK_ACT = 1;
         bool flag = false;
         private int offsetx;
         private int offsety;
@@ -59,9 +60,76 @@ namespace MikuDash
         {
             InitializeComponent();
         }
-        public void setLevel(int valL, int valR)
+        public void setLevel(int valL,int valR, int l, int r, int c, int sl, int sr, int rl, int rr, int sw)
         {
-            updateVU(vuL, valL);
+
+
+            if (l >= SPK_ACT)
+            {
+                li.Visible = true;
+            }
+            else
+            {
+                li.Visible = false;
+            }
+            if (r >= SPK_ACT)
+            {
+                ri.Visible = true;
+            }
+            else
+            {
+                ri.Visible = false;
+            }
+            if (c >= SPK_ACT)
+            {
+                ci.Visible = true;
+            }
+            else
+            {
+                ci.Visible = false;
+            }
+            if (sl >= SPK_ACT)
+            {
+                sli.Visible = true;
+            }
+            else
+            {
+                sli.Visible = false;
+            }
+            if (sr >= SPK_ACT)
+            {
+                sri.Visible = true;
+            }
+            else
+            {
+                sri.Visible = false;
+            }
+            if (rl >= SPK_ACT)
+            {
+                rli.Visible = true;
+            }
+            else
+            {
+                rli.Visible = false;
+            }
+            if (rr >= SPK_ACT)
+            {
+                rri.Visible = true;
+            }
+            else
+            {
+                rri.Visible = false;
+            }
+            if (sw >= SPK_ACT)
+            {
+                swi.Visible = true;
+            }
+            else
+            {
+                swi.Visible = false;
+            }
+
+            //updateVU(vuL, valL);
             if (valR == 6)
             {
                 lfeLbl.Text = "1";
@@ -96,6 +164,7 @@ namespace MikuDash
                     vu.Value = vu.Value - newVal < VU_DECREASE_INTERVAL ? newVal : vu.Value - VU_DECREASE_INTERVAL;
                 }
             }
+            
         }
         private void mikuBox_MouseMove(object sender, MouseEventArgs e)
         {
@@ -151,7 +220,7 @@ namespace MikuDash
                 listenerBlinker.Enabled = true;
                
             }
-
+           
         }
         public void listenerLedOff()
         {
@@ -164,7 +233,7 @@ namespace MikuDash
         {
             listenerBlinker.Enabled = false;
             listenLedImg.Visible = true;
-         
+           
             
         }
         private void listenerBlinker_Tick(object sender, EventArgs e)
@@ -177,6 +246,7 @@ namespace MikuDash
             {
                 listenLedImg.Visible = true;
             }
+            
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)

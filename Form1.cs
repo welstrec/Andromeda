@@ -12,6 +12,7 @@ using System.IO;
 using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
 using System.Media;
+using System.Diagnostics;
 
 
 namespace MikuDash
@@ -36,6 +37,8 @@ public struct RECT
     private static extern IntPtr GetShellWindow();
     [DllImport("user32.dll", SetLastError = true)]
     private static extern int GetWindowRect(IntPtr hwnd, out RECT rc);
+    [DllImport("psapi.dll")]
+    static extern int EmptyWorkingSet(IntPtr hwProc);
 
 
 
@@ -49,7 +52,7 @@ public struct RECT
         public static int ALERT_TEMP = 79;
         private clock clk;
         private Thread clkThr;
-        private Thread monThr;
+        
         private int[] pixels = { 1024,768};
 
 
@@ -116,17 +119,15 @@ public struct RECT
             Font = new Font(Font.Name, 8.25f * 96f / CreateGraphics().DpiX, Font.Style, Font.Unit, Font.GdiCharSet, Font.GdiVerticalFont);
             InitializeComponent();
             Microsoft.Win32.SystemEvents.DisplaySettingsChanged += new EventHandler(ScreenHandler);
-        
+            MinimizeFootprint();
 
-           spr = new SpeechRecognizer();
-           
             //mikuBox.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
             //mikuBox.SetStyle(ControlStyles.OptimizedDoubleBuffer, true); 
+            
+
+            //startThreads();
+
             loadAnimations();
-
-            startThreads();
-
-         
             soundAnimation.Visible = true;
             soundDate.Visible = true;
             enableClicks();
@@ -140,34 +141,31 @@ public struct RECT
 
         public void inhibitToFullScreen()
         {
-            //Console.WriteLine("trg");
+            Console.WriteLine("trg");
             if (!detectAppOnFullScreen())
+            
             {
-
+               
+                Console.WriteLine("nlz");
                 if (lazyDahsboard)
                 {
-
-                    listener = new Listener(mikuAnim, spr, soundDate);
-                    listenThr = new Thread(new ThreadStart(listener.listen));
-                    listenThr.Start();
-                    mikuAnim.lstnr = listener;
                     lazyDahsboard = false;
-                    soundAnimation.Show();
+                    showApps();
+                   
                 }
             }
             else
             {
-                //Console.WriteLine("lz");
+                Console.WriteLine("lz");
                 if (!lazyDahsboard)
                 {
 
                     lazyDahsboard = true;
-
+                
                     try
                     {
-                        soundAnimation.Hide();
                         listener.stopAnim();
-                        listenThr.Interrupt();
+                        soundAnimation.Hide();
                     }
                     catch (Exception ef)
                     {
@@ -176,10 +174,15 @@ public struct RECT
                 }
             }
         }
+
+        static void MinimizeFootprint()
+        {
+            EmptyWorkingSet(Process.GetCurrentProcess().Handle);
+        }
         private void ScreenHandler(object sender, EventArgs e)
         {
             inhibitToFullScreen();
-            showApps();
+            
 
            
         }
@@ -227,22 +230,52 @@ public struct RECT
 
         public void terminateThreads()
         {
-            listener.stopAnim();
 
+            terminateAnimationAndListenThread();
 
-            listenThr.Abort();
+            if(clk != null) {
+                clk.runLoop = false;
+                if (clkThr != null)
+                {
+                    clkThr.Abort();
+                }
+            }
+            
+           
 
-            clkThr.Abort();
+            
+        }
+
+        public void startAnimationAndListenThread()
+        {
+            spr = new SpeechRecognizer();
+
+            listener = new Listener(mikuAnim, spr, soundDate);
+            mikuAnim.lstnr = listener;
+            mikuAnim.sleep = true;
+            listenThr = new Thread(new ThreadStart(listener.listen));
+            listenThr.Start();
+        }
+        public void terminateAnimationAndListenThread()
+        {
+            if (listener != null)
+            {
+                listener.stopAnim();
+                listener.tListen = false;
+                if (listenThr != null)
+                {
+                    listenThr.Abort();
+                }
+            }
         }
 
         public void startThreads()
         {
-            listener = new Listener(mikuAnim, spr, soundDate);
-            listenThr = new Thread(new ThreadStart(listener.listen));
-            listenThr.Start();
-            mikuAnim.lstnr = listener;
 
-           clkThr = new Thread(new ThreadStart(clk.getTime));
+            startAnimationAndListenThread();
+
+            clk.runLoop = true;
+            clkThr = new Thread(new ThreadStart(clk.getTime));
             clkThr.Start();
 
         }
@@ -253,29 +286,32 @@ public struct RECT
             {
 
                 List<Bitmap> animSleep = new List<Bitmap>();
-                List<List<FileInfo>> animSing = new List<List<FileInfo>>();
-                List<List<FileInfo>> animPoint = new List<List<FileInfo>>();
-                List<List<FileInfo>> animStartle = new List<List<FileInfo>>();
-                List<List<FileInfo>> animTrans = new List<List<FileInfo>>();
-                List<List<FileInfo>> animWake = new List<List<FileInfo>>();
-                List<List<FileInfo>> animListenFromSing = new List<List<FileInfo>>();
-                List<List<FileInfo>> animListenFromWake = new List<List<FileInfo>>();
-                List<List<FileInfo>> animListenLoop = new List<List<FileInfo>>();
-                List<List<FileInfo>> animCancelListen = new List<List<FileInfo>>();
-                List<List<FileInfo>> animCommand = new List<List<FileInfo>>();
-                List<List<FileInfo>> animWakeSleep = new List<List<FileInfo>>();
+
+                List<List<FileInfo>> animSing = new List<List<FileInfo>> ();
+                List<List<FileInfo>> animIdle = new List<List<FileInfo>> ();
+                List<List<FileInfo>> animlisten = new List<List<FileInfo>> ();
+                List<List<FileInfo>> animSleepToIdle = new List<List<FileInfo>> ();
+                List<List<FileInfo>> animIdleToSing = new List<List<FileInfo>> ();
+                List<List<FileInfo>> animIdleToListen = new List<List<FileInfo>> ();
+                List<List<FileInfo>> animDoCommand = new List<List<FileInfo>> ();
+                List<List<FileInfo>> animListenToIdle = new List<List<FileInfo>> ();
+                List<List<FileInfo>> animSingToIdle = new List<List<FileInfo>> ();
+                List<List<FileInfo>> animIdleToSleep = new List<List<FileInfo>> ();
+                List<List<FileInfo>> animWelcome = new List<List<FileInfo>>();
+
+
 
                 List<Bitmap> dates = new List<Bitmap>();
                 fall = new List<Bitmap>();
-                Image bck = Image.FromFile(@"miku/bck.png");
+                //mage bck = Image.FromFile(@"miku/bck.png");
 
 
 
                 //On memory uncompressed Resources Load
 
 
-                loadUncompressedAnimations(animSleep, new DirectoryInfo("miku/sleep"), pixels[0], pixels[1]);
-                loadUncompressedAnimations(dates, new DirectoryInfo("./dates"),72,79);
+                loadUncompressedAnimations(animSleep, new DirectoryInfo("andromeda/sleep"), pixels[0], pixels[1]);
+                loadUncompressedAnimations(dates, new DirectoryInfo("./dates"),148, 145);
                 loadUncompressedAnimations(fall, new DirectoryInfo("./fall"),64,64);
                 loadUncompressedAnimations(cpuUsgL, new DirectoryInfo("./cpugau/usage"),375,11);
                 loadUncompressedAnimations(cpuRamL, new DirectoryInfo("./cpugau/ram"),322,7);
@@ -285,21 +321,22 @@ public struct RECT
 
                 //compressed Resources Load
                
-                loadAnimations(animSing,new DirectoryInfo("miku/sing"));
-                loadAnimations(animPoint,new DirectoryInfo("miku/point"));
-                loadAnimations(animStartle,new DirectoryInfo("miku/startle"));
-                loadAnimations(animTrans, new DirectoryInfo("miku/trans"));
-                loadAnimations(animWake,new DirectoryInfo("miku/wake"));
-                loadAnimations(animListenFromSing, new DirectoryInfo("miku/listensing"));
-                loadAnimations(animListenFromWake, new DirectoryInfo("miku/listenwake"));
-                loadAnimations(animListenLoop, new DirectoryInfo("miku/listen"));
-                loadAnimations(animCancelListen, new DirectoryInfo("miku/cancellisten"));
-                loadAnimations(animCommand, new DirectoryInfo("miku/command"));
-                loadAnimations(animWakeSleep, new DirectoryInfo("miku/wakesleep"));
+                loadAnimations(animSing,new DirectoryInfo("andromeda/sing"));
+                loadAnimations(animIdle, new DirectoryInfo("andromeda/idle"));
+                loadAnimations(animlisten, new DirectoryInfo("andromeda/listen"));
+                loadAnimations(animSleepToIdle, new DirectoryInfo("andromeda/sleepidle"));
+                loadAnimations(animIdleToSing, new DirectoryInfo("andromeda/idlesing"));
+                loadAnimations(animIdleToListen, new DirectoryInfo("andromeda/idlelisten"));
+                loadAnimations(animDoCommand, new DirectoryInfo("andromeda/command"));
+                loadAnimations(animListenToIdle, new DirectoryInfo("andromeda/listenidle"));
+                loadAnimations(animSingToIdle, new DirectoryInfo("andromeda/singidle"));
+                loadAnimations(animIdleToSleep, new DirectoryInfo("andromeda/idlesleep"));
+                loadAnimations(animWelcome, new DirectoryInfo("andromeda/welcome"));
+             
                 
                 clk = new clock(this,dates);
                 
-                mikuAnim = new Animate(soundAnimation,this, animSleep, animSing, animPoint, animStartle, animTrans,animWake,animListenFromSing,animListenFromWake,animListenLoop,animCancelListen,animCommand,animWakeSleep,listener,spr, new CommandImpl(this.Handle,this,listener,spr));
+                mikuAnim = new Animate(soundAnimation,this, animSleep, animSing,  animIdle,    animlisten,    animSleepToIdle,    animIdleToSing,    animIdleToListen,    animDoCommand,    animListenToIdle,     animSingToIdle,     animIdleToSleep,animWelcome ,listener,spr, new CommandImpl(this.Handle,this,listener,spr));
                 //mikuBox.Image = (Bitmap)animSleep[10];
             }
             catch (Exception e)
@@ -542,7 +579,8 @@ public struct RECT
             }else {
                 falloutStat.Image = fall[4];
             }
-            
+
+            Application.DoEvents();
         
         }
         private void updateVU(AGauge vu, int newVal)
@@ -852,8 +890,11 @@ public struct RECT
                     GetWindowRect(hWnd, out appBounds);
                     //determine if window is fullscreen
                     screenBounds = Screen.FromHandle(hWnd).Bounds;
-                    if ((appBounds.Bottom - appBounds.Top) == screenBounds.Height && (appBounds.Right - appBounds.Left) == screenBounds.Width)
+                    Console.WriteLine("w-"+screenBounds.Width+" h-"+screenBounds.Height);
+                    Console.WriteLine("w-" + (appBounds.Right - appBounds.Left) + " h-" + (appBounds.Bottom - appBounds.Top));
+                    if ((appBounds.Bottom - appBounds.Top) >= screenBounds.Height && (appBounds.Right - appBounds.Left) >= screenBounds.Width)
                     {
+                        Console.WriteLine("FS");
                         runningFullScreen = true;
                     }
                 }
