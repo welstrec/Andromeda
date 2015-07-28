@@ -178,45 +178,45 @@
             this.toolPos,
             this.closeToolStripMenuItem});
             this.contextMenu.Name = "contextMenu";
-            this.contextMenu.Size = new System.Drawing.Size(303, 220);
+            this.contextMenu.Size = new System.Drawing.Size(166, 120);
             // 
             // toolShow
             // 
             this.toolShow.Name = "toolShow";
-            this.toolShow.Size = new System.Drawing.Size(302, 42);
+            this.toolShow.Size = new System.Drawing.Size(165, 22);
             this.toolShow.Text = "Show";
             this.toolShow.Click += new System.EventHandler(this.toolShow_Click);
             // 
             // toolHide
             // 
             this.toolHide.Name = "toolHide";
-            this.toolHide.Size = new System.Drawing.Size(302, 42);
+            this.toolHide.Size = new System.Drawing.Size(165, 22);
             this.toolHide.Text = "Hide";
             this.toolHide.Click += new System.EventHandler(this.toolHide_Click);
             // 
             // toolInvalid
             // 
             this.toolInvalid.Name = "toolInvalid";
-            this.toolInvalid.Size = new System.Drawing.Size(302, 42);
+            this.toolInvalid.Size = new System.Drawing.Size(165, 22);
             this.toolInvalid.Text = "Toggle Moveable";
             this.toolInvalid.Click += new System.EventHandler(this.toolInvalid_Click);
             // 
             // toolClose
             // 
             this.toolClose.Name = "toolClose";
-            this.toolClose.Size = new System.Drawing.Size(299, 6);
+            this.toolClose.Size = new System.Drawing.Size(162, 6);
             // 
             // toolPos
             // 
             this.toolPos.Name = "toolPos";
-            this.toolPos.Size = new System.Drawing.Size(302, 42);
+            this.toolPos.Size = new System.Drawing.Size(165, 22);
             this.toolPos.Text = "Save Position";
             this.toolPos.Click += new System.EventHandler(this.toolPos_Click_1);
             // 
             // closeToolStripMenuItem
             // 
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(302, 42);
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
             this.closeToolStripMenuItem.Text = "Close";
             this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click_1);
             // 
@@ -224,7 +224,7 @@
             // 
             this.notifyIcon.ContextMenuStrip = this.contextMenu;
             this.notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon.Icon")));
-            this.notifyIcon.Text = "Miku Clock";
+            this.notifyIcon.Text = "Andromeda";
             this.notifyIcon.Visible = true;
             this.notifyIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon_MouseDoubleClick);
             // 
