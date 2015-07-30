@@ -53,7 +53,7 @@ public struct RECT
         private clock clk;
         private Thread clkThr;
         
-        private int[] pixels = { 1024,768};
+        private int[] pixels = {1024,768};
 
 
 
@@ -120,13 +120,6 @@ public struct RECT
             InitializeComponent();
             Microsoft.Win32.SystemEvents.DisplaySettingsChanged += new EventHandler(ScreenHandler);
             MinimizeFootprint();
-
-            //mikuBox.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
-            //mikuBox.SetStyle(ControlStyles.OptimizedDoubleBuffer, true); 
-            
-
-            //startThreads();
-
             loadAnimations();
             soundAnimation.Visible = true;
             soundDate.Visible = true;
@@ -309,35 +302,64 @@ public struct RECT
 
                 //On memory uncompressed Resources Load
 
-
-                loadUncompressedAnimations(animSleep, new DirectoryInfo("andromeda/sleep"), pixels[0], pixels[1]);
-                loadUncompressedAnimations(dates, new DirectoryInfo("./dates"),148, 145);
-                loadUncompressedAnimations(fall, new DirectoryInfo("./fall"),64,64);
-                loadUncompressedAnimations(cpuUsgL, new DirectoryInfo("./cpugau/usage"),375,11);
-                loadUncompressedAnimations(cpuRamL, new DirectoryInfo("./cpugau/ram"),322,7);
-                loadUncompressedAnimations(gpuUsgL, new DirectoryInfo("./gpugau/usage"), 375, 11);
-                loadUncompressedAnimations(gpuRamL, new DirectoryInfo("./gpugau/ram"), 322, 7);
                 
+                if(detectarTamAnimacion())
+                {
+                    Console.WriteLine("ENTROOOOOOOOOOOOOOOOOOOOOO");
+                    loadUncompressedAnimations(animSleep, new DirectoryInfo("andromeda/sleep"), pixels[0], pixels[1]);
+                    loadUncompressedAnimations(dates, new DirectoryInfo("./dates"), 148, 145);
+                    loadUncompressedAnimations(fall, new DirectoryInfo("./fall"), 64, 64);
+                    loadUncompressedAnimations(cpuUsgL, new DirectoryInfo("./cpugau/usage"), 375, 11);
+                    loadUncompressedAnimations(cpuRamL, new DirectoryInfo("./cpugau/ram"), 322, 7);
+                    loadUncompressedAnimations(gpuUsgL, new DirectoryInfo("./gpugau/usage"), 375, 11);
+                    loadUncompressedAnimations(gpuRamL, new DirectoryInfo("./gpugau/ram"), 322, 7);
 
-                //compressed Resources Load
-               
-                loadAnimations(animSing,new DirectoryInfo("andromeda/sing"));
-                loadAnimations(animIdle, new DirectoryInfo("andromeda/idle"));
-                loadAnimations(animlisten, new DirectoryInfo("andromeda/listen"));
-                loadAnimations(animSleepToIdle, new DirectoryInfo("andromeda/sleepidle"));
-                loadAnimations(animIdleToSing, new DirectoryInfo("andromeda/idlesing"));
-                loadAnimations(animIdleToListen, new DirectoryInfo("andromeda/idlelisten"));
-                loadAnimations(animDoCommand, new DirectoryInfo("andromeda/command"));
-                loadAnimations(animListenToIdle, new DirectoryInfo("andromeda/listenidle"));
-                loadAnimations(animSingToIdle, new DirectoryInfo("andromeda/singidle"));
-                loadAnimations(animIdleToSleep, new DirectoryInfo("andromeda/idlesleep"));
-                loadAnimations(animWelcome, new DirectoryInfo("andromeda/welcome"));
-             
+
+                    //compressed Resources Load
+
+                    loadAnimations(animSing, new DirectoryInfo("andromeda/sing"));
+                    loadAnimations(animIdle, new DirectoryInfo("andromeda/idle"));
+                    loadAnimations(animlisten, new DirectoryInfo("andromeda/listen"));
+                    loadAnimations(animSleepToIdle, new DirectoryInfo("andromeda/sleepidle"));
+                    loadAnimations(animIdleToSing, new DirectoryInfo("andromeda/idlesing"));
+                    loadAnimations(animIdleToListen, new DirectoryInfo("andromeda/idlelisten"));
+                    loadAnimations(animDoCommand, new DirectoryInfo("andromeda/command"));
+                    loadAnimations(animListenToIdle, new DirectoryInfo("andromeda/listenidle"));
+                    loadAnimations(animSingToIdle, new DirectoryInfo("andromeda/singidle"));
+                    loadAnimations(animIdleToSleep, new DirectoryInfo("andromeda/idlesleep"));
+                    loadAnimations(animWelcome, new DirectoryInfo("andromeda/welcome"));
+                }
+                else
+                {
+                    
+                    loadUncompressedAnimations(animSleep, new DirectoryInfo("andromeda/sleep"), pixels[0], pixels[1]);
+                    loadUncompressedAnimations(dates, new DirectoryInfo("./dates"), 148, 145);
+                    loadUncompressedAnimations(fall, new DirectoryInfo("./fall"), 64, 64);
+                    loadUncompressedAnimations(cpuUsgL, new DirectoryInfo("./cpugau/usage"), 375, 11);
+                    loadUncompressedAnimations(cpuRamL, new DirectoryInfo("./cpugau/ram"), 322, 7);
+                    loadUncompressedAnimations(gpuUsgL, new DirectoryInfo("./gpugau/usage"), 375, 11);
+                    loadUncompressedAnimations(gpuRamL, new DirectoryInfo("./gpugau/ram"), 322, 7);
+
+
+                    //compressed Resources Load
+
+                    loadAnimations(animSing, new DirectoryInfo("andromeda/sing"));
+                    loadAnimations(animIdle, new DirectoryInfo("andromeda/idle"));
+                    loadAnimations(animlisten, new DirectoryInfo("andromeda/listen"));
+                    loadAnimations(animSleepToIdle, new DirectoryInfo("andromeda/sleepidle2"));
+                    loadAnimations(animIdleToSing, new DirectoryInfo("andromeda/idlesing"));
+                    loadAnimations(animIdleToListen, new DirectoryInfo("andromeda/idlelisten"));
+                    loadAnimations(animDoCommand, new DirectoryInfo("andromeda/command"));
+                    loadAnimations(animListenToIdle, new DirectoryInfo("andromeda/listenidle"));
+                    loadAnimations(animSingToIdle, new DirectoryInfo("andromeda/singidle"));
+                    loadAnimations(animIdleToSleep, new DirectoryInfo("andromeda/idlesleep"));
+                    loadAnimations(animWelcome, new DirectoryInfo("andromeda/welcome2"));
+                }
                 
                 clk = new clock(this,dates);
                 
                 mikuAnim = new Animate(soundAnimation,this, animSleep, animSing,  animIdle,    animlisten,    animSleepToIdle,    animIdleToSing,    animIdleToListen,    animDoCommand,    animListenToIdle,     animSingToIdle,     animIdleToSleep,animWelcome ,listener,spr, new CommandImpl(this.Handle,this,listener,spr));
-                //mikuBox.Image = (Bitmap)animSleep[10];
+              
             }
             catch (Exception e)
             {
@@ -390,12 +412,6 @@ public struct RECT
 
         public void changeBox(Bitmap img)
         {
-           
-                //mikuBox.Invalidate();
-                //mikuBox.Image = img;
-                //mikuBox.Update(); 
-                      
-            
 
         }
 
@@ -418,7 +434,6 @@ public struct RECT
                 this.clockLbl.Text = spl[0] + (dot?":":" ") + spl[1];
                 this.ampmLbl.Text = spl[2].Equals("a.m.") ? "AM" : "PM";
             }
-            //setLevel (Int32.Parse (spl[2]));
         }
         public void setDate(Bitmap bm,String month,String yr)
         {
@@ -868,7 +883,17 @@ public struct RECT
         {
 
         }
-
+        private bool detectarTamAnimacion()
+        {
+            bool es4K = false;
+            IntPtr hWnd= GetForegroundWindow();
+            Rectangle screenBounds = Screen.FromHandle(hWnd).Bounds;
+            if ((screenBounds.Width > 1920) && (screenBounds.Height>1080))
+            {
+                es4K = true;
+            }
+            return es4K;
+        }
         public bool detectAppOnFullScreen()
         {
              
