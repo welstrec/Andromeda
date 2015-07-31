@@ -41,8 +41,8 @@
             this.mikuBox.Size = new System.Drawing.Size(1022, 763);
             this.mikuBox.TabIndex = 12;
             this.mikuBox.TabStop = false;
-            this.mikuBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.mikuBox_MouseMove);
             this.mikuBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.mikuBox_MouseDown);
+            this.mikuBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.mikuBox_MouseMove);
             this.mikuBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.mikuBox_MouseUp);
             // 
             // MikuAnim
@@ -57,10 +57,10 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "MikuAnim";
-            this.Opacity = 0;
+            this.Opacity = 0D;
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.Text = "MikuDash";
+            this.Text = "AndromedaAnimation";
             this.TopMost = true;
             this.TransparencyKey = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.Load += new System.EventHandler(this.MikuAnim_Load);

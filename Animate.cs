@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Drawing;
-using System.Windows.Forms;
-using System.Collections;
 using MikuDash;
 using System.IO;
 
@@ -70,7 +66,6 @@ public class Animate
         this.animSingToIdle = animSingToIdle;
         this.animIdleToSleep = animIdleToSleep;
         this.animWelcome = animWelcome;
-    
 
 
     }
@@ -336,8 +331,7 @@ public class Animate
             animLock = false;
             System.Threading.Thread.Sleep(ANIM_SPEED);
             for (int i = 0; i < animSleep.Count; i++)
-            {
-                //frame.changeBox(animSleep[i]);
+            {                
                 frame.BeginInvoke(new changeBox(frame.changeBox), new Object[] { animSleep[i] });
                 System.Threading.Thread.Sleep(50);
             }

@@ -300,7 +300,7 @@
             this.Name = "DateSound";
             this.Opacity = 0D;
             this.ShowInTaskbar = false;
-            this.Text = "DateAudioDash";
+            this.Text = "DateAudioAndromeda";
             this.TopMost = true;
             this.TransparencyKey = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.Load += new System.EventHandler(this.DateSound_Load);
