@@ -331,8 +331,9 @@ public struct RECT
                 }
                 else
                 {
-                    
-                    loadUncompressedAnimations(animSleep, new DirectoryInfo("andromeda/sleep"), pixels[0], pixels[1]);
+
+                    soundAnimation.cambiarA1080();
+                    loadUncompressedAnimations(animSleep, new DirectoryInfo("andromeda/sleep2"), pixels[0], pixels[1]);
                     loadUncompressedAnimations(dates, new DirectoryInfo("./dates"), 148, 145);
                     loadUncompressedAnimations(fall, new DirectoryInfo("./fall"), 64, 64);
                     loadUncompressedAnimations(cpuUsgL, new DirectoryInfo("./cpugau/usage"), 375, 11);
@@ -343,17 +344,18 @@ public struct RECT
 
                     //compressed Resources Load
 
-                    loadAnimations(animSing, new DirectoryInfo("andromeda/sing"));
-                    loadAnimations(animIdle, new DirectoryInfo("andromeda/idle"));
-                    loadAnimations(animlisten, new DirectoryInfo("andromeda/listen"));
+                    loadAnimations(animSing, new DirectoryInfo("andromeda/sing2"));
+                    loadAnimations(animIdle, new DirectoryInfo("andromeda/idle2"));
+                    loadAnimations(animlisten, new DirectoryInfo("andromeda/listen2"));
                     loadAnimations(animSleepToIdle, new DirectoryInfo("andromeda/sleepidle2"));
-                    loadAnimations(animIdleToSing, new DirectoryInfo("andromeda/idlesing"));
-                    loadAnimations(animIdleToListen, new DirectoryInfo("andromeda/idlelisten"));
-                    loadAnimations(animDoCommand, new DirectoryInfo("andromeda/command"));
-                    loadAnimations(animListenToIdle, new DirectoryInfo("andromeda/listenidle"));
-                    loadAnimations(animSingToIdle, new DirectoryInfo("andromeda/singidle"));
-                    loadAnimations(animIdleToSleep, new DirectoryInfo("andromeda/idlesleep"));
+                    loadAnimations(animIdleToSing, new DirectoryInfo("andromeda/idlesing2"));
+                    loadAnimations(animIdleToListen, new DirectoryInfo("andromeda/idlelisten2"));
+                    loadAnimations(animDoCommand, new DirectoryInfo("andromeda/command2"));
+                    loadAnimations(animListenToIdle, new DirectoryInfo("andromeda/listenidle2"));
+                    loadAnimations(animSingToIdle, new DirectoryInfo("andromeda/singidle2"));
+                    loadAnimations(animIdleToSleep, new DirectoryInfo("andromeda/idlesleep2"));
                     loadAnimations(animWelcome, new DirectoryInfo("andromeda/welcome2"));
+                    
                 }
                 
                 clk = new clock(this,dates);

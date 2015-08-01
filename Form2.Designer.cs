@@ -28,22 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.mikuBox = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.mikuBox)).BeginInit();
+            this.AndromedaBox = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.AndromedaBox)).BeginInit();
             this.SuspendLayout();
             // 
-            // mikuBox
+            // AndromedaBox
             // 
-            this.mikuBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.mikuBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.mikuBox.Location = new System.Drawing.Point(0, 0);
-            this.mikuBox.Name = "mikuBox";
-            this.mikuBox.Size = new System.Drawing.Size(1022, 763);
-            this.mikuBox.TabIndex = 12;
-            this.mikuBox.TabStop = false;
-            this.mikuBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.mikuBox_MouseDown);
-            this.mikuBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.mikuBox_MouseMove);
-            this.mikuBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.mikuBox_MouseUp);
+            this.AndromedaBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.AndromedaBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.AndromedaBox.Location = new System.Drawing.Point(0, 0);
+            this.AndromedaBox.Name = "AndromedaBox";
+            this.AndromedaBox.Size = new System.Drawing.Size(1022, 763);
+            this.AndromedaBox.TabIndex = 12;
+            this.AndromedaBox.TabStop = false;
+            this.AndromedaBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.mikuBox_MouseDown);
+            this.AndromedaBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.mikuBox_MouseMove);
+            this.AndromedaBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.mikuBox_MouseUp);
             // 
             // MikuAnim
             // 
@@ -51,7 +51,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1024, 768);
-            this.Controls.Add(this.mikuBox);
+            this.Controls.Add(this.AndromedaBox);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
@@ -64,14 +64,14 @@
             this.TopMost = true;
             this.TransparencyKey = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.Load += new System.EventHandler(this.MikuAnim_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.mikuBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AndromedaBox)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.PictureBox mikuBox;
+        private System.Windows.Forms.PictureBox AndromedaBox;
 
     }
 }

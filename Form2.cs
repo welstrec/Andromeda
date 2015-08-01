@@ -124,45 +124,20 @@ namespace MikuDash
         }
         public void startleRegion()
         {
-            /*
-            System.Drawing.Drawing2D.GraphicsPath path = new System.Drawing.Drawing2D.GraphicsPath();
-            path.AddLine(this.Size.Width, 0, this.Size.Width, this.Size.Height);
-            path.AddLine(this.Size.Width, this.Size.Height, 55, this.Size.Height);
-            path.AddLine(55, this.Size.Height, 0, 130);
-            path.AddLine(0, 130, 0, 90);
-            path.AddLine(0, 90, 55, 55);
-            path.AddLine(55, 55, 173, 55);
-            //asdad
-            path.AddLine(173, 55, 173, 48);
-            path.AddLine(173, 48, 188, 48);
-            path.AddLine(188, 48, 188, 0);
-            path.AddLine(188, 0, this.Size.Width, 0);
-            this.Region = new Region(path);
-            /*
-            path.AddLine(0, 0, 66, 0);
-            path.AddLine(66, 0, 125, 10);
-                                     
-            
-            path.AddLine(125, 10, 185, 10);
-            path.AddLine(185, 10, this.Size.Width, 67);
-            path.AddLine(this.Size.Width, 67, this.Size.Width, 90);
-            path.AddLine(this.Size.Width, 90, this.Size.Width - 40, 125);
-            path.AddLine(this.Size.Width - 40, 125, this.Size.Width - 60, 125);
-            path.AddLine(this.Size.Width - 60, 125, this.Size.Width - 60, this.Size.Height);
-
-            path.AddLine(this.Size.Width - 60, this.Size.Height, 0, this.Size.Height);
-            path.AddLine(0, this.Size.Height, 0, 0);
-            this.Region = new Region(path);*/
         }
 
         public void changeBox(Bitmap img)
         {
 
             //mikuBox.Invalidate();
-            mikuBox.Image = img;
+            AndromedaBox.Image = img;
             //mikuBox.Update(); 
         }
-
+        public void cambiarA1080()
+        {
+            AndromedaBox.Width = 480;
+            AndromedaBox.Height = 360;
+        }
         private int wllast;
         public void invalidateActions()
         {

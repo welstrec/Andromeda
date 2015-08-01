@@ -129,7 +129,7 @@ class clock
                             if (sensor.SensorType == SensorType.Clock && sensor.Name.ToLower().Contains("core"))
                             {
 
-                                gpuclk = sensor.Value.HasValue ? (Convert.ToInt32(sensor.Value)) : 0;
+                                gpuclk = sensor.Value.HasValue ? (Convert.ToInt32(sensor.Value)) : 1;
 
 
                             }
@@ -137,14 +137,14 @@ class clock
                             if (sensor.SensorType == SensorType.Temperature && sensor.Name.ToLower().Contains("core"))
                             {
 
-                                gput = sensor.Value.HasValue ? Convert.ToInt32(sensor.Value) : 0;
+                                gput = sensor.Value.HasValue ? Convert.ToInt32(sensor.Value) : 1;
 
 
                             }
                             if (sensor.SensorType == SensorType.Fan && sensor.Name.ToLower().Contains("gpu"))
                             {
                                 
-                                gpuf = sensor.Value.HasValue ? Convert.ToInt32(sensor.Value) : 0;
+                                gpuf = sensor.Value.HasValue ? Convert.ToInt32(sensor.Value) : 1;
 
 
                             }
@@ -152,14 +152,14 @@ class clock
                             if (sensor.SensorType == SensorType.Load && sensor.Name.ToLower().Contains("core"))
                             {
 
-                                gpu = sensor.Value.HasValue ? Convert.ToInt32(sensor.Value) : 0;
+                                gpu = sensor.Value.HasValue ? Convert.ToInt32(sensor.Value) : 1;
 
 
                             }
                             if (sensor.SensorType == SensorType.Load && sensor.Name.ToLower().Contains("memory"))
                             {
 
-                                vram = sensor.Value.HasValue ? Convert.ToInt32(sensor.Value) : 0;
+                                vram = sensor.Value.HasValue ? Convert.ToInt32(sensor.Value) : 1;
 
 
                             }
@@ -179,8 +179,8 @@ class clock
                                 if (sensor.SensorType == SensorType.Clock && sensor.Name.ToLower().Contains("core"))
                                 {
 
-                                    cpuclkThick  += sensor.Value.HasValue ? (Convert.ToInt32(sensor.Value)) : 0;
-                                    cpuclkcounter =  sensor.Value.HasValue ? cpuclkcounter + 1 : 0;
+                                    cpuclkThick  += sensor.Value.HasValue ? (Convert.ToInt32(sensor.Value)) : 1;
+                                    cpuclkcounter =  sensor.Value.HasValue ? cpuclkcounter + 1 : 1;
                                     
                                 }
                                 
@@ -188,7 +188,7 @@ class clock
                                 if (sensor.SensorType == SensorType.Temperature && sensor.Name.ToLower().Contains("pack"))
                                 {
 
-                                    cput = sensor.Value.HasValue ? Convert.ToInt32(sensor.Value) : 0;
+                                    cput = sensor.Value.HasValue ? Convert.ToInt32(sensor.Value) : 1;
 
 
                                 }
@@ -220,7 +220,7 @@ class clock
                                 if (sensor.SensorType == SensorType.Fan && sensor.Name.ToLower().Contains("#" + conectedFan))
                                 {
 
-                                    cpuf = sensor.Value.HasValue ? Convert.ToInt32(sensor.Value) : 0;
+                                    cpuf = sensor.Value.HasValue ? Convert.ToInt32(sensor.Value) : 1;
                                 
 
                                 }
@@ -234,8 +234,6 @@ class clock
                 cpuclkcounter = 0;
                 cpuclkThick = 0;
                 frame.BeginInvoke(new setMonitor(frame.setMonitor), new Object[] { (int)cpuCounter.NextValue(), (int)ramCounter.NextValue(), cput, cpuf, gpu,vram, gput, gpuf,gpuclk,cpuclk   });
-                //System.Threading.Thread.Sleep(700);
-
             }
         
        
