@@ -92,35 +92,7 @@ namespace MikuDash
 
         }
         public void normalRegion()
-        {/*
-            System.Drawing.Drawing2D.GraphicsPath path = new System.Drawing.Drawing2D.GraphicsPath();
-            path.AddLine(this.Size.Width, 0, this.Size.Width , this.Size.Height);
-            path.AddLine(this.Size.Width, this.Size.Height, 55, this.Size.Height);
-            path.AddLine(55, this.Size.Height, 30, 143);
-            path.AddLine(30, 143, 55, 65);
-            path.AddLine(55, 65, 173, 65);
-            path.AddLine(173, 65, 173, 48);
-            path.AddLine(173, 48, 188, 48);
-            path.AddLine(188, 48, 188, 0);
-            path.AddLine(188, 0, this.Size.Width, 0);
-            this.Region = new Region(path);
-            /*
-            path.AddLine(0, 0, 66, 0);
-            path.AddLine(66, 0, 66, 95);
-            path.AddLine(66, 95, 85, 95);
-            path.AddLine(85, 95, 125, 18);
-            //path.AddLine(58, 75, 58, 40);
-            //path.AddLine(58, 40, 125, 10);
-            path.AddLine(125, 18, 180, 18);
-            path.AddLine(185, 18, 200, 80);
-            path.AddLine(200, 80, this.Size.Width-30, 110);
-            path.AddLine(this.Size.Width-30, 110, this.Size.Width - 40, 125);
-            path.AddLine(this.Size.Width - 40, 125, this.Size.Width - 60, 125);
-            path.AddLine(this.Size.Width - 60, 125, this.Size.Width - 60, this.Size.Height);
-
-            path.AddLine(this.Size.Width - 60, this.Size.Height, 0, this.Size.Height);
-            path.AddLine(0, this.Size.Height, 0, 0);
-            this.Region = new Region(path);*/
+        {
         }
         public void startleRegion()
         {
@@ -160,6 +132,11 @@ namespace MikuDash
         private void timer1_Tick(object sender, EventArgs e)
         {
             this.TopMost = true;
+        }
+
+        private void AndromedaBox_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

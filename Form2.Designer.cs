@@ -41,6 +41,7 @@
             this.AndromedaBox.Size = new System.Drawing.Size(1022, 763);
             this.AndromedaBox.TabIndex = 12;
             this.AndromedaBox.TabStop = false;
+            this.AndromedaBox.Click += new System.EventHandler(this.AndromedaBox_Click);
             this.AndromedaBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.mikuBox_MouseDown);
             this.AndromedaBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.mikuBox_MouseMove);
             this.AndromedaBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.mikuBox_MouseUp);
