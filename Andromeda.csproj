@@ -73,6 +73,7 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Security" />
     <Reference Include="System.Speech">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
@@ -175,8 +176,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
-    <Content Include="IconosMail\mail1.png" />
+    <Content Include="IconosMail\base.png" />
     <Content Include="IconosMail\mail1x64.png" />
+    <Content Include="IconosMail\mail2x64.png" />
+    <Content Include="IconosMail\mail3x64.png" />
+    <Content Include="IconosMail\mail4x64.png" />
+    <None Include="Resources\base.png" />
+    <None Include="Resources\mail4x64.png" />
+    <None Include="Resources\mail3x64.png" />
+    <None Include="Resources\mail2x64.png" />
+    <None Include="Resources\mail1x64.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">

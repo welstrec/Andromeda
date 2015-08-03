@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Correo));
             this.ImagenCorreo = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.ImagenCorreo)).BeginInit();
             this.SuspendLayout();
@@ -36,12 +35,13 @@
             // ImagenCorreo
             // 
             this.ImagenCorreo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ImagenCorreo.Image = ((System.Drawing.Image)(resources.GetObject("ImagenCorreo.Image")));
+            this.ImagenCorreo.Image = global::Andromeda.Properties.Resources._base;
             this.ImagenCorreo.Location = new System.Drawing.Point(0, 0);
             this.ImagenCorreo.Name = "ImagenCorreo";
             this.ImagenCorreo.Size = new System.Drawing.Size(66, 66);
             this.ImagenCorreo.TabIndex = 0;
             this.ImagenCorreo.TabStop = false;
+            this.ImagenCorreo.Click += new System.EventHandler(this.ImagenCorreo_Click);
             // 
             // Correo
             // 
