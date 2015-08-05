@@ -9,9 +9,9 @@ namespace MikuDash
         {
             this.spr = spr;
             //actHook.OnMouseActivity += new MouseEventHandler(MouseMoved);
-            HookManager.KeyDown += KeyDown;
+           // HookManager.KeyDown += KeyDown;
             //actHook.KeyPress += new KeyPressEventHandler(MyKeyPress);
-            HookManager.KeyUp += KeyUp;
+           // HookManager.KeyUp += KeyUp;
         }
 
 

@@ -73,6 +73,46 @@ namespace Andromeda.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap botonAgregar {
+            get {
+                object obj = ResourceManager.GetObject("botonAgregar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Email {
+            get {
+                object obj = ResourceManager.GetObject("Email", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap fondoEmail {
+            get {
+                object obj = ResourceManager.GetObject("fondoEmail", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap GMAIL_ICON64 {
+            get {
+                object obj = ResourceManager.GetObject("GMAIL ICON64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap mail1x64 {
             get {
                 object obj = ResourceManager.GetObject("mail1x64", resourceCulture);
@@ -106,6 +146,26 @@ namespace Andromeda.Properties {
         internal static System.Drawing.Bitmap mail4x64 {
             get {
                 object obj = ResourceManager.GetObject("mail4x64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap outlook_icon64 {
+            get {
+                object obj = ResourceManager.GetObject("outlook-icon64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap yahoo64 {
+            get {
+                object obj = ResourceManager.GetObject("yahoo64", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
