@@ -13,21 +13,21 @@ using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
 using System.Media;
 using System.Diagnostics;
-
+using Andromeda;
 
 namespace MikuDash
 {
     public partial class MikuDashMain : Form
     {
  
-[StructLayout(LayoutKind.Sequential)]
-public struct RECT
-{
-    public int Left;
-    public int Top;
-    public int Right;
-    public int Bottom;
-}
+    [StructLayout(LayoutKind.Sequential)]
+    public struct RECT
+    {
+        public int Left;
+        public int Top;
+        public int Right;
+        public int Bottom;
+    }
 
     [DllImport("user32.dll")]
     private static extern IntPtr GetForegroundWindow();
@@ -52,11 +52,7 @@ public struct RECT
         public static int ALERT_TEMP = 79;
         private clock clk;
         private Thread clkThr;
-        
-        private int[] pixels = {1024,768};
-
-
-
+        private Correo correo = new Correo();
         public List<Bitmap> fall = new List<Bitmap>();
 
         public List<Bitmap> cpuUsgL = new List<Bitmap>();
@@ -77,7 +73,7 @@ public struct RECT
         private int del1 = 0;
         private int del2 = 0;
         public SpeechRecognizer spr;
-        private SoundPlayer alertMemory ;
+        private SoundPlayer alertMemory;
         private bool playingMemAlert = false;
         private SoundPlayer alertTemp;
         private bool playingTempAlert = false;
@@ -118,6 +114,7 @@ public struct RECT
         {
             Font = new Font(Font.Name, 8.25f * 96f / CreateGraphics().DpiX, Font.Style, Font.Unit, Font.GdiCharSet, Font.GdiVerticalFont);
             InitializeComponent();
+            
             Microsoft.Win32.SystemEvents.DisplaySettingsChanged += new EventHandler(ScreenHandler);
             MinimizeFootprint();
             loadAnimations();
@@ -306,7 +303,7 @@ public struct RECT
                 if(detectarTamAnimacion())
                 {
                     Console.WriteLine("ENTROOOOOOOOOOOOOOOOOOOOOO");
-                    loadUncompressedAnimations(animSleep, new DirectoryInfo("andromeda/sleep"), pixels[0], pixels[1]);
+                    loadUncompressedAnimations(animSleep, new DirectoryInfo("andromeda/sleep"), 1024, 768);
                     loadUncompressedAnimations(dates, new DirectoryInfo("./dates"), 148, 145);
                     loadUncompressedAnimations(fall, new DirectoryInfo("./fall"), 64, 64);
                     loadUncompressedAnimations(cpuUsgL, new DirectoryInfo("./cpugau/usage"), 375, 11);
@@ -331,29 +328,28 @@ public struct RECT
                 }
                 else
                 {
-                    
-                    loadUncompressedAnimations(animSleep, new DirectoryInfo("andromeda/sleep"), pixels[0], pixels[1]);
+
+                    soundAnimation.cambiarA1080();
+                    loadUncompressedAnimations(animSleep, new DirectoryInfo("andromeda/sleep2"), 480, 360);
                     loadUncompressedAnimations(dates, new DirectoryInfo("./dates"), 148, 145);
                    // loadUncompressedAnimations(fall, new DirectoryInfo("./fall"), 64, 64);
                     loadUncompressedAnimations(cpuUsgL, new DirectoryInfo("./cpugau/usage"), 375, 11);
                     loadUncompressedAnimations(cpuRamL, new DirectoryInfo("./cpugau/ram"), 322, 7);
                     loadUncompressedAnimations(gpuUsgL, new DirectoryInfo("./gpugau/usage"), 375, 11);
                     loadUncompressedAnimations(gpuRamL, new DirectoryInfo("./gpugau/ram"), 322, 7);
-
-
                     //compressed Resources Load
-
-                    loadAnimations(animSing, new DirectoryInfo("andromeda/sing"));
-                    loadAnimations(animIdle, new DirectoryInfo("andromeda/idle"));
-                    loadAnimations(animlisten, new DirectoryInfo("andromeda/listen"));
+                    loadAnimations(animSing, new DirectoryInfo("andromeda/sing2"));
+                    loadAnimations(animIdle, new DirectoryInfo("andromeda/idle2"));
+                    loadAnimations(animlisten, new DirectoryInfo("andromeda/listen2"));
                     loadAnimations(animSleepToIdle, new DirectoryInfo("andromeda/sleepidle2"));
-                    loadAnimations(animIdleToSing, new DirectoryInfo("andromeda/idlesing"));
-                    loadAnimations(animIdleToListen, new DirectoryInfo("andromeda/idlelisten"));
-                    loadAnimations(animDoCommand, new DirectoryInfo("andromeda/command"));
-                    loadAnimations(animListenToIdle, new DirectoryInfo("andromeda/listenidle"));
-                    loadAnimations(animSingToIdle, new DirectoryInfo("andromeda/singidle"));
-                    loadAnimations(animIdleToSleep, new DirectoryInfo("andromeda/idlesleep"));
+                    loadAnimations(animIdleToSing, new DirectoryInfo("andromeda/idlesing2"));
+                    loadAnimations(animIdleToListen, new DirectoryInfo("andromeda/idlelisten2"));
+                    loadAnimations(animDoCommand, new DirectoryInfo("andromeda/command2"));
+                    loadAnimations(animListenToIdle, new DirectoryInfo("andromeda/listenidle2"));
+                    loadAnimations(animSingToIdle, new DirectoryInfo("andromeda/singidle2"));
+                    loadAnimations(animIdleToSleep, new DirectoryInfo("andromeda/idlesleep2"));
                     loadAnimations(animWelcome, new DirectoryInfo("andromeda/welcome2"));
+                    
                 }
                 
                 clk = new clock(this,dates);
@@ -495,14 +491,12 @@ public struct RECT
 
         public void setMonitor(int valCPU, int valRAM, int valCPUT, int valCPUF,int valGPU,int valVRam, int valGPUT,int valGPUF,int valGPUCLK, int valCPUCLK,int numProc,String active)
         {
-            //vuAvg.Level = ((int)((valL + valR) / 2));
+            
             setGauge(pictureCpuUsage,valCPU,cpuUsgL);
             setGauge(pictureGpuUsage, valGPU, gpuUsgL);
             setGauge(pictureCpuRam, valRAM, cpuRamL);
             setGauge(pictureGpuRam, valVRam, gpuRamL);
-            //updateVU(vuRam, valRAM);
-            //updateVU(vuCPU, valCPU);
-            //updateVU(vuCPUT, valCPUT);
+
             cpuLbl.Text = valCPU.ToString("D3");
             gpuLbl.Text = valGPU.ToString("D3");
             ramLbl.Text = valRAM.ToString("D3");

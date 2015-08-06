@@ -357,6 +357,7 @@
             this.Controls.Add(this.gpuLbl);
             this.Controls.Add(this.cpuLbl);
             this.Controls.Add(this.cpuTempLbl);
+            this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MinimizeBox = false;
