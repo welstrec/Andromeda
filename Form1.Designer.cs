@@ -46,7 +46,6 @@
             this.toolPos = new System.Windows.Forms.ToolStripMenuItem();
             this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
-            this.falloutStat = new System.Windows.Forms.PictureBox();
             this.cpuCLK = new System.Windows.Forms.Label();
             this.gpuCLK = new System.Windows.Forms.Label();
             this.fadeInAnim = new System.Windows.Forms.Timer(this.components);
@@ -56,8 +55,8 @@
             this.pictureGpuUsage = new System.Windows.Forms.PictureBox();
             this.pictureGpuRam = new System.Windows.Forms.PictureBox();
             this.pictureCpuRam = new System.Windows.Forms.PictureBox();
+            this.infoDisplay = new System.Windows.Forms.Label();
             this.contextMenu.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.falloutStat)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureCpuUsage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureGpuUsage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureGpuRam)).BeginInit();
@@ -178,45 +177,45 @@
             this.toolPos,
             this.closeToolStripMenuItem});
             this.contextMenu.Name = "contextMenu";
-            this.contextMenu.Size = new System.Drawing.Size(166, 120);
+            this.contextMenu.Size = new System.Drawing.Size(223, 160);
             // 
             // toolShow
             // 
             this.toolShow.Name = "toolShow";
-            this.toolShow.Size = new System.Drawing.Size(165, 22);
+            this.toolShow.Size = new System.Drawing.Size(222, 30);
             this.toolShow.Text = "Show";
             this.toolShow.Click += new System.EventHandler(this.toolShow_Click);
             // 
             // toolHide
             // 
             this.toolHide.Name = "toolHide";
-            this.toolHide.Size = new System.Drawing.Size(165, 22);
+            this.toolHide.Size = new System.Drawing.Size(222, 30);
             this.toolHide.Text = "Hide";
             this.toolHide.Click += new System.EventHandler(this.toolHide_Click);
             // 
             // toolInvalid
             // 
             this.toolInvalid.Name = "toolInvalid";
-            this.toolInvalid.Size = new System.Drawing.Size(165, 22);
+            this.toolInvalid.Size = new System.Drawing.Size(222, 30);
             this.toolInvalid.Text = "Toggle Moveable";
             this.toolInvalid.Click += new System.EventHandler(this.toolInvalid_Click);
             // 
             // toolClose
             // 
             this.toolClose.Name = "toolClose";
-            this.toolClose.Size = new System.Drawing.Size(162, 6);
+            this.toolClose.Size = new System.Drawing.Size(219, 6);
             // 
             // toolPos
             // 
             this.toolPos.Name = "toolPos";
-            this.toolPos.Size = new System.Drawing.Size(165, 22);
+            this.toolPos.Size = new System.Drawing.Size(222, 30);
             this.toolPos.Text = "Save Position";
             this.toolPos.Click += new System.EventHandler(this.toolPos_Click_1);
             // 
             // closeToolStripMenuItem
             // 
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(222, 30);
             this.closeToolStripMenuItem.Text = "Close";
             this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click_1);
             // 
@@ -227,17 +226,6 @@
             this.notifyIcon.Text = "Andromeda";
             this.notifyIcon.Visible = true;
             this.notifyIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon_MouseDoubleClick);
-            // 
-            // falloutStat
-            // 
-            this.falloutStat.BackColor = System.Drawing.Color.Transparent;
-            this.falloutStat.Image = ((System.Drawing.Image)(resources.GetObject("falloutStat.Image")));
-            this.falloutStat.Location = new System.Drawing.Point(652, 85);
-            this.falloutStat.Name = "falloutStat";
-            this.falloutStat.Size = new System.Drawing.Size(49, 51);
-            this.falloutStat.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.falloutStat.TabIndex = 29;
-            this.falloutStat.TabStop = false;
             // 
             // cpuCLK
             // 
@@ -332,6 +320,18 @@
             this.pictureCpuRam.TabIndex = 37;
             this.pictureCpuRam.TabStop = false;
             // 
+            // infoDisplay
+            // 
+            this.infoDisplay.BackColor = System.Drawing.Color.Transparent;
+            this.infoDisplay.Font = new System.Drawing.Font("Consolas", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.infoDisplay.ForeColor = System.Drawing.Color.Lime;
+            this.infoDisplay.Location = new System.Drawing.Point(582, 82);
+            this.infoDisplay.Name = "infoDisplay";
+            this.infoDisplay.Size = new System.Drawing.Size(192, 56);
+            this.infoDisplay.TabIndex = 38;
+            this.infoDisplay.Text = "Loading Data";
+            this.infoDisplay.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // MikuDashMain
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -340,6 +340,7 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1361, 161);
             this.ControlBox = false;
+            this.Controls.Add(this.infoDisplay);
             this.Controls.Add(this.pictureCpuRam);
             this.Controls.Add(this.pictureGpuRam);
             this.Controls.Add(this.vramLbl);
@@ -351,7 +352,6 @@
             this.Controls.Add(this.cpuCLK);
             this.Controls.Add(this.ampmLbl);
             this.Controls.Add(this.clockLbl);
-            this.Controls.Add(this.falloutStat);
             this.Controls.Add(this.gpuTempLbl);
             this.Controls.Add(this.ramLbl);
             this.Controls.Add(this.gpuLbl);
@@ -372,7 +372,6 @@
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.mikuBox_MouseMove);
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.mikuBox_MouseUp);
             this.contextMenu.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.falloutStat)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureCpuUsage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureGpuUsage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureGpuRam)).EndInit();
@@ -399,7 +398,6 @@
         private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;
         private System.Windows.Forms.NotifyIcon notifyIcon;
         private System.Windows.Forms.ToolStripMenuItem toolInvalid;
-        private System.Windows.Forms.PictureBox falloutStat;
         private System.Windows.Forms.Label cpuCLK;
         private System.Windows.Forms.Label gpuCLK;
         private System.Windows.Forms.Timer fadeInAnim;
@@ -409,6 +407,7 @@
         private System.Windows.Forms.PictureBox pictureGpuUsage;
         private System.Windows.Forms.PictureBox pictureGpuRam;
         private System.Windows.Forms.PictureBox pictureCpuRam;
+        private System.Windows.Forms.Label infoDisplay;
     }
 }
 

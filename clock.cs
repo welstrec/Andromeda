@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Diagnostics;
 using OpenHardwareMonitor.Hardware;
 using MikuDash;
+using System.Net.NetworkInformation;
 
 
 class clock
@@ -15,8 +16,11 @@ class clock
     public bool date = false;
     private bool dots = false;
     private int reloadMonitor = 80;
+    private long lastnetsend;
+    private long lastnetin;
     PerformanceCounter cpuCounter;
     PerformanceCounter ramCounter;
+
     Computer cpt;
     List<Bitmap> days = new List<Bitmap>();
     
@@ -34,7 +38,7 @@ class clock
         ramCounter.CounterName = "% Committed Bytes In Use";
         ramCounter.CategoryName = "Memory";
 
-        
+
       
 
 
@@ -97,7 +101,7 @@ class clock
             }
         }
     }
-    public delegate void setMonitor(int valCPU, int valRAM, int valCPUT, int valCPUF, int valGPU, int valVRam, int valGPUT, int valGPUF, int valGPUCLK, int valCPUCLK);
+    public delegate void setMonitor(int valCPU, int valRAM, int valCPUT, int valCPUF, int valGPU, int valVRam, int valGPUT, int valGPUF, int valGPUCLK, int valCPUCLK,int numProc,String active);
     public void monitorSystem()
     {
        
@@ -233,7 +237,28 @@ class clock
                 
                 cpuclkcounter = 0;
                 cpuclkThick = 0;
-                frame.BeginInvoke(new setMonitor(frame.setMonitor), new Object[] { (int)cpuCounter.NextValue(), (int)ramCounter.NextValue(), cput, cpuf, gpu,vram, gput, gpuf,gpuclk,cpuclk   });
+                String netstat = "No LAN Connection";
+                if (NetworkInterface.GetIsNetworkAvailable())
+                {
+
+
+                    NetworkInterface[] interfaces = NetworkInterface.GetAllNetworkInterfaces();
+
+                    foreach (NetworkInterface ni in interfaces)
+                    {
+                        if (ni.GetIPv4Statistics().BytesSent > 0 && ni.GetIPv4Statistics().BytesReceived > 0) {
+
+                            netstat = "UL: " + ((ni.GetIPv4Statistics().BytesSent - lastnetsend) / 700) + " KBPS\nDL: " + ((ni.GetIPv4Statistics().BytesReceived - lastnetin) / 700)+" KBPS\n";
+                       lastnetin = ni.GetIPv4Statistics().BytesReceived;
+                       lastnetsend = ni.GetIPv4Statistics().BytesSent;
+                    }
+                     
+                    }
+
+                }
+
+
+                frame.BeginInvoke(new setMonitor(frame.setMonitor), new Object[] { (int)cpuCounter.NextValue(), (int)ramCounter.NextValue(), cput, cpuf, gpu, vram, gput, gpuf, gpuclk, cpuclk, System.Diagnostics.Process.GetProcesses().Length, netstat});
                 //System.Threading.Thread.Sleep(700);
 
             }

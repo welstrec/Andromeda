@@ -334,7 +334,7 @@ public struct RECT
                     
                     loadUncompressedAnimations(animSleep, new DirectoryInfo("andromeda/sleep"), pixels[0], pixels[1]);
                     loadUncompressedAnimations(dates, new DirectoryInfo("./dates"), 148, 145);
-                    loadUncompressedAnimations(fall, new DirectoryInfo("./fall"), 64, 64);
+                   // loadUncompressedAnimations(fall, new DirectoryInfo("./fall"), 64, 64);
                     loadUncompressedAnimations(cpuUsgL, new DirectoryInfo("./cpugau/usage"), 375, 11);
                     loadUncompressedAnimations(cpuRamL, new DirectoryInfo("./cpugau/ram"), 322, 7);
                     loadUncompressedAnimations(gpuUsgL, new DirectoryInfo("./gpugau/usage"), 375, 11);
@@ -493,7 +493,7 @@ public struct RECT
 
         }
 
-        public void setMonitor(int valCPU, int valRAM, int valCPUT, int valCPUF,int valGPU,int valVRam, int valGPUT,int valGPUF,int valGPUCLK, int valCPUCLK)
+        public void setMonitor(int valCPU, int valRAM, int valCPUT, int valCPUF,int valGPU,int valVRam, int valGPUT,int valGPUF,int valGPUCLK, int valCPUCLK,int numProc,String active)
         {
             //vuAvg.Level = ((int)((valL + valR) / 2));
             setGauge(pictureCpuUsage,valCPU,cpuUsgL);
@@ -518,6 +518,8 @@ public struct RECT
             //updateVU(vuGPUT, valGPUT);
             gpuCLK.Text = valGPUCLK.ToString("D4");
             cpuCLK.Text = valCPUCLK.ToString("D4");
+
+           
 
             if (valRAM > ALERT_RAM)
             {
@@ -581,20 +583,29 @@ public struct RECT
                 overrideAlert = false;
             }
 
-            int prom = (valCPU + valGPU) / 2;
-            
-            if(prom < 20){
-                falloutStat.Image = fall[0];
-            }else if(prom < 40){
-                falloutStat.Image = fall[1];
-            }else if(prom < 60){
-                falloutStat.Image = fall[2];
-            }else if(prom < 80){
-                falloutStat.Image = fall[3];
-            }else {
-                falloutStat.Image = fall[4];
+            String warnStats = "";
+            if (valVRam > ALERT_RAM - 10 || valRAM > ALERT_RAM - 10)
+            {
+                warnStats = "WARN:Low Memory";
             }
 
+            if (valCPUT > ALERT_TEMP -10 || valGPUT > ALERT_TEMP-10)
+            {
+               warnStats = "WARN:High Temp";
+            }
+
+
+
+
+            if (warnStats.Length > 0)
+            {
+                infoDisplay.Text = warnStats+"\n"+active;
+            }
+            else
+            {
+                infoDisplay.Text = "Processes: " + numProc + "\n" + active;
+            }
+  
             Application.DoEvents();
         
         }
