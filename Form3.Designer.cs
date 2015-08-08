@@ -152,21 +152,22 @@
             // mailLbl
             // 
             this.mailLbl.BackColor = System.Drawing.Color.Transparent;
-            this.mailLbl.Font = new System.Drawing.Font("Consolas", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.mailLbl.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.mailLbl.ForeColor = System.Drawing.Color.Lime;
-            this.mailLbl.Location = new System.Drawing.Point(16, 339);
+            this.mailLbl.Location = new System.Drawing.Point(15, 339);
             this.mailLbl.Name = "mailLbl";
             this.mailLbl.Size = new System.Drawing.Size(47, 22);
             this.mailLbl.TabIndex = 36;
             this.mailLbl.Text = "---";
             this.mailLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+         
             // 
             // schLbl
             // 
             this.schLbl.BackColor = System.Drawing.Color.Transparent;
-            this.schLbl.Font = new System.Drawing.Font("Consolas", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.schLbl.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.schLbl.ForeColor = System.Drawing.Color.Lime;
-            this.schLbl.Location = new System.Drawing.Point(48, 339);
+            this.schLbl.Location = new System.Drawing.Point(49, 339);
             this.schLbl.Name = "schLbl";
             this.schLbl.Size = new System.Drawing.Size(47, 22);
             this.schLbl.TabIndex = 37;

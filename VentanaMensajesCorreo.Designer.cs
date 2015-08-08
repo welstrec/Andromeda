@@ -29,57 +29,59 @@
         private void InitializeComponent()
         {
             this.ListaCorreo = new System.Windows.Forms.ListBox();
-            this.textoMensaje = new System.Windows.Forms.TextBox();
+            this.msgViewer = new System.Windows.Forms.WebBrowser();
             this.SuspendLayout();
             // 
             // ListaCorreo
             // 
             this.ListaCorreo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(20)))), ((int)(((byte)(44)))));
             this.ListaCorreo.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.ListaCorreo.Font = new System.Drawing.Font("Monotype Corsiva", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ListaCorreo.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.ListaCorreo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(185)))), ((int)(((byte)(253)))));
             this.ListaCorreo.FormattingEnabled = true;
-            this.ListaCorreo.ItemHeight = 18;
-            this.ListaCorreo.Location = new System.Drawing.Point(32, 46);
+            this.ListaCorreo.ItemHeight = 14;
+            this.ListaCorreo.Location = new System.Drawing.Point(34, 56);
+            this.ListaCorreo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ListaCorreo.Name = "ListaCorreo";
-            this.ListaCorreo.Size = new System.Drawing.Size(327, 504);
+            this.ListaCorreo.Size = new System.Drawing.Size(322, 504);
             this.ListaCorreo.TabIndex = 0;
+            this.ListaCorreo.DoubleClick += new System.EventHandler(this.ListaCorreo_DoubleClick);
             // 
-            // textoMensaje
+            // msgViewer
             // 
-            this.textoMensaje.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(20)))), ((int)(((byte)(44)))));
-            this.textoMensaje.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textoMensaje.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(185)))), ((int)(((byte)(253)))));
-            this.textoMensaje.Location = new System.Drawing.Point(390, 19);
-            this.textoMensaje.Multiline = true;
-            this.textoMensaje.Name = "textoMensaje";
-            this.textoMensaje.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
-            this.textoMensaje.Size = new System.Drawing.Size(595, 539);
-            this.textoMensaje.TabIndex = 2;
+            this.msgViewer.AllowWebBrowserDrop = false;
+            this.msgViewer.IsWebBrowserContextMenuEnabled = false;
+            this.msgViewer.Location = new System.Drawing.Point(398, 25);
+            this.msgViewer.MinimumSize = new System.Drawing.Size(20, 20);
+            this.msgViewer.Name = "msgViewer";
+            this.msgViewer.Size = new System.Drawing.Size(582, 524);
+            this.msgViewer.TabIndex = 1;
             // 
             // VentanaMensajesCorreo
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.BackgroundImage = global::Andromeda.Properties.Resources.Email;
-            this.ClientSize = new System.Drawing.Size(1017, 770);
-            this.Controls.Add(this.textoMensaje);
+            this.ClientSize = new System.Drawing.Size(1009, 772);
+            this.Controls.Add(this.msgViewer);
             this.Controls.Add(this.ListaCorreo);
-            this.Enabled = false;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "VentanaMensajesCorreo";
             this.Opacity = 0.8D;
             this.Text = "VentanaMensajesCorreo";
             this.TransparencyKey = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.Load += new System.EventHandler(this.VentanaMensajesCorreo_Load);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.VentanaMensajesCorreo_MouseDown);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.VentanaMensajesCorreo_MouseMove);
+            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.VentanaMensajesCorreo_MouseUp);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.ListBox ListaCorreo;
-        private System.Windows.Forms.TextBox textoMensaje;
+        private System.Windows.Forms.WebBrowser msgViewer;
     }
 }

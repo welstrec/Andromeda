@@ -1,5 +1,6 @@
 ﻿using System.Windows.Forms;
 using Gma.UserActivityMonitor;
+using System;
 namespace MikuDash
 {
     public class KeyboardHook
@@ -9,9 +10,9 @@ namespace MikuDash
         {
             this.spr = spr;
             //actHook.OnMouseActivity += new MouseEventHandler(MouseMoved);
-           // HookManager.KeyDown += KeyDown;
+           HookManager.KeyDown += KeyDown;
             //actHook.KeyPress += new KeyPressEventHandler(MyKeyPress);
-           // HookManager.KeyUp += KeyUp;
+           HookManager.KeyUp += KeyUp;
         }
 
 
@@ -21,7 +22,9 @@ namespace MikuDash
             
             if (e.KeyCode == Keys.Pause)
             {
+                
                 spr.sprOn();
+                //Console.WriteLine("asd");
             }
         }
 

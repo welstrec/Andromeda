@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using AGaugeApp;
 using System.Runtime.InteropServices;
+using Andromeda;
 
 namespace MikuDash
 {
@@ -19,7 +20,7 @@ namespace MikuDash
         bool flag = false;
         private int offsetx;
         private int offsety;
-
+      
         public enum GWL
         {
             ExStyle = -20
@@ -58,6 +59,7 @@ namespace MikuDash
 
         public DateSound()
         {
+           
             InitializeComponent();
         }
         public void setLevel(int valL,int valR, int l, int r, int c, int sl, int sr, int rl, int rr, int sw)
@@ -166,6 +168,19 @@ namespace MikuDash
             }
             
         }
+
+        public void updateMail(String num,Boolean newone)
+        {
+            mailLbl.Text = ""+num;
+            if (newone)
+            {
+                mailLbl.ForeColor = Color.Orange;
+            }
+            else
+            {
+                mailLbl.ForeColor = Color.LightGreen;
+            }
+        }
         private void mikuBox_MouseMove(object sender, MouseEventArgs e)
         {
             if (flag)
@@ -258,5 +273,7 @@ namespace MikuDash
         {
 
         }
+
+
     }
 }

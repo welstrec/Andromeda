@@ -88,7 +88,7 @@ namespace Andromeda
 
         private void ImagenCorreo_Click(object sender, EventArgs e)
         {
-            MediaPlayer reproductorSonido = new MediaPlayer();
+            /*MediaPlayer reproductorSonido = new MediaPlayer();
             Uri URL = new Uri("Sonido/click.wav", UriKind.RelativeOrAbsolute);
             reproductorSonido.Open(URL);
             reproductorSonido.Play();
@@ -107,7 +107,7 @@ namespace Andromeda
                 VentanaLoginCorreo ttlc = new VentanaLoginCorreo();
                 ttlc.Visible = true;
                 this.Close();
-            }
+            }*/
         }
         private void actualizarMensajesSinLeer(Object threadContext)
         {

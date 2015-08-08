@@ -42,6 +42,7 @@
             this.toolShow = new System.Windows.Forms.ToolStripMenuItem();
             this.toolHide = new System.Windows.Forms.ToolStripMenuItem();
             this.toolInvalid = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewMailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolClose = new System.Windows.Forms.ToolStripSeparator();
             this.toolPos = new System.Windows.Forms.ToolStripMenuItem();
             this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -174,10 +175,11 @@
             this.toolHide,
             this.toolInvalid,
             this.toolClose,
+            this.viewMailToolStripMenuItem,
             this.toolPos,
             this.closeToolStripMenuItem});
             this.contextMenu.Name = "contextMenu";
-            this.contextMenu.Size = new System.Drawing.Size(223, 160);
+            this.contextMenu.Size = new System.Drawing.Size(223, 223);
             // 
             // toolShow
             // 
@@ -199,6 +201,13 @@
             this.toolInvalid.Size = new System.Drawing.Size(222, 30);
             this.toolInvalid.Text = "Toggle Moveable";
             this.toolInvalid.Click += new System.EventHandler(this.toolInvalid_Click);
+            // 
+            // viewMailToolStripMenuItem
+            // 
+            this.viewMailToolStripMenuItem.Name = "viewMailToolStripMenuItem";
+            this.viewMailToolStripMenuItem.Size = new System.Drawing.Size(222, 30);
+            this.viewMailToolStripMenuItem.Text = "Mail Settings";
+            this.viewMailToolStripMenuItem.Click += new System.EventHandler(this.viewMailToolStripMenuItem_Click);
             // 
             // toolClose
             // 
@@ -409,6 +418,7 @@
         private System.Windows.Forms.PictureBox pictureGpuRam;
         private System.Windows.Forms.PictureBox pictureCpuRam;
         private System.Windows.Forms.Label infoDisplay;
+        private System.Windows.Forms.ToolStripMenuItem viewMailToolStripMenuItem;
     }
 }
 

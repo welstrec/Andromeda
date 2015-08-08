@@ -52,7 +52,8 @@ namespace MikuDash
         public static int ALERT_TEMP = 79;
         private clock clk;
         private Thread clkThr;
-        private Correo correo = new Correo();
+        //private Correo correo = new Correo();
+        private Thread mailThr;
         public List<Bitmap> fall = new List<Bitmap>();
 
         public List<Bitmap> cpuUsgL = new List<Bitmap>();
@@ -67,8 +68,8 @@ namespace MikuDash
         public static int VU_INCREASE_INTERVAL = 10;
         public static int VU_DECREASE_INTERVAL = 8;
         public MikuAnim soundAnimation = new MikuAnim();
-        public DateSound  soundDate = new DateSound();
-
+        public DateSound soundDate = new DateSound();
+        public MailModule mailModule;
         private int opac = 0;
         private int del1 = 0;
         private int del2 = 0;
@@ -112,9 +113,22 @@ namespace MikuDash
 
         public MikuDashMain()
         {
+
+ 
+           
             Font = new Font(Font.Name, 8.25f * 96f / CreateGraphics().DpiX, Font.Style, Font.Unit, Font.GdiCharSet, Font.GdiVerticalFont);
             InitializeComponent();
+
+            List<String> host = new List<String>();
+         
+            List<int> port = new List<int>();
+
+            List<String> mail = new List<String>();
             
+            List<String> pwd = new List<String>();
+            
+            mailModule = new MailModule(this,soundDate, host, port, mail, pwd);
+
             Microsoft.Win32.SystemEvents.DisplaySettingsChanged += new EventHandler(ScreenHandler);
             MinimizeFootprint();
             loadAnimations();
@@ -126,6 +140,8 @@ namespace MikuDash
             kbH = new KeyboardHook(this);
             desktopHandle = GetDesktopWindow();
             shellHandle = GetShellWindow();
+
+            
             
         }
 
@@ -230,9 +246,17 @@ namespace MikuDash
                     clkThr.Abort();
                 }
             }
-            
-           
 
+
+
+            if (mailModule!= null)
+            {
+                mailModule.mailActive = false;
+                if (mailThr != null)
+                {
+                    mailThr.Abort();
+                }
+            }
             
         }
 
@@ -267,6 +291,11 @@ namespace MikuDash
             clk.runLoop = true;
             clkThr = new Thread(new ThreadStart(clk.getTime));
             clkThr.Start();
+            mailModule.mailActive = true;
+            mailThr = new Thread(new ThreadStart(mailModule.actualizarMensajesSinLeer));
+            mailThr.Start();
+
+
 
         }
 
@@ -937,5 +966,73 @@ namespace MikuDash
         {
 
         }
+
+        private void viewMailToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            /*
+            VentanaMensajesCorreo vmc = null;
+
+            vmc = new VentanaMensajesCorreo("imap-mail.outlook.com", 993, "thrusthope@hotmail.com", "2009zaulo");
+
+            vmc.Visible = true;
+             * */
+
+            new VentanaLoginCorreo(this).Visible = true;
+        }
+
+        public void saveMailSettings(ListBox mailLists)
+        {
+
+            String[] lst;
+            lst = new String[mailLists.Items.Count];
+            int i = 0;
+            foreach (String itm in mailLists.Items)
+            {
+                lst[i] = itm;
+                i++;
+            }
+
+
+            System.IO.File.WriteAllLines(@"mail.ini", lst);
+        }
+
+        public void loadMailSettings(ListBox mailLists,List<String> host, List<int> port , List<String> mail,List<String> pwd)
+        {
+
+
+            try
+            {
+                string[] lines = System.IO.File.ReadAllLines(@"mail.ini");
+                if (mailLists == null)
+                {
+                    host.Clear();
+                    port.Clear();
+                    mail.Clear();
+                    pwd.Clear();
+                }
+                foreach (string line in lines)
+                {
+
+
+                    if (mailLists != null)
+                    {
+                        mailLists.Items.Add(line);
+                    }
+                    else
+                    {
+                        String[] acc = line.Split(';');
+                        host.Add(acc[0]);
+                        port.Add(Convert.ToInt32(acc[1]));
+                        mail.Add(acc[2]);
+                        pwd.Add(acc[3]);
+                    }
+                }
+            }catch(Exception e){
+
+            }
+
+           
+        }
+
     }
 }
