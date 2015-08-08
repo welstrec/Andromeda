@@ -133,7 +133,7 @@ class clock
                             if (sensor.SensorType == SensorType.Clock && sensor.Name.ToLower().Contains("core"))
                             {
 
-                                gpuclk = sensor.Value.HasValue ? (Convert.ToInt32(sensor.Value)) : 0;
+                                gpuclk = sensor.Value.HasValue ? (Convert.ToInt32(sensor.Value)) : 1;
 
 
                             }
@@ -141,14 +141,14 @@ class clock
                             if (sensor.SensorType == SensorType.Temperature && sensor.Name.ToLower().Contains("core"))
                             {
 
-                                gput = sensor.Value.HasValue ? Convert.ToInt32(sensor.Value) : 0;
+                                gput = sensor.Value.HasValue ? Convert.ToInt32(sensor.Value) : 1;
 
 
                             }
                             if (sensor.SensorType == SensorType.Fan && sensor.Name.ToLower().Contains("gpu"))
                             {
                                 
-                                gpuf = sensor.Value.HasValue ? Convert.ToInt32(sensor.Value) : 0;
+                                gpuf = sensor.Value.HasValue ? Convert.ToInt32(sensor.Value) : 1;
 
 
                             }
@@ -156,14 +156,14 @@ class clock
                             if (sensor.SensorType == SensorType.Load && sensor.Name.ToLower().Contains("core"))
                             {
 
-                                gpu = sensor.Value.HasValue ? Convert.ToInt32(sensor.Value) : 0;
+                                gpu = sensor.Value.HasValue ? Convert.ToInt32(sensor.Value) :1;
 
 
                             }
                             if (sensor.SensorType == SensorType.Load && sensor.Name.ToLower().Contains("memory"))
                             {
 
-                                vram = sensor.Value.HasValue ? Convert.ToInt32(sensor.Value) : 0;
+                                vram = sensor.Value.HasValue ? Convert.ToInt32(sensor.Value) :1;
 
 
                             }
@@ -183,8 +183,8 @@ class clock
                                 if (sensor.SensorType == SensorType.Clock && sensor.Name.ToLower().Contains("core"))
                                 {
 
-                                    cpuclkThick  += sensor.Value.HasValue ? (Convert.ToInt32(sensor.Value)) : 0;
-                                    cpuclkcounter =  sensor.Value.HasValue ? cpuclkcounter + 1 : 0;
+                                    cpuclkThick  += sensor.Value.HasValue ? (Convert.ToInt32(sensor.Value)) : 1;
+                                    cpuclkcounter =  sensor.Value.HasValue ? cpuclkcounter + 1 : 1;
                                     
                                 }
                                 
@@ -192,7 +192,7 @@ class clock
                                 if (sensor.SensorType == SensorType.Temperature && sensor.Name.ToLower().Contains("pack"))
                                 {
 
-                                    cput = sensor.Value.HasValue ? Convert.ToInt32(sensor.Value) : 0;
+                                    cput = sensor.Value.HasValue ? Convert.ToInt32(sensor.Value) : 1;
 
 
                                 }
@@ -224,7 +224,7 @@ class clock
                                 if (sensor.SensorType == SensorType.Fan && sensor.Name.ToLower().Contains("#" + conectedFan))
                                 {
 
-                                    cpuf = sensor.Value.HasValue ? Convert.ToInt32(sensor.Value) : 0;
+                                    cpuf = sensor.Value.HasValue ? Convert.ToInt32(sensor.Value) : 1;
                                 
 
                                 }
@@ -243,19 +243,24 @@ class clock
 
 
                     NetworkInterface[] interfaces = NetworkInterface.GetAllNetworkInterfaces();
-
+                    long ulTotal=0;
+                    long dlTotal = 0;
                     foreach (NetworkInterface ni in interfaces)
                     {
                         if (ni.GetIPv4Statistics().BytesSent > 0 && ni.GetIPv4Statistics().BytesReceived > 0) {
+                    Console.WriteLine("Sent:" + ni.GetIPv4Statistics().BytesSent+" Name: "+ni.Name);
 
-                            netstat = "UL: " + ((ni.GetIPv4Statistics().BytesSent - lastnetsend) / 700) + " KBPS\nDL: " + ((ni.GetIPv4Statistics().BytesReceived - lastnetin) / 700)+" KBPS\n";
-                       lastnetin = ni.GetIPv4Statistics().BytesReceived;
-                       lastnetsend = ni.GetIPv4Statistics().BytesSent;
-                    }
+                    ulTotal += ni.GetIPv4Statistics().BytesSent;
+                    dlTotal += ni.GetIPv4Statistics().BytesReceived;                   
+                }
                      
                     }
+            
+            netstat = "UL: " + ((ulTotal - lastnetsend) / 700) + " KBPS\nDL: " + (( dlTotal- lastnetin) / 700) + " KBPS\n";
+            lastnetin = ulTotal;
+            lastnetsend = dlTotal;
 
-                }
+        }
 
 
                 frame.BeginInvoke(new setMonitor(frame.setMonitor), new Object[] { (int)cpuCounter.NextValue(), (int)ramCounter.NextValue(), cput, cpuf, gpu, vram, gput, gpuf, gpuclk, cpuclk, System.Diagnostics.Process.GetProcesses().Length, netstat});
