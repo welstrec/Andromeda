@@ -17,6 +17,9 @@ namespace Andromeda
     {
 
         public MikuDashMain main;
+        private int offsetx;
+        private int offsety;
+        private Boolean flag;
         public VentanaLoginCorreo(MikuDashMain md)
         {
             main = md;
@@ -78,7 +81,35 @@ namespace Andromeda
             main.saveMailSettings(mailLists);
         }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            main.showApps();
+            Dispose();
+        }
 
+        private void mikuBox_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (flag)
+            {
+                this.Left = Cursor.Position.X - offsetx;
+                this.Top = Cursor.Position.Y - offsety;
+            }
+        }
+
+        private void mikuBox_MouseUp(object sender, MouseEventArgs e)
+        {
+
+            flag = false;
+        }
+
+        private void mikuBox_MouseDown(object sender, MouseEventArgs e)
+        {
+
+            offsetx = Cursor.Position.X - this.Location.X;
+            offsety = Cursor.Position.Y - this.Location.Y;
+            flag = true;
+
+        }
 
     }
 }

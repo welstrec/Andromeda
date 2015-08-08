@@ -169,7 +169,7 @@ namespace MikuDash
             
         }
 
-        public void updateMail(String num,Boolean newone)
+        public void updateMail(String num,Boolean newone,Boolean notify)
         {
             mailLbl.Text = ""+num;
             if (newone)
