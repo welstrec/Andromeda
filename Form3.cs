@@ -20,7 +20,7 @@ namespace MikuDash
         bool flag = false;
         private int offsetx;
         private int offsety;
-      
+        private MikuDashMain mdm;
         public enum GWL
         {
             ExStyle = -20
@@ -57,9 +57,9 @@ namespace MikuDash
 
        
 
-        public DateSound()
+        public DateSound(MikuDashMain mn)
         {
-           
+            mdm = mn;
             InitializeComponent();
         }
         public void setLevel(int valL,int valR, int l, int r, int c, int sl, int sr, int rl, int rr, int sw)
@@ -169,12 +169,18 @@ namespace MikuDash
             
         }
 
-        public void updateMail(String num,Boolean newone,Boolean notify)
+        public void updateMail(String num,Boolean newone,Boolean notify,String info)
         {
             mailLbl.Text = ""+num;
             if (newone)
             {
                 mailLbl.ForeColor = Color.Orange;
+                if (notify)
+                {
+                    mdm.listener.mikuAnim.notify = true;
+                    mdm.notifyMessage = info;
+                    mdm.playAlertMail();
+                }
             }
             else
             {

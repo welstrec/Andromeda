@@ -40,7 +40,7 @@ public class Animate
     private List<List<FileInfo>> animWalkRightIdling;
     private List<List<FileInfo>> animStopTurnLeftIdling;
     private List<List<FileInfo>> animStopTurnRightIdling;
-
+    private List<List<FileInfo>> animNotify;
     public double[] walkCords;
 
     public MikuAnim  frame;
@@ -85,6 +85,7 @@ public class Animate
       List<List<FileInfo>> animWalkRightIdling,
       List<List<FileInfo>> animStopTurnLeftIdling,
       List<List<FileInfo>> animStopTurnRightIdling,
+      List<List<FileInfo>> animNotify,
         
         Listener ls, SpeechRecognizer spr, CommandImpl cmdImpl)
     {
@@ -105,6 +106,7 @@ public class Animate
         this.animSingToIdle = animSingToIdle;
         this.animIdleToSleep = animIdleToSleep;
         this.animWelcome = animWelcome;
+        this.animNotify = animNotify;
 
             this.animTurnLeftSinging = animTurnLeftSinging;
     this.animTurnRightSinging = animTurnRightSinging;
@@ -283,6 +285,35 @@ public class Animate
         
     }
 
+    public void decideFromNotify()
+    {
+        animLock = true;
+
+
+        if (listen)
+        {
+            doIdleToListen();
+        }
+        else if (walk)
+        {
+            walkIdleLoop();
+        }
+        else if (sing)
+        {
+            doIdleToSing();
+        }
+
+        else
+        {
+            idleLoop();
+        }
+
+
+
+
+
+    }
+
     public void decideFromSing()
     {
         animLock = true;
@@ -291,9 +322,9 @@ public class Animate
         {
             walkSingLoop();
         }
-        else if (sing && !listen)
+        else if (sing && !listen && !notify)
         {
-            singLoop ();
+            singLoop();
         }
         else if (listen)
         {
@@ -384,6 +415,12 @@ public class Animate
         {
             doIdleToListen();
         }
+        else if (notify)
+        {
+            notifyLoop();
+        }
+
+        
         else if (walk)
         {
             walkIdleLoop();
@@ -538,7 +575,7 @@ public class Animate
     {
 
 
-        while (listen && !notify)
+        while (listen)
         {
             
             animLock = false;
@@ -550,6 +587,19 @@ public class Animate
         
     }
 
+    public void notifyLoop()
+    {
+
+        for (int i = 0; i < 20 && notify; i++)
+        {
+            animLock = false;
+            listenLock = false;
+            playAnimation(animNotify, true);
+        }
+        notify = false;
+        decideFromNotify();
+
+    }
 
     public void walkIdleLoop()
     {

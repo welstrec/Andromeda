@@ -26,6 +26,7 @@ namespace Andromeda
         private List<int> imapPort;
 
         private long oldUids = 0;
+        private long oldUidslast = 0;
 
         public List<String> listaRecividostemp = new List<String>();
         public List<uint> mensajes = new List<uint>();
@@ -53,7 +54,7 @@ namespace Andromeda
         
        
 
-        public delegate void updateMail(String num,Boolean newone,Boolean notify);
+        public delegate void updateMail(String num,Boolean newone,Boolean notify,String info);
 
         public void actualizarMensajesSinLeer()
         {
@@ -71,34 +72,38 @@ namespace Andromeda
 
                         session = new ImapClient(imapHost[i], imapPort[i], miCorreo[i], contra[i], AuthMethod.Login, true);
                         IList<uint> newUids = (IList<uint>)session.Search(SearchCondition.Unseen().And(SearchCondition.SentSince(DateTime.Today.AddDays(-16.0))));
-                        latest = newUids.First();
+                        latest = newUids.Last();
                         newCount += newUids.Count;
-                        session.Dispose();
+                        
                         
                     }
 
                     if (oldUids == 0)
                     {
                         oldUids = newCount;
+                        oldUidslast = newCount;
                     }
 
                     if (newCount > oldUids)
                     {
                         MailMessage msg = session.GetMessage(latest, FetchOptions.HeadersOnly, false);
-                        stat.BeginInvoke(new updateMail(stat.updateMail), new Object[] { ""+newCount, true ,true});
+                        stat.BeginInvoke(new updateMail(stat.updateMail), new Object[] { "" + newCount, true, newCount>oldUidslast, msg.From.User + "\nNew Mail!" });
+                        
+                        
                     }
                     else if (newCount <= oldUids)
                     {
-                        stat.BeginInvoke(new updateMail(stat.updateMail), new Object[] { ""+newCount, false,false });
+                        stat.BeginInvoke(new updateMail(stat.updateMail), new Object[] { ""+newCount, false,false,"" });
                         oldUids = newCount;
                     }
-
+                    oldUidslast = newCount;
+                    session.Dispose();
 
 
                 }
                 catch (Exception e)
                 {
-                    stat.BeginInvoke(new updateMail(stat.updateMail), new Object[] {"ERR", true,false });
+                    stat.BeginInvoke(new updateMail(stat.updateMail), new Object[] {"ERR", true,false,"" });
                     
                 }
                 Thread.Sleep(MAIL_UPD_INTERVAL);

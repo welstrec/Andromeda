@@ -247,18 +247,22 @@ class clock
                     long dlTotal = 0;
                     foreach (NetworkInterface ni in interfaces)
                     {
-                        if (ni.GetIPv4Statistics().BytesSent > 0 && ni.GetIPv4Statistics().BytesReceived > 0) {
-                    Console.WriteLine("Sent:" + ni.GetIPv4Statistics().BytesSent+" Name: "+ni.Name);
+                    
+                   // Console.WriteLine("Sent:" + ni.GetIPv4Statistics().BytesSent+" Name: "+ni.Name);
+                    
+                    
 
                     ulTotal += ni.GetIPv4Statistics().BytesSent;
                     dlTotal += ni.GetIPv4Statistics().BytesReceived;                   
-                }
-                     
+                    
+                       
                     }
+                    
+                    //Console.WriteLine("TT:" + (ulTotal) + "BK:" + lastnetsend);
+                    netstat = "UL: " + ((ulTotal - lastnetsend)/1000) + " KBPS\nDL: " + ((dlTotal - lastnetin)/1000) + " KBPS\n";
+                    lastnetsend = ulTotal;
+                    lastnetin = dlTotal;
             
-            netstat = "UL: " + ((ulTotal - lastnetsend) / 700) + " KBPS\nDL: " + (( dlTotal- lastnetin) / 700) + " KBPS\n";
-            lastnetin = ulTotal;
-            lastnetsend = dlTotal;
 
         }
 

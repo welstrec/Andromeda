@@ -45,7 +45,7 @@ namespace MikuDash
 
 
         public Boolean invalidateClick = false;
-        private Animate mikuAnim;
+        public Animate mikuAnim;
         public Listener listener;
         private Thread listenThr;
         public static int ALERT_RAM = 95;
@@ -68,8 +68,9 @@ namespace MikuDash
         public static int VU_INCREASE_INTERVAL = 10;
         public static int VU_DECREASE_INTERVAL = 8;
         public MikuAnim soundAnimation = new MikuAnim();
-        public DateSound soundDate = new DateSound();
+        public DateSound soundDate;
         public MailModule mailModule;
+        public String notifyMessage;
         private int opac = 0;
         private int del1 = 0;
         private int del2 = 0;
@@ -114,8 +115,8 @@ namespace MikuDash
         public MikuDashMain()
         {
 
- 
-           
+
+            soundDate = new DateSound(this);
             Font = new Font(Font.Name, 8.25f * 96f / CreateGraphics().DpiX, Font.Style, Font.Unit, Font.GdiCharSet, Font.GdiVerticalFont);
             InitializeComponent();
 
@@ -331,6 +332,7 @@ namespace MikuDash
       List<List<FileInfo>> animWalkRightIdling = new List<List<FileInfo>> ();
       List<List<FileInfo>> animStopTurnLeftIdling = new List<List<FileInfo>> ();
       List<List<FileInfo>> animStopTurnRightIdling = new List<List<FileInfo>> ();
+      List<List<FileInfo>> animNotify = new List<List<FileInfo>>();
 
                 List<Bitmap> dates = new List<Bitmap>();
                 fall = new List<Bitmap>();
@@ -346,7 +348,7 @@ namespace MikuDash
                     
                     loadUncompressedAnimations(animSleep, new DirectoryInfo("andromeda/sleep"), 1024, 768);
                     loadUncompressedAnimations(dates, new DirectoryInfo("./dates"), 148, 145);
-                    loadUncompressedAnimations(fall, new DirectoryInfo("./fall"), 64, 64);
+                    //loadUncompressedAnimations(fall, new DirectoryInfo("./fall"), 64, 64);
                     loadUncompressedAnimations(cpuUsgL, new DirectoryInfo("./cpugau/usage"), 375, 11);
                     loadUncompressedAnimations(cpuRamL, new DirectoryInfo("./cpugau/ram"), 322, 7);
                     loadUncompressedAnimations(gpuUsgL, new DirectoryInfo("./gpugau/usage"), 375, 11);
@@ -354,7 +356,7 @@ namespace MikuDash
 
 
                     //compressed Resources Load
-
+                    
                     loadAnimations(animSing, new DirectoryInfo("andromeda/sing"));
                     loadAnimations(animIdle, new DirectoryInfo("andromeda/idle"));
                     loadAnimations(animlisten, new DirectoryInfo("andromeda/listen"));
@@ -380,6 +382,7 @@ namespace MikuDash
                     loadAnimations(animWalkRightIdling, new DirectoryInfo("andromeda/animWalkRightIdling"));
                     loadAnimations(animStopTurnLeftIdling, new DirectoryInfo("andromeda/animStopTurnLeftIdling"));
                     loadAnimations(animStopTurnRightIdling, new DirectoryInfo("andromeda/animStopTurnRightIdling"));
+                    loadAnimations(animNotify, new DirectoryInfo("andromeda/notify"));
                 }
                 else
                 {
@@ -420,6 +423,8 @@ namespace MikuDash
                     loadAnimations(animWalkRightIdling, new DirectoryInfo("andromeda/animWalkRightIdling2"));
                     loadAnimations(animStopTurnLeftIdling, new DirectoryInfo("andromeda/animStopTurnLeftIdling2"));
                     loadAnimations(animStopTurnRightIdling, new DirectoryInfo("andromeda/animStopTurnRightIdling2"));
+                    loadAnimations(animNotify, new DirectoryInfo("andromeda/notify2"));
+
 
 
 
@@ -448,6 +453,7 @@ namespace MikuDash
    animWalkRightIdling,
    animStopTurnLeftIdling,
    animStopTurnRightIdling,
+   animNotify,
                     
                     
                     
@@ -673,7 +679,9 @@ namespace MikuDash
             {
                 overrideAlert = false;
             }
-
+            if(listener.mikuAnim.notify){
+                infoDisplay.Text = notifyMessage;
+            }else{
             String warnStats = "";
             if (valVRam > ALERT_RAM - 10 || valRAM > ALERT_RAM - 10)
             {
@@ -696,7 +704,7 @@ namespace MikuDash
             {
                 infoDisplay.Text = "Processes: " + numProc + "\n" + active;
             }
-  
+        }
             Application.DoEvents();
         
         }
@@ -975,6 +983,14 @@ namespace MikuDash
             alertTemp.LoadAsync();
             alertTemp.PlayLooping();
             playingTempAlert = true;
+        }
+        public void playAlertMail()
+        {
+            alertTemp = new SoundPlayer();
+            alertTemp.SoundLocation = @"./sound/newmail.wav";
+            alertTemp.LoadAsync();
+            alertTemp.Play();
+          
         }
         private void notifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
         {

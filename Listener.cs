@@ -8,7 +8,7 @@ using System.Windows.Forms;
 public class Listener
 {
     private MMDevice device;
-    private Animate mikuAnim;
+    public Animate mikuAnim;
     private Thread moveMiku;
     private SpeechRecognizer spRec;
     private DateSound mdm;

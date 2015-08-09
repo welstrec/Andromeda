@@ -42,8 +42,8 @@
             this.toolShow = new System.Windows.Forms.ToolStripMenuItem();
             this.toolHide = new System.Windows.Forms.ToolStripMenuItem();
             this.toolInvalid = new System.Windows.Forms.ToolStripMenuItem();
-            this.viewMailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolClose = new System.Windows.Forms.ToolStripSeparator();
+            this.viewMailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolPos = new System.Windows.Forms.ToolStripMenuItem();
             this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
@@ -179,7 +179,7 @@
             this.toolPos,
             this.closeToolStripMenuItem});
             this.contextMenu.Name = "contextMenu";
-            this.contextMenu.Size = new System.Drawing.Size(223, 223);
+            this.contextMenu.Size = new System.Drawing.Size(223, 190);
             // 
             // toolShow
             // 
@@ -202,17 +202,17 @@
             this.toolInvalid.Text = "Toggle Moveable";
             this.toolInvalid.Click += new System.EventHandler(this.toolInvalid_Click);
             // 
+            // toolClose
+            // 
+            this.toolClose.Name = "toolClose";
+            this.toolClose.Size = new System.Drawing.Size(219, 6);
+            // 
             // viewMailToolStripMenuItem
             // 
             this.viewMailToolStripMenuItem.Name = "viewMailToolStripMenuItem";
             this.viewMailToolStripMenuItem.Size = new System.Drawing.Size(222, 30);
             this.viewMailToolStripMenuItem.Text = "Mail Settings";
             this.viewMailToolStripMenuItem.Click += new System.EventHandler(this.viewMailToolStripMenuItem_Click);
-            // 
-            // toolClose
-            // 
-            this.toolClose.Name = "toolClose";
-            this.toolClose.Size = new System.Drawing.Size(219, 6);
             // 
             // toolPos
             // 
