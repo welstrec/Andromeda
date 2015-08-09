@@ -3,6 +3,7 @@ using System.Linq;
 using CoreAudioApi;
 using System.Threading;
 using MikuDash;
+using System.Windows.Forms;
 
 public class Listener
 {
@@ -11,13 +12,15 @@ public class Listener
     private Thread moveMiku;
     private SpeechRecognizer spRec;
     private DateSound mdm;
+    private MikuDashMain main;
     public bool tListen = true;
-
+   
     private int devDel = 0;
     public delegate void topmostApp();
-    public Listener(Animate anim,SpeechRecognizer spr, DateSound mdm)
+    public Listener(MikuDashMain md, Animate anim,SpeechRecognizer spr, DateSound mdm)
     {
         this.mdm = mdm;
+        this.main = md;
         mikuAnim = anim;
         mikuAnim.sing = false;
         mikuAnim.sleep = true;
@@ -149,7 +152,7 @@ public class Listener
 
 
                     mdm.BeginInvoke(new setLevel(mikuAnim.frameMain.soundDate.setLevel), new Object[] { val, lc,l,r,c,sl,sr,rl,rr,sw});
-
+                    moveAway();
                     if (spRec.active)
                     {
 
@@ -234,39 +237,14 @@ public class Listener
                                 mikuAnim.listen = false;
                                 mikuAnim.sing = true;
                                 mikuAnim.sleep = false;
-                                /*
-                                if (!singing)
-                                {
 
-                                
-                                    /* moveMiku.Abort();
-                                    if (mikuAnim.locked)
-                                    {
-                                       // moveMiku = new Thread(new ThreadStart(mikuAnim.doSing));
-                                    }
-                                    else
-                                    {
-                                        moveMiku = new Thread(new ThreadStart(mikuAnim.wakeUpAndSing));
-                                    }
-                               
-                                }*/
                             }
                             else
                             {
                                 mikuAnim.listen = false;
                                 mikuAnim.sing = false;
                                 mikuAnim.sleep = true;
-                                /*
-                                if (singing)
-                                {
                                 
-                                   /* moveMiku.Abort();
-                                    moveMiku = new Thread(new ThreadStart(mikuAnim.goSleep));
-                                    moveMiku.Start();
-                                    singing = false;
-                                
-                                
-                                }*/
                             }
 
 
@@ -285,6 +263,46 @@ public class Listener
         
     }
 
+    public void moveAway()
+    {
+
+        
+        //Console.WriteLine(Cursor.Position.X - center);
+
+        if ((Cursor.Position.Y > (mikuAnim.frame.Top) + (mikuAnim.frame.Height / 3) && Cursor.Position.Y < (mikuAnim.frame.Top + mikuAnim.frame.Height) - (mikuAnim.frame.Height / 3)) && main.invalidateClick && !mikuAnim.walk)
+
+        {
+            int center = mikuAnim.frame.Left + ((mikuAnim.frame.Size.Width) / 2);
+            //int center = mikuAnim.frame.Left + ((mikuAnim.frame.Left - mikuAnim.frame.Size.Width) / 2);
+            int framethrd = mikuAnim.frame.Width / 3;
+            if ((Cursor.Position.X - center) <= 500 && (Cursor.Position.X - center) >= 0)
+            {
+
+                int ll =  - framethrd;
+                Console.WriteLine("++" + mikuAnim.frame.Left + " - " + ll);
+                    double[] cords = { mikuAnim.frame.Left, ll };
+                    // double[] cords = { mikuAnim.frame.Left, -framethrd};
+                    //double[] cords = { mikuAnim.frame.Left, mikuAnim.frame.Left - framethrd };
+                    mikuAnim.walkCords = cords;
+                    mikuAnim.walk = true;
+                
+            }
+            else if ((Cursor.Position.X - center) >= -500 && (Cursor.Position.X - center) <= 0)
+            {
+
+                int ll = Screen.GetBounds(mikuAnim.frame).Width - (framethrd * 2);
+                Console.WriteLine(">>" + mikuAnim.frame.Left +" - "+ll);
+                    double[] cords = { mikuAnim.frame.Left, ll };
+                    //double[] cords = { mikuAnim.frame.Left, (mikuAnim.frame.Left + (Screen.GetBounds(mikuAnim.frame).Width - mikuAnim.frame.Left)) - (framethrd * 2) };
+                    // double[] cords = { mikuAnim.frame.Left, (mikuAnim.frame.Left + (Screen.GetBounds(mikuAnim.frame).Width - mikuAnim.frame.Left)) - (framethrd * 2) };
+                    mikuAnim.walkCords = cords;
+                    mikuAnim.walk = true;
+                
+            }
+        }
+
+
+    }
     public void volumeUp()
     {
         device.AudioEndpointVolume.VolumeStepUp();

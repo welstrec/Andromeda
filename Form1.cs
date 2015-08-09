@@ -44,7 +44,7 @@ namespace MikuDash
 
 
 
-        private Boolean invalidateClick = false;
+        public Boolean invalidateClick = false;
         private Animate mikuAnim;
         public Listener listener;
         private Thread listenThr;
@@ -264,7 +264,7 @@ namespace MikuDash
         {
             spr = new SpeechRecognizer();
 
-            listener = new Listener(mikuAnim, spr, soundDate);
+            listener = new Listener(this,mikuAnim, spr, soundDate);
             mikuAnim.lstnr = listener;
             mikuAnim.sleep = true;
             listenThr = new Thread(new ThreadStart(listener.listen));
@@ -318,7 +318,19 @@ namespace MikuDash
                 List<List<FileInfo>> animIdleToSleep = new List<List<FileInfo>> ();
                 List<List<FileInfo>> animWelcome = new List<List<FileInfo>>();
 
+      List<List<FileInfo>> animTurnLeftSinging = new List<List<FileInfo>> ();
+      List<List<FileInfo>> animTurnRightSinging = new List<List<FileInfo>> ();
+      List<List<FileInfo>> animWalkLeftSinging = new List<List<FileInfo>> ();
+      List<List<FileInfo>> animWalkRightSinging = new List<List<FileInfo>> ();
+      List<List<FileInfo>> animStopTurnLeftSinging = new List<List<FileInfo>> ();
+      List<List<FileInfo>> animStopTurnRightSinging = new List<List<FileInfo>> ();
 
+      List<List<FileInfo>> animTurnLeftIdling = new List<List<FileInfo>> ();
+      List<List<FileInfo>> animTurnRightIdling = new List<List<FileInfo>> ();
+      List<List<FileInfo>> animWalkLeftIdling = new List<List<FileInfo>> ();
+      List<List<FileInfo>> animWalkRightIdling = new List<List<FileInfo>> ();
+      List<List<FileInfo>> animStopTurnLeftIdling = new List<List<FileInfo>> ();
+      List<List<FileInfo>> animStopTurnRightIdling = new List<List<FileInfo>> ();
 
                 List<Bitmap> dates = new List<Bitmap>();
                 fall = new List<Bitmap>();
@@ -331,7 +343,7 @@ namespace MikuDash
                 
                 if(detectarTamAnimacion())
                 {
-                    Console.WriteLine("ENTROOOOOOOOOOOOOOOOOOOOOO");
+                    
                     loadUncompressedAnimations(animSleep, new DirectoryInfo("andromeda/sleep"), 1024, 768);
                     loadUncompressedAnimations(dates, new DirectoryInfo("./dates"), 148, 145);
                     loadUncompressedAnimations(fall, new DirectoryInfo("./fall"), 64, 64);
@@ -354,6 +366,20 @@ namespace MikuDash
                     loadAnimations(animSingToIdle, new DirectoryInfo("andromeda/singidle"));
                     loadAnimations(animIdleToSleep, new DirectoryInfo("andromeda/idlesleep"));
                     loadAnimations(animWelcome, new DirectoryInfo("andromeda/welcome"));
+
+                    loadAnimations(animTurnLeftSinging, new DirectoryInfo("andromeda/animTurnLeftSinging"));
+                    loadAnimations(animTurnRightSinging, new DirectoryInfo("andromeda/animTurnRightSinging"));
+                    loadAnimations(animWalkLeftSinging, new DirectoryInfo("andromeda/animWalkLeftSinging"));
+                    loadAnimations(animWalkRightSinging, new DirectoryInfo("andromeda/animWalkRightSinging"));
+                    loadAnimations(animStopTurnLeftSinging, new DirectoryInfo("andromeda/animStopTurnLeftSinging"));
+                    loadAnimations(animStopTurnRightSinging, new DirectoryInfo("andromeda/animStopTurnRightSinging"));
+
+                    loadAnimations(animTurnLeftIdling, new DirectoryInfo("andromeda/animTurnLeftIdling"));
+                    loadAnimations(animTurnRightIdling, new DirectoryInfo("andromeda/animTurnRightIdling"));
+                    loadAnimations(animWalkLeftIdling, new DirectoryInfo("andromeda/animWalkLeftIdling"));
+                    loadAnimations(animWalkRightIdling, new DirectoryInfo("andromeda/animWalkRightIdling"));
+                    loadAnimations(animStopTurnLeftIdling, new DirectoryInfo("andromeda/animStopTurnLeftIdling"));
+                    loadAnimations(animStopTurnRightIdling, new DirectoryInfo("andromeda/animStopTurnRightIdling"));
                 }
                 else
                 {
@@ -378,12 +404,54 @@ namespace MikuDash
                     loadAnimations(animSingToIdle, new DirectoryInfo("andromeda/singidle2"));
                     loadAnimations(animIdleToSleep, new DirectoryInfo("andromeda/idlesleep2"));
                     loadAnimations(animWelcome, new DirectoryInfo("andromeda/welcome2"));
-                    
+
+
+
+                    loadAnimations(animTurnLeftSinging, new DirectoryInfo("andromeda/animTurnLeftSinging2"));
+                    loadAnimations(animTurnRightSinging, new DirectoryInfo("andromeda/animTurnRightSinging2"));
+                    loadAnimations(animWalkLeftSinging, new DirectoryInfo("andromeda/animWalkLeftSinging2"));
+                    loadAnimations(animWalkRightSinging, new DirectoryInfo("andromeda/animWalkRightSinging2"));
+                    loadAnimations(animStopTurnLeftSinging, new DirectoryInfo("andromeda/animStopTurnLeftSinging2"));
+                    loadAnimations(animStopTurnRightSinging, new DirectoryInfo("andromeda/animStopTurnRightSinging2"));
+
+                    loadAnimations(animTurnLeftIdling, new DirectoryInfo("andromeda/animTurnLeftIdling2"));
+                    loadAnimations(animTurnRightIdling, new DirectoryInfo("andromeda/animTurnRightIdling2"));
+                    loadAnimations(animWalkLeftIdling, new DirectoryInfo("andromeda/animWalkLeftIdling2"));
+                    loadAnimations(animWalkRightIdling, new DirectoryInfo("andromeda/animWalkRightIdling2"));
+                    loadAnimations(animStopTurnLeftIdling, new DirectoryInfo("andromeda/animStopTurnLeftIdling2"));
+                    loadAnimations(animStopTurnRightIdling, new DirectoryInfo("andromeda/animStopTurnRightIdling2"));
+
+
+
+
+
+
+
                 }
                 
                 clk = new clock(this,dates);
                 
-                mikuAnim = new Animate(soundAnimation,this, animSleep, animSing,  animIdle,    animlisten,    animSleepToIdle,    animIdleToSing,    animIdleToListen,    animDoCommand,    animListenToIdle,     animSingToIdle,     animIdleToSleep,animWelcome ,listener,spr, new CommandImpl(this.Handle,this,listener,spr));
+                mikuAnim = new Animate(soundAnimation,this, animSleep, animSing,  animIdle,    animlisten,    animSleepToIdle,    animIdleToSing,    animIdleToListen,    animDoCommand,    animListenToIdle,     animSingToIdle,     animIdleToSleep,animWelcome ,
+
+
+
+           animTurnLeftSinging,
+   animTurnRightSinging,
+   animWalkLeftSinging,
+   animWalkRightSinging,
+   animStopTurnLeftSinging,
+   animStopTurnRightSinging,
+
+   animTurnLeftIdling,
+   animTurnRightIdling,
+   animWalkLeftIdling,
+   animWalkRightIdling,
+   animStopTurnLeftIdling,
+   animStopTurnRightIdling,
+                    
+                    
+                    
+                    listener,spr, new CommandImpl(this.Handle,this,listener,spr));
               
             }
             catch (Exception e)

@@ -12,6 +12,7 @@ public class Animate
 
 
     public static int ANIM_SPEED = 35;
+    public static int MOV_SPEED = 15;
     private List<Bitmap> animSleep;
     private List<List<FileInfo>> animSing;
     private List<List<FileInfo>> animIdle;
@@ -68,7 +69,24 @@ public class Animate
     public int danceDelay = 1;
     public Random rndDance = new Random();
 
-    public Animate(MikuAnim frame, MikuDashMain framem,    List<Bitmap> animSleep,   List<List<FileInfo>> animSing,   List<List<FileInfo>> animIdle,   List<List<FileInfo>> animlisten,   List<List<FileInfo>> animSleepToIdle,   List<List<FileInfo>> animIdleToSing,   List<List<FileInfo>> animIdleToListen,   List<List<FileInfo>> animDoCommand,    List<List<FileInfo>> animListenToIdle,    List<List<FileInfo>> animSingToIdle,    List<List<FileInfo>> animIdleToSleep,List<List<FileInfo>> animWelcome,   Listener ls, SpeechRecognizer spr, CommandImpl cmdImpl)
+    public Animate(MikuAnim frame, MikuDashMain framem,    List<Bitmap> animSleep,   List<List<FileInfo>> animSing,   List<List<FileInfo>> animIdle,   List<List<FileInfo>> animlisten,   List<List<FileInfo>> animSleepToIdle,   List<List<FileInfo>> animIdleToSing,   List<List<FileInfo>> animIdleToListen,   List<List<FileInfo>> animDoCommand,    List<List<FileInfo>> animListenToIdle,    List<List<FileInfo>> animSingToIdle,    List<List<FileInfo>> animIdleToSleep,List<List<FileInfo>> animWelcome, 
+        
+                
+              List<List<FileInfo>> animTurnLeftSinging,
+      List<List<FileInfo>> animTurnRightSinging,
+      List<List<FileInfo>> animWalkLeftSinging,
+      List<List<FileInfo>> animWalkRightSinging,
+      List<List<FileInfo>> animStopTurnLeftSinging,
+      List<List<FileInfo>> animStopTurnRightSinging,
+
+      List<List<FileInfo>> animTurnLeftIdling,
+      List<List<FileInfo>> animTurnRightIdling,
+      List<List<FileInfo>> animWalkLeftIdling,
+      List<List<FileInfo>> animWalkRightIdling,
+      List<List<FileInfo>> animStopTurnLeftIdling,
+      List<List<FileInfo>> animStopTurnRightIdling,
+        
+        Listener ls, SpeechRecognizer spr, CommandImpl cmdImpl)
     {
         lstnr = ls;
         sprs = spr;
@@ -87,6 +105,20 @@ public class Animate
         this.animSingToIdle = animSingToIdle;
         this.animIdleToSleep = animIdleToSleep;
         this.animWelcome = animWelcome;
+
+            this.animTurnLeftSinging = animTurnLeftSinging;
+    this.animTurnRightSinging = animTurnRightSinging;
+    this.animWalkLeftSinging = animWalkLeftSinging;
+    this.animWalkRightSinging = animWalkRightSinging;
+    this.animStopTurnLeftSinging = animStopTurnLeftSinging;
+    this.animStopTurnRightSinging = animStopTurnRightSinging;
+
+    this.animTurnLeftIdling =animTurnLeftIdling;
+    this.animTurnRightIdling =animTurnRightIdling;
+    this.animWalkLeftIdling =animWalkLeftIdling;
+    this.animWalkRightIdling = animWalkRightIdling;
+    this.animStopTurnLeftIdling =animStopTurnLeftIdling;
+    this.animStopTurnRightIdling =animStopTurnRightIdling;
 
 
     }
@@ -113,21 +145,55 @@ public class Animate
 
     }
 
-    public void playAnimationMoveFrame(List<List<FileInfo>> histo, Boolean switchAnim, int offset)
+    public Boolean playAnimationMoveFrame(List<List<FileInfo>> histo, Boolean switchAnim, int offset, double dest,Boolean normal)
     {
         if (switchAnim)
         {
             selectedDance = rndDance.Next(0, histo.Count);
         }
-
-
-        for (int i = 0; i < histo[selectedDance].Count; i++)
+        else
         {
-            System.Threading.Thread.Sleep(ANIM_SPEED);
-            frame.BeginInvoke(new changeBox(frame.changeBox), new Object[] { Image.FromFile(histo[selectedDance][i].FullName) });
-            frame.Top = frame.Location.X + offset;
+            selectedDance = 0;
         }
+        if (normal)
+        {
 
+            for (int i = 0; i < histo[selectedDance].Count; i++)
+            {
+                System.Threading.Thread.Sleep(ANIM_SPEED - 10);
+                frame.BeginInvoke(new changeBox(frame.changeBox), new Object[] { Image.FromFile(histo[selectedDance][i].FullName) });
+                frame.Left = frame.Location.X + offset;
+            }
+            return false;
+        }
+        else if ((frame.Left + (histo[selectedDance].Count * MOV_SPEED)) < dest && offset > 0)
+        {
+
+            for (int i = 0; i < histo[selectedDance].Count; i++)
+            {
+                System.Threading.Thread.Sleep(ANIM_SPEED - 20);
+                frame.BeginInvoke(new changeBox(frame.changeBox), new Object[] { Image.FromFile(histo[selectedDance][i].FullName) });
+                frame.Left = frame.Location.X + offset;
+            }
+            return false;
+        }
+        else if ((frame.Left - (histo[selectedDance].Count * MOV_SPEED))  > dest && offset < 0)
+        {
+
+            for (int i = 0; i < histo[selectedDance].Count; i++)
+            {
+                System.Threading.Thread.Sleep(ANIM_SPEED - 20);
+                frame.BeginInvoke(new changeBox(frame.changeBox), new Object[] { Image.FromFile(histo[selectedDance][i].FullName) });
+                frame.Left = frame.Location.X + offset;
+            }
+            return false;
+        }
+        else
+        {
+            
+            return true;
+            
+        }
 
     }
 
@@ -221,8 +287,11 @@ public class Animate
     {
         animLock = true;
 
-
-        if (sing && !listen)
+        if (walk)
+        {
+            walkSingLoop();
+        }
+        else if (sing && !listen)
         {
             singLoop ();
         }
@@ -237,6 +306,52 @@ public class Animate
 
     }
 
+    public void decideFromWalkSing()
+    {
+        animLock = true;
+
+        if (walk)
+        {
+            walkSingLoop();
+        }
+        else if (sing && !listen)
+        {
+            singLoop();
+        }
+        else if (listen)
+        {
+            decideFromListen();
+        }
+        else
+        {
+            doSingToIdle();
+        }
+
+    }
+
+    public void decideFromWalkIdle()
+    {
+        animLock = true;
+
+
+        if (listen)
+        {
+            doIdleToListen();
+        }
+        else if (sing)
+        {
+            doIdleToSing();
+        }
+        else if (walk)
+        {
+            walkIdleLoop();
+        }
+        else
+        {
+            idleLoop();
+        }
+
+    }
 
     public void decideFromListen()
     {
@@ -268,6 +383,10 @@ public class Animate
         if (listen)
         {
             doIdleToListen();
+        }
+        else if (walk)
+        {
+            walkIdleLoop();
         }
         else if (sing)
         {
@@ -347,16 +466,14 @@ public class Animate
 
         frame.normalRegion();
         int to = 0;
-        while (!listen && !sing && !notify && to < 7)
+        while ((!listen && !sing && !notify && !walk && to < 7))
         {
             animLock = false;
-            if (walk)
-            { }
-            else
-            {
-                playAnimation(animIdle, true);
-            }
+
+            playAnimation(animIdle, true);
             to++;
+            
+           
 
         }
 
@@ -369,7 +486,7 @@ public class Animate
    
         frame.normalRegion();
         
-        while (sleep && !listen && !sing && !notify)
+        while (sleep && !listen && !sing && !notify && !walk)
         {
             animLock = false;
             System.Threading.Thread.Sleep(ANIM_SPEED);
@@ -393,29 +510,21 @@ public class Animate
         frame.normalRegion();
        
         int t = 1;
-        while (sing && !listen && !notify)
+        while (sing && !listen && !notify && !walk)
         {
             animLock = false;
 
             if(t ==danceDelay){
                 danceDelay = rndDance.Next(1, 6);
-                if (walk)
-                {
-                    walkLogic();
-                }else{
+
                     playAnimation(animSing, true);
-                }
+                
                 t=0;
             }else{
 
-                if (walk)
-                { 
-                    walkLogic(); 
-                }
-                else
-                {
+
                    playAnimation(animSing, false);
-                }
+                
                 t++;
             }
 
@@ -442,104 +551,116 @@ public class Animate
     }
 
 
-
-    public void walkLogic()
+    public void walkIdleLoop()
     {
-        if (walkCords[0] > walkCords[1])
+        
+        if (walkCords[0] < walkCords[1])
         {
-            if (walking)
+            int thicks = moveCalculator(animTurnRightIdling, animWalkRightIdling, animStopTurnRightIdling, walkCords[1]);
+            if (thicks > 0)
             {
-
-
-                    if (frame.Location.X <= walkCords[1])
-                    {
-                        animLock = true;
-                        if (sing)
-                        {
-                            playAnimation(animStopTurnRightSinging, true);
-                        }
-                        else
-                        {
-                            playAnimation(animStopTurnRightIdling, true);
-                        }
-                        walking = false;
-                        walk = false;
-                    }
-                    else
-                    {
-                        if (sing)
-                        {
-                            playAnimationMoveFrame(animWalkRightSinging, true, 10);
-                        }
-                        else
-                        {
-                            playAnimationMoveFrame(animWalkRightIdling, true, 10);
-                        }
-                    }
-                
-            }
-            else
-            {
-                if (sing)
+                playAnimationMoveFrame(animTurnRightIdling, false, MOV_SPEED, 0, true);
+                thicks--;
+                while (thicks > 1)
                 {
-                    playAnimation(animTurnRightSinging, true);
+                    playAnimationMoveFrame(animWalkRightIdling, false, MOV_SPEED, 0, true);
+                    thicks--;
                 }
-                else
-                {
-                    playAnimation(animTurnRightIdling, true);
-                }
-                walking = true;
+                playAnimationMoveFrame(animStopTurnRightIdling, false, MOV_SPEED, 0, true);
             }
-
-
         }
         else
         {
-            if (walking)
+            int thicks = moveCalculator(animTurnLeftIdling, animWalkLeftIdling, animStopTurnLeftIdling, walkCords[1]);
+            if (thicks > 0)
             {
-
-                if (frame.Location.X >= walkCords[1])
+                playAnimationMoveFrame(animTurnLeftIdling, false, -MOV_SPEED, 0, true);
+                thicks--;
+                while (thicks > 1)
                 {
-                    animLock = true;
-                    if (sing)
-                    {
-                        playAnimation(animStopTurnLeftSinging, true);
-                    }
-                    else
-                    {
-                        playAnimation(animStopTurnLeftIdling, true);
-                    }
-                    walking = false;
-                    walk = false;
+                    playAnimationMoveFrame(animWalkLeftIdling, false, -MOV_SPEED, 0, true);
+                    thicks--;
                 }
-                else
+                playAnimationMoveFrame(animStopTurnLeftIdling, false, -MOV_SPEED, 0, true);
+            }
+        }
+        walk = false;
+        decideFromWalkIdle();
+    }
+
+    public int moveCalculator(List<List<FileInfo>> inw, List<List<FileInfo>> wl, List<List<FileInfo>>outw,double dest)
+    {
+        int inwc = 0;
+        int wlc = 0;
+        int outwc = 0;
+
+        double rdistance = Math.Abs(dest - frame.Left);
+        
+        double fDistance = (inw[inwc].Count * MOV_SPEED) + (outw[outwc].Count * MOV_SPEED);
+
+        Console.WriteLine("RD"+ rdistance+"-"+fDistance);
+        int thicks = 2;
+        if (fDistance <= rdistance)
+        {
+            while ((fDistance + wl[wlc].Count * MOV_SPEED) <= rdistance)
+            {
+                fDistance += (wl[wlc].Count * MOV_SPEED);
+                thicks++;
+            }
+        }
+        else
+        {
+            return 0;
+        }
+
+        return thicks;
+
+    }
+
+    public void walkSingLoop()
+    {
+        if (walkCords[0] < walkCords[1])
+        {
+            int thicks = moveCalculator(animTurnRightSinging, animWalkRightSinging, animStopTurnRightSinging, walkCords[1]);
+            if (thicks > 0)
+            {
+                playAnimationMoveFrame(animTurnRightSinging, false, MOV_SPEED, 0, true);
+                thicks--;
+                while (thicks > 1)
                 {
-
-                    if (sing)
-                    {
-                        playAnimationMoveFrame(animWalkLeftSinging, true, 10);
-                    }
-                    else
-                    {
-                        playAnimationMoveFrame(animWalkLeftIdling, true, 10);
-                    }
+                    playAnimationMoveFrame(animWalkRightSinging, false, MOV_SPEED, 0, true);
+                    thicks--;
                 }
-
+                playAnimationMoveFrame(animStopTurnRightSinging, false, MOV_SPEED, 0, true);
             }
             else
             {
-                if (sing)
-                {
-                    playAnimation(animTurnLeftSinging, true);
-                }
-                else
-                {
-                    playAnimation(animTurnLeftIdling, true);
-                }
-                walking = true;
+                //Console.WriteLine("XC");
             }
         }
+        else
+        {
+            int thicks = moveCalculator(animTurnLeftSinging, animWalkLeftSinging, animStopTurnLeftSinging, walkCords[1]);
+            if (thicks > 0)
+            {
+                playAnimationMoveFrame(animTurnLeftSinging, false, -MOV_SPEED, 0, true);
+                thicks--;
+                while (thicks > 1)
+                {
+                    playAnimationMoveFrame(animWalkLeftSinging, false, -MOV_SPEED, 0, true);
+                    thicks--;
+                }
+                playAnimationMoveFrame(animStopTurnLeftSinging, false, -MOV_SPEED, 0, true);
+            }
+            else
+            {
+                //Console.WriteLine("XC");
+            }
+        }
+        walk = false;
+        decideFromWalkSing();
     }
+    
        
 }
 
