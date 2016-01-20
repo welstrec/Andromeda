@@ -20,6 +20,7 @@ namespace Andromeda
 
 
         public static int MAIL_UPD_INTERVAL = 300000;//En MS
+        public static int MAIL_ERR_UPD_INTERVAL = 2000;//En MS
         private List<String> miCorreo;
         private List<String> contra;
         private List<String> imapHost;
@@ -72,8 +73,11 @@ namespace Andromeda
 
                         session = new ImapClient(imapHost[i], imapPort[i], miCorreo[i], contra[i], AuthMethod.Login, true);
                         IList<uint> newUids = (IList<uint>)session.Search(SearchCondition.Unseen().And(SearchCondition.SentSince(DateTime.Today.AddDays(-16.0))));
-                        latest = newUids.Last();
-                        newCount += newUids.Count;
+                        if (newUids.Count > 0)
+                        {
+                            latest = newUids.Last();
+                            newCount += newUids.Count;
+                        }
                         
                         
                     }
@@ -98,15 +102,18 @@ namespace Andromeda
                     }
                     oldUidslast = newCount;
                     session.Dispose();
+                    Thread.Sleep(MAIL_UPD_INTERVAL);
 
 
                 }
                 catch (Exception e)
                 {
                     stat.BeginInvoke(new updateMail(stat.updateMail), new Object[] {"ERR", true,false,"" });
+                    Thread.Sleep(MAIL_ERR_UPD_INTERVAL);
+                    Console.WriteLine(e);
                     
                 }
-                Thread.Sleep(MAIL_UPD_INTERVAL);
+                
             }
         }
 

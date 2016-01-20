@@ -160,7 +160,6 @@
             this.mailLbl.TabIndex = 36;
             this.mailLbl.Text = "---";
             this.mailLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-         
             // 
             // schLbl
             // 
@@ -179,12 +178,13 @@
             this.ci.BackColor = System.Drawing.Color.Transparent;
             this.ci.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ci.Image = ((System.Drawing.Image)(resources.GetObject("ci.Image")));
-            this.ci.Location = new System.Drawing.Point(66, 263);
+            this.ci.Location = new System.Drawing.Point(66, 262);
             this.ci.Name = "ci";
             this.ci.Size = new System.Drawing.Size(28, 15);
             this.ci.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.ci.TabIndex = 38;
             this.ci.TabStop = false;
+            this.ci.Visible = false;
             // 
             // ri
             // 
@@ -197,42 +197,46 @@
             this.ri.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.ri.TabIndex = 39;
             this.ri.TabStop = false;
+            this.ri.Visible = false;
             // 
             // li
             // 
             this.li.BackColor = System.Drawing.Color.Transparent;
             this.li.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.li.Image = ((System.Drawing.Image)(resources.GetObject("li.Image")));
-            this.li.Location = new System.Drawing.Point(28, 263);
+            this.li.Location = new System.Drawing.Point(30, 262);
             this.li.Name = "li";
             this.li.Size = new System.Drawing.Size(28, 15);
             this.li.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.li.TabIndex = 40;
             this.li.TabStop = false;
+            this.li.Visible = false;
             // 
             // sli
             // 
             this.sli.BackColor = System.Drawing.Color.Transparent;
             this.sli.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.sli.Image = ((System.Drawing.Image)(resources.GetObject("sli.Image")));
-            this.sli.Location = new System.Drawing.Point(20, 284);
+            this.sli.Location = new System.Drawing.Point(21, 284);
             this.sli.Name = "sli";
             this.sli.Size = new System.Drawing.Size(34, 16);
             this.sli.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.sli.TabIndex = 41;
             this.sli.TabStop = false;
+            this.sli.Visible = false;
             // 
             // sri
             // 
             this.sri.BackColor = System.Drawing.Color.Transparent;
             this.sri.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.sri.Image = ((System.Drawing.Image)(resources.GetObject("sri.Image")));
-            this.sri.Location = new System.Drawing.Point(106, 284);
+            this.sri.Location = new System.Drawing.Point(105, 284);
             this.sri.Name = "sri";
             this.sri.Size = new System.Drawing.Size(34, 16);
             this.sri.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.sri.TabIndex = 42;
             this.sri.TabStop = false;
+            this.sri.Visible = false;
             // 
             // rli
             // 
@@ -245,6 +249,7 @@
             this.rli.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.rli.TabIndex = 43;
             this.rli.TabStop = false;
+            this.rli.Visible = false;
             // 
             // rri
             // 
@@ -257,6 +262,7 @@
             this.rri.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.rri.TabIndex = 44;
             this.rri.TabStop = false;
+            this.rri.Visible = false;
             // 
             // swi
             // 
@@ -269,6 +275,7 @@
             this.swi.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.swi.TabIndex = 45;
             this.swi.TabStop = false;
+            this.swi.Visible = false;
             // 
             // DateSound
             // 

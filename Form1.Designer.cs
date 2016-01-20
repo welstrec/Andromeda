@@ -338,7 +338,7 @@
             this.infoDisplay.Name = "infoDisplay";
             this.infoDisplay.Size = new System.Drawing.Size(192, 56);
             this.infoDisplay.TabIndex = 38;
-            this.infoDisplay.Text = "Loading Data";
+            this.infoDisplay.Text = "Welcome Back!\r\n<Please Wait>";
             this.infoDisplay.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // MikuDashMain

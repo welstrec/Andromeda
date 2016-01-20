@@ -111,6 +111,7 @@
       <DependentUpon>AGauge.cs</DependentUpon>
     </Compile>
     <Compile Include="Animate.cs" />
+    <Compile Include="GlobalKeyboardHook.cs" />
     <Compile Include="MailModule.cs" />
     <Compile Include="CommandImpl.cs" />
     <Compile Include="Correo.cs">

@@ -49,7 +49,7 @@ public class Listener
            
             try
             {
-                getSession();
+                getSession(true);
             }
             catch (Exception e)
             {
@@ -60,7 +60,7 @@ public class Listener
                 try
                 {
 
-                    System.Threading.Thread.Sleep(500);
+                    System.Threading.Thread.Sleep(800);
                     devDel++;
               
                     int val = 0;
@@ -69,7 +69,7 @@ public class Listener
                     if (devDel == 1500)
                     {
                        
-                        getSession();
+                        getSession(false);
                         devDel = 0;
                         mikuAnim.frameMain.BeginInvoke(new topmostApp(mikuAnim.frameMain.topmostApp), new Object[] { });
 
@@ -322,13 +322,16 @@ public class Listener
     {
         device.AudioEndpointVolume.Mute = false;
     }
-    public void getSession()
+    public void getSession(Boolean init)
     {
-        
-        MMDeviceEnumerator DevEnum = new MMDeviceEnumerator();
+        if (init)
+        {
+            System.Threading.Thread.Sleep(15000);
+        }
+       MMDeviceEnumerator DevEnum = new MMDeviceEnumerator();
         device = DevEnum.GetDefaultAudioEndpoint(EDataFlow.eRender, ERole.eMultimedia);
-        Console.WriteLine(device.AudioEndpointVolume.Channels[0].GetType());
-        
+        Console.WriteLine("EP");
+       
     }
 }
 

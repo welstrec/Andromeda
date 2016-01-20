@@ -1,42 +1,54 @@
 ﻿using System.Windows.Forms;
-using Gma.UserActivityMonitor;
+using Utilities;
 using System;
+using System.Runtime.InteropServices;
+using System.Windows;
+
 namespace MikuDash
 {
     public class KeyboardHook
     {
-        MikuDashMain spr;
+        private globalKeyboardHook gkh;
+        private MikuDashMain spr;
+        Boolean toggle = false;
         public KeyboardHook(MikuDashMain spr)
         {
             this.spr = spr;
+           
+            gkh = new globalKeyboardHook();
+            gkh.OnKeyPressed += KeyDown;
+
+            gkh.HookKeyboard();
+
             //actHook.OnMouseActivity += new MouseEventHandler(MouseMoved);
-           HookManager.KeyDown += KeyDown;
+            //HookManager.KeyDown += KeyDown;
             //actHook.KeyPress += new KeyPressEventHandler(MyKeyPress);
-         HookManager.KeyUp += KeyUp;
+            // HookManager.KeyUp += KeyUp;
         }
 
 
-
-        private void KeyDown(object sender, KeyEventArgs e)
+        private void KeyDown(object sender, KeyPressedArgs e)
         {
-            
-            if (e.KeyCode == Keys.Pause)
+
+            if (e.KeyPressed.ToString() == Keys.Pause.ToString())
             {
-                
+                if (!toggle) { 
                 spr.sprOn();
-                //Console.WriteLine("asd");
-            }
-        }
+                    toggle = true;
 
-        private void KeyUp(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Pause)
+
+            } else
             {
                 spr.sprOff();
                 spr.stopAlertMemory();
                 spr.stopAlertTemp();
                 spr.overrideAlert = true;
+                    toggle = false;
+                }
             }
+
         }
+
+       
     }
 }
