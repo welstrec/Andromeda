@@ -88,10 +88,11 @@ DocProject/Help/*.hhk
 DocProject/Help/*.hhp
 DocProject/Help/Html2
 DocProject/Help/html
-
+Virtual Dub/
 # Click-Once directory
 publish/
-
+mikuLowRes/
+miku/
 # Publish Web Output
 *.Publish.xml
 
@@ -131,7 +132,7 @@ UpgradeLog*.htm
 # SQL Server files
 App_Data/*.mdf
 App_Data/*.ldf
-
+MikuMikuDanceE_v926x64/
 
 #LightSwitch generated files
 GeneratedArtifacts/
