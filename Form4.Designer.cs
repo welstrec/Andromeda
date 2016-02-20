@@ -36,20 +36,18 @@
             // 
             this.calendarCtrl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.calendarCtrl.Location = new System.Drawing.Point(0, 0);
-            this.calendarCtrl.Margin = new System.Windows.Forms.Padding(6);
             this.calendarCtrl.Name = "calendarCtrl";
             this.calendarCtrl.ShowToday = false;
             this.calendarCtrl.TabIndex = 0;
             // 
             // CalendarFrm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(227, 158);
+            this.ClientSize = new System.Drawing.Size(340, 237);
             this.Controls.Add(this.calendarCtrl);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "CalendarFrm";

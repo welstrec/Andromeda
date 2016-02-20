@@ -50,7 +50,8 @@ namespace MikuDash
         private Thread listenThr;
         public static int ALERT_RAM = 95;
         public static int ALERT_TEMP = 79;
-        private clock clk;
+        private Clock clk;
+        private LogitechScreenApi logiDisp;
         private Thread clkThr;
         //private Correo correo = new Correo();
         private Thread mailThr;
@@ -115,7 +116,8 @@ namespace MikuDash
         public MikuDashMain()
         {
 
-
+            logiDisp = new LogitechScreenApi();
+            
             soundDate = new DateSound(this);
             Font = new Font(Font.Name, 8.25f * 96f / CreateGraphics().DpiX, Font.Style, Font.Unit, Font.GdiCharSet, Font.GdiVerticalFont);
             InitializeComponent();
@@ -230,7 +232,9 @@ namespace MikuDash
        
             soundDate.Dispose();
             soundAnimation.Dispose();
+            logiDisp.disconect();
             this.Dispose();
+           
           
 
         }
@@ -434,7 +438,7 @@ namespace MikuDash
 
                 }
                 
-                clk = new clock(this,dates);
+                clk = new Clock(this,dates);
                 
                 mikuAnim = new Animate(soundAnimation,this, animSleep, animSing,  animIdle,    animlisten,    animSleepToIdle,    animIdleToSing,    animIdleToListen,    animDoCommand,    animListenToIdle,     animSingToIdle,     animIdleToSleep,animWelcome ,
 
@@ -592,10 +596,10 @@ namespace MikuDash
 
         }
 
-        public void setMonitor(int valCPU, int valRAM, int valCPUT, int valCPUF,int valGPU,int valVRam, int valGPUT,int valGPUF,int valGPUCLK, int valCPUCLK,int numProc,String active)
+        public void setMonitor(List<CUMonitorUpdate> monitorUpd,int numProc,String netstat)
         {
-            
-            setGauge(pictureCpuUsage,valCPU,cpuUsgL);
+            logiDisp.updateMonitorLCD(monitorUpd);
+            /*setGauge(pictureCpuUsage,valCPU,cpuUsgL);
             setGauge(pictureGpuUsage, valGPU, gpuUsgL);
             setGauge(pictureCpuRam, valRAM, cpuRamL);
             setGauge(pictureGpuRam, valVRam, gpuRamL);
@@ -693,7 +697,7 @@ namespace MikuDash
                warnStats = "WARN:High Temp";
             }
 
-
+            
 
 
             if (warnStats.Length > 0)
@@ -704,7 +708,9 @@ namespace MikuDash
             {
                 infoDisplay.Text = "Processes: " + numProc + "\n" + active;
             }
-        }
+        }*/
+
+            infoDisplay.Text = "Processes: " + numProc + "\n" + netstat;
             Application.DoEvents();
         
         }

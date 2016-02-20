@@ -145,7 +145,10 @@ ModelManifest.xml
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
-
+MikuMikuDanceE_v926x64/
+mikuLowRes/
+miku/
+Virtual Dub/
 # Folder config file
 Desktop.ini
 
