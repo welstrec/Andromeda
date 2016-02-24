@@ -50,8 +50,8 @@
             // 
             this.ampmLbl.BackColor = System.Drawing.Color.Transparent;
             this.ampmLbl.Font = new System.Drawing.Font("Consolas", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.ampmLbl.ForeColor = System.Drawing.Color.Red;
-            this.ampmLbl.Location = new System.Drawing.Point(184, 42);
+            this.ampmLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(134)))), ((int)(((byte)(255)))));
+            this.ampmLbl.Location = new System.Drawing.Point(207, 35);
             this.ampmLbl.Name = "ampmLbl";
             this.ampmLbl.Size = new System.Drawing.Size(34, 24);
             this.ampmLbl.TabIndex = 28;
@@ -66,8 +66,8 @@
             // 
             this.clockLbl.BackColor = System.Drawing.Color.Transparent;
             this.clockLbl.Font = new System.Drawing.Font("Consolas", 45F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.clockLbl.ForeColor = System.Drawing.Color.Red;
-            this.clockLbl.Location = new System.Drawing.Point(44, 20);
+            this.clockLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(134)))), ((int)(((byte)(255)))));
+            this.clockLbl.Location = new System.Drawing.Point(67, 13);
             this.clockLbl.Name = "clockLbl";
             this.clockLbl.Size = new System.Drawing.Size(157, 53);
             this.clockLbl.TabIndex = 27;
@@ -156,8 +156,8 @@
             // 
             this.infoDisplay.BackColor = System.Drawing.Color.Transparent;
             this.infoDisplay.Font = new System.Drawing.Font("Consolas", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.infoDisplay.ForeColor = System.Drawing.Color.Lime;
-            this.infoDisplay.Location = new System.Drawing.Point(34, 87);
+            this.infoDisplay.ForeColor = System.Drawing.Color.White;
+            this.infoDisplay.Location = new System.Drawing.Point(56, 85);
             this.infoDisplay.Name = "infoDisplay";
             this.infoDisplay.Size = new System.Drawing.Size(192, 56);
             this.infoDisplay.TabIndex = 38;
@@ -170,7 +170,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.ClientSize = new System.Drawing.Size(255, 161);
+            this.ClientSize = new System.Drawing.Size(306, 153);
             this.ControlBox = false;
             this.Controls.Add(this.infoDisplay);
             this.Controls.Add(this.ampmLbl);
