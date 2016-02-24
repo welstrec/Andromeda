@@ -43,13 +43,12 @@ namespace MikuDash
 
 
 
-
+    private bool initializing = true;
         public Boolean invalidateClick = false;
         public Animate mikuAnim;
         public Listener listener;
         private Thread listenThr;
-        public static int ALERT_RAM = 95;
-        public static int ALERT_TEMP = 79;
+
         private Clock clk;
         private LogitechScreenApi logiDisp;
         private Thread clkThr;
@@ -57,10 +56,7 @@ namespace MikuDash
         private Thread mailThr;
         public List<Bitmap> fall = new List<Bitmap>();
 
-        public List<Bitmap> cpuUsgL = new List<Bitmap>();
-        public List<Bitmap> cpuRamL = new List<Bitmap>();
-        public List<Bitmap> gpuUsgL = new List<Bitmap>();
-        public List<Bitmap> gpuRamL = new List<Bitmap>();
+
 
 
 
@@ -71,20 +67,25 @@ namespace MikuDash
         public MikuAnim soundAnimation = new MikuAnim();
         public DateSound soundDate;
         public MailModule mailModule;
+        public List<MonitorInstance> monitInstances = new List<MonitorInstance>();
+
+
+
+
         public String notifyMessage;
         private int opac = 0;
         private int del1 = 0;
         private int del2 = 0;
         public SpeechRecognizer spr;
-        private SoundPlayer alertMemory;
-        private bool playingMemAlert = false;
-        private SoundPlayer alertTemp;
-        private bool playingTempAlert = false;
+        
         private KeyboardHook kbH;
         private IntPtr desktopHandle; //Window handle for the desktop
         private IntPtr shellHandle; //Window handle for the shell
         private bool lazyDahsboard = false;
-        public bool overrideAlert = false;
+        
+
+        public List<Bitmap> cpuUsgL = new List<Bitmap>();
+        public List<Bitmap> cpuRamL = new List<Bitmap>();
         public enum GWL
         {
             ExStyle = -20
@@ -150,12 +151,12 @@ namespace MikuDash
 
         public void inhibitToFullScreen()
         {
-            Console.WriteLine("trg");
+            //Console.WriteLine("trg");
             if (!detectAppOnFullScreen())
             
             {
                
-                Console.WriteLine("nlz");
+                //Console.WriteLine("nlz");
                 if (lazyDahsboard)
                 {
                     lazyDahsboard = false;
@@ -165,7 +166,7 @@ namespace MikuDash
             }
             else
             {
-                Console.WriteLine("lz");
+                //Console.WriteLine("lz");
                 if (!lazyDahsboard)
                 {
 
@@ -208,6 +209,10 @@ namespace MikuDash
                 soundAnimation.Left = Convert.ToInt32(text.Split(';')[3]);
                 soundDate.Top = Convert.ToInt32(text.Split(';')[4]);
                 soundDate.Left = Convert.ToInt32(text.Split(';')[5]);
+                foreach (MonitorInstance mi in monitInstances)
+                {
+                    mi.loadPosition();
+                }
 
             }
             catch (Exception e)
@@ -222,7 +227,10 @@ namespace MikuDash
             string[] lines = { this.Top + ";" + this.Left + ";" + soundAnimation.Top + ";" + soundAnimation.Left + ";" + soundDate.Top + ";" + soundDate.Left};
         
         System.IO.File.WriteAllLines(@"init.ini", lines);
-
+        foreach (MonitorInstance mi in monitInstances)
+        {
+            mi.savePosition();
+        }
         
         }
         
@@ -233,8 +241,12 @@ namespace MikuDash
             soundDate.Dispose();
             soundAnimation.Dispose();
             logiDisp.disconect();
+            foreach (MonitorInstance mi in monitInstances)
+            {
+                mi.Dispose();
+            }
             this.Dispose();
-           
+            
           
 
         }
@@ -353,10 +365,9 @@ namespace MikuDash
                     loadUncompressedAnimations(animSleep, new DirectoryInfo("andromeda/sleep"), 1024, 768);
                     loadUncompressedAnimations(dates, new DirectoryInfo("./dates"), 148, 145);
                     //loadUncompressedAnimations(fall, new DirectoryInfo("./fall"), 64, 64);
-                    loadUncompressedAnimations(cpuUsgL, new DirectoryInfo("./cpugau/usage"), 375, 11);
-                    loadUncompressedAnimations(cpuRamL, new DirectoryInfo("./cpugau/ram"), 322, 7);
-                    loadUncompressedAnimations(gpuUsgL, new DirectoryInfo("./gpugau/usage"), 375, 11);
-                    loadUncompressedAnimations(gpuRamL, new DirectoryInfo("./gpugau/ram"), 322, 7);
+                    loadUncompressedAnimations(cpuUsgL, new DirectoryInfo("./cpugau/usage"), 352, 15);
+                    loadUncompressedAnimations(cpuRamL, new DirectoryInfo("./cpugau/ram"), 348, 10);
+                    
 
 
                     //compressed Resources Load
@@ -397,8 +408,7 @@ namespace MikuDash
                    // loadUncompressedAnimations(fall, new DirectoryInfo("./fall"), 64, 64);
                     loadUncompressedAnimations(cpuUsgL, new DirectoryInfo("./cpugau/usage"), 375, 11);
                     loadUncompressedAnimations(cpuRamL, new DirectoryInfo("./cpugau/ram"), 322, 7);
-                    loadUncompressedAnimations(gpuUsgL, new DirectoryInfo("./gpugau/usage"), 375, 11);
-                    loadUncompressedAnimations(gpuRamL, new DirectoryInfo("./gpugau/ram"), 322, 7);
+ 
                     //compressed Resources Load
                     loadAnimations(animSing, new DirectoryInfo("andromeda/sing2"));
                     loadAnimations(animIdle, new DirectoryInfo("andromeda/idle2"));
@@ -545,60 +555,48 @@ namespace MikuDash
            soundDate.Year.Text = yr;
         }
 
-        public void setGauge(PictureBox gau, int val, List<Bitmap> bmStr)
-        {
-            if (val <= 0)
-            {
-                gau.Image = bmStr[0];
-            }
-            if (val <= 10)
-            {
-                gau.Image = bmStr[1];
-            } else if (val <= 20)
-            {
-                gau.Image = bmStr[2];
-            } else if (val <= 30)
-            {
-                gau.Image = bmStr[3];
-            } else if (val <= 40)
-            {
-                gau.Image = bmStr[4];
-            }
-            else if (val <= 50)
-            {
-                gau.Image = bmStr[5];
-            }
-            else if (val <= 60)
-            {
-                gau.Image = bmStr[6];
-            }
-            else if (val <= 70)
-            {
-                gau.Image = bmStr[7];
-            }
-            else if (val <= 80)
-            {
-                gau.Image = bmStr[8];
-            }
-            else if (val <= 90)
-            {
-                gau.Image = bmStr[9];
-            }
-            else if (val <= 100)
-            {
-                gau.Image = bmStr[10];
-            }
-            else if (val > 100)
-            {
-                gau.Image = bmStr[10];
-            }
 
+
+        
+        public void updateWindowMonitors(List<CUMonitorUpdate> monitorUpd)
+        {
+            
+            if(monitInstances.Count != monitorUpd.Count){
+                foreach(MonitorInstance mi in monitInstances){
+                    mi.Dispose();
+                }
+                monitInstances.Clear();
+
+                foreach(CUMonitorUpdate mu in monitorUpd){
+                    MonitorInstance nm = new MonitorInstance(cpuUsgL,cpuRamL);
+                    nm.refreshStats(mu,true);
+                    if (initializing)
+                    {
+                        nm.loadPosition();
+                        nm.Show();
+                       
+                    }
+
+                    monitInstances.Add(nm);
+
+                }
+                initializing = false;
+                
+
+            }else{
+
+
+            for(int i = 0;i < monitorUpd.Count;i++){
+                monitInstances[i].refreshStats(monitorUpd[i],false);
+            }
 
         }
 
+        }
         public void setMonitor(List<CUMonitorUpdate> monitorUpd,int numProc,String netstat)
         {
             logiDisp.updateMonitorLCD(monitorUpd);
+            updateWindowMonitors(monitorUpd);
             /*setGauge(pictureCpuUsage,valCPU,cpuUsgL);
             setGauge(pictureGpuUsage, valGPU, gpuUsgL);
             setGauge(pictureCpuRam, valRAM, cpuRamL);
@@ -789,6 +787,10 @@ namespace MikuDash
             invalidateActions();
             soundAnimation.invalidateActions();
             soundDate.invalidateActions();
+            foreach (MonitorInstance mi in monitInstances)
+            {
+                mi.invalidateActions();
+            }
         }
         public void disableClicks()
         {
@@ -797,6 +799,11 @@ namespace MikuDash
             validateActions();
             soundAnimation.validateActions();
             soundDate.validateActions();
+            foreach (MonitorInstance mi in monitInstances)
+            {
+                mi.validateActions();
+            }
+
         }
 
         private void toolInvalid_Click(object sender, EventArgs e)
@@ -829,6 +836,10 @@ namespace MikuDash
             this.Hide();
             soundDate.Hide();
             soundAnimation.Hide();
+            foreach (MonitorInstance mi in monitInstances)
+            {
+                mi.Hide();
+            }
         }
 
 
@@ -847,6 +858,10 @@ namespace MikuDash
                     this.TopMost = true;
                     soundDate.TopMost = true;
                     soundAnimation.TopMost = true;
+                    foreach (MonitorInstance mi in monitInstances)
+                    {
+                        mi.TopMost=true;
+                    }
                 }
                 inhibitToFullScreen();
 
@@ -855,9 +870,7 @@ namespace MikuDash
 
         private void toolHide_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            soundDate.Hide();
-            soundAnimation.Hide();
+            hideApps();
         }
 
        
@@ -869,8 +882,14 @@ namespace MikuDash
                 this.Opacity = 0;
                 soundAnimation.Opacity = 0;
                 soundDate.Opacity = 0;
+                foreach (MonitorInstance mi in monitInstances)
+                {
+                    mi.Opacity = 0;
+                    mi.Show();
+                }
                 this.Show();
                 soundDate.Show();
+
                 if (!lazyDahsboard)
                 {
                     soundAnimation.Show();
@@ -891,7 +910,10 @@ namespace MikuDash
             {
                 //System.Threading.Thread.Sleep(50);
                 this.Opacity += 0.03;
-
+                foreach (MonitorInstance mi in monitInstances)
+                {
+                    mi.Opacity+=0.03;
+                }
                 if (del1 > 50)
                 {
                     soundAnimation.Opacity += 0.03;
@@ -952,52 +974,7 @@ namespace MikuDash
         {
             sprToggle();
         }
-        private void playAlertMemory()
-        {
-            if (!playingTempAlert)
-            {
-                alertMemory = new SoundPlayer();
-                alertMemory.SoundLocation = "./sound/memAlert.wav";
-                alertMemory.LoadAsync();
-                alertMemory.PlayLooping();
-                playingMemAlert = true;
-            }
-        }
-        public void stopAlertMemory()
-        {
-            if (alertMemory != null)
-            {
-                if (!playingTempAlert)
-                {
-                    alertMemory.Stop();
-                    playingMemAlert = false;
-                }
-            }
-        }
-        public void stopAlertTemp()
-        {
-            if (alertTemp != null)
-            {
-                alertTemp.Stop();
-                playingTempAlert = false;
-            }
-        }
-        private void playAlertTemp()
-        {
-            alertTemp = new SoundPlayer();
-            alertTemp.SoundLocation = @"./sound/tempAlert.wav";
-            alertTemp.LoadAsync();
-            alertTemp.PlayLooping();
-            playingTempAlert = true;
-        }
-        public void playAlertMail()
-        {
-            alertTemp = new SoundPlayer();
-            alertTemp.SoundLocation = @"./sound/newmail.wav";
-            alertTemp.LoadAsync();
-            alertTemp.Play();
-          
-        }
+        
         private void notifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             new CalendarFrm().Show();

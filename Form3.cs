@@ -179,7 +179,7 @@ namespace MikuDash
                 {
                     mdm.listener.mikuAnim.notify = true;
                     mdm.notifyMessage = info;
-                    mdm.playAlertMail();
+                    //mdm.playAlertMail();
                 }
             }
             else

@@ -40,9 +40,7 @@ namespace MikuDash
             } else
             {
                 spr.sprOff();
-                spr.stopAlertMemory();
-                spr.stopAlertTemp();
-                spr.overrideAlert = true;
+               
                     toggle = false;
                 }
             }

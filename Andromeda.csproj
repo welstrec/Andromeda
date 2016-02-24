@@ -149,6 +149,12 @@
       <DependentUpon>Form4.cs</DependentUpon>
     </Compile>
     <Compile Include="KeyboardHook.cs" />
+    <Compile Include="MonitorInstance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MonitorInstance.Designer.cs">
+      <DependentUpon>MonitorInstance.cs</DependentUpon>
+    </Compile>
     <Compile Include="SpeechRecognizer.cs" />
     <Compile Include="Clock.cs" />
     <Compile Include="Form1.cs">
@@ -201,6 +207,9 @@
     <EmbeddedResource Include="Form4.resx">
       <DependentUpon>Form4.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MonitorInstance.resx">
+      <DependentUpon>MonitorInstance.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

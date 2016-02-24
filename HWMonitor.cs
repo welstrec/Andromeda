@@ -45,7 +45,8 @@ namespace Andromeda
         }
         public List<CUMonitorUpdate> updateHardwareStats()
         {
-            List<CUMonitorUpdate> upd = new List<CUMonitorUpdate>();
+            List<CUMonitorUpdate> updcpu = new List<CUMonitorUpdate>();
+            List<CUMonitorUpdate> updgpu = new List<CUMonitorUpdate>();
             int gpuCount = 1;
             int cpuCount = 1;
          
@@ -94,8 +95,10 @@ namespace Andromeda
 
                             }
                         }
+                        updToc.tjmax = 80;
+                        updToc.deviceType = CUMonitorUpdate.DEV_TYPE_GPU;
                         updToc.devName = "GPU" + gpuCount;
-                        upd.Add(updToc);
+                        updgpu.Add(updToc);
                         gpuCount++;
                     }
 
@@ -142,12 +145,17 @@ namespace Andromeda
                                 }
 
                             }
-                        
+                            if (hw.Name.ToLower().Contains("intel")) {     
+                                updToc.tjmax = 80;
+                            }else{
+                                 updToc.tjmax = 40;
+                            }
+                        updToc.deviceType = CUMonitorUpdate.DEV_TYPE_CPU;
                         updToc.clk = (cpuclkThick / cpuclkcounter);
                         updToc.devName = "CPU" + cpuCount;
                         updToc.ramUsage = Convert.ToInt32(new PerformanceCounter("Memory", "% Committed Bytes In Use", true).NextValue());
 
-                        upd.Add(updToc);
+                        updcpu.Add(updToc);
                         cpuCount++;
                     }
 
@@ -156,9 +164,18 @@ namespace Andromeda
 
                 }
             }
-            
 
-            return upd;
+            if (updgpu.Count == 1)
+            {
+                updgpu.First().devName = "GPU";
+            }
+
+            if (updcpu.Count == 1)
+            {
+                updcpu.First().devName = "CPU";
+            }
+
+            return updcpu.Concat(updgpu).ToList();
         }
 
 
