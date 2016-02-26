@@ -43,7 +43,8 @@ namespace MikuDash
 
 
 
-    private bool initializing = true;
+        private bool initializing = true;
+        private double Transparency = 1;
         public Boolean invalidateClick = false;
         public Animate mikuAnim;
         public Listener listener;
@@ -207,8 +208,9 @@ namespace MikuDash
                 this.Left = Convert.ToInt32(text.Split(';')[1]);
                 soundAnimation.Top = Convert.ToInt32(text.Split(';')[2]);
                 soundAnimation.Left = Convert.ToInt32(text.Split(';')[3]);
-                soundDate.Top = Convert.ToInt32(text.Split(';')[4]);
+                soundDate.Top = Convert.ToInt32(text.Split(';')[4]);                
                 soundDate.Left = Convert.ToInt32(text.Split(';')[5]);
+                Transparency = Convert.ToDouble(text.Split(';')[6]);
                 foreach (MonitorInstance mi in monitInstances)
                 {
                     mi.loadPosition();
@@ -220,13 +222,13 @@ namespace MikuDash
                 Rectangle resolution = Screen.PrimaryScreen.Bounds;
                 this.Top = 0;
                 this.Left = (resolution.Width / 2) - (this.Width / 2);
-                Console.WriteLine(e.ToString());
+
             }
         }
         public void saveCoords(){
-            string[] lines = { this.Top + ";" + this.Left + ";" + soundAnimation.Top + ";" + soundAnimation.Left + ";" + soundDate.Top + ";" + soundDate.Left};
-        
-        System.IO.File.WriteAllLines(@"init.ini", lines);
+            string[] lines = { this.Top + ";" + this.Left + ";" + soundAnimation.Top + ";" + soundAnimation.Left + ";" + soundDate.Top + ";" + soundDate.Left + ";" + Transparency};
+
+        File.WriteAllLines(@"init.ini", lines);
         foreach (MonitorInstance mi in monitInstances)
         {
             mi.savePosition();
@@ -283,9 +285,11 @@ namespace MikuDash
 
             listener = new Listener(this,mikuAnim, spr, soundDate);
             mikuAnim.lstnr = listener;
+            
             mikuAnim.sleep = true;
             listenThr = new Thread(new ThreadStart(listener.listen));
             listenThr.Start();
+
         }
         public void terminateAnimationAndListenThread()
         {
@@ -472,6 +476,7 @@ namespace MikuDash
                     
                     
                     listener,spr, new CommandImpl(this.Handle,this,listener,spr));
+
               
             }
             catch (Exception e)
@@ -590,6 +595,7 @@ namespace MikuDash
                 monitInstances[i].refreshStats(monitorUpd[i],false);
             }
 
+
         }
 
         }
@@ -601,6 +607,7 @@ namespace MikuDash
 
             infoDisplay.Text = "Processes: " + numProc + "\n" + netstat;
             Application.DoEvents();
+
         
         }
         private void updateVU(AGauge vu, int newVal)
@@ -818,8 +825,14 @@ namespace MikuDash
                 del2++;
                 //Application.DoEvents();
             }
-            
-                       
+            this.Opacity = Transparency;
+            soundAnimation.Opacity = Transparency;
+            soundDate.Opacity = Transparency;
+            foreach (MonitorInstance mi in monitInstances)
+            {
+                mi.Opacity = Transparency;
+            }
+
         }
         public void sprToggle()
         {
@@ -927,14 +940,6 @@ namespace MikuDash
 
         private void viewMailToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            /*
-            VentanaMensajesCorreo vmc = null;
-
-            vmc = new VentanaMensajesCorreo("imap-mail.outlook.com", 993, "thrusthope@hotmail.com", "2009zaulo");
-
-            vmc.Visible = true;
-             * */
-
             new VentanaLoginCorreo(this).Visible = true;
         }
 
@@ -992,5 +997,76 @@ namespace MikuDash
            
         }
 
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            Transparency = 0.2;
+            this.Opacity = Transparency;
+            soundAnimation.Opacity = Transparency;
+            soundDate.Opacity = Transparency;
+            foreach (MonitorInstance mi in monitInstances)
+            {
+                mi.Opacity = Transparency;
+            }
+        }
+
+        private void toolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            Transparency = 0.4;
+            this.Opacity = Transparency;
+            soundAnimation.Opacity = Transparency;
+            soundDate.Opacity = Transparency;
+            foreach (MonitorInstance mi in monitInstances)
+            {
+                mi.Opacity = Transparency;
+            }
+        }
+
+        private void toolStripMenuItem4_Click(object sender, EventArgs e)
+        {
+            Transparency = 0.6;
+            this.Opacity = Transparency;
+            soundAnimation.Opacity = Transparency;
+            soundDate.Opacity = Transparency;
+            foreach (MonitorInstance mi in monitInstances)
+            {
+                mi.Opacity = Transparency;
+            }
+        }
+
+        private void toolStripMenuItem5_Click(object sender, EventArgs e)
+        {
+            Transparency = 0.8;
+            this.Opacity = Transparency;
+            soundAnimation.Opacity = Transparency;
+            soundDate.Opacity = Transparency;
+            foreach (MonitorInstance mi in monitInstances)
+            {
+                mi.Opacity = Transparency;
+            }
+        }
+
+        private void toolStripMenuItem7_Click(object sender, EventArgs e)
+        {
+            Transparency = 0.5;
+            this.Opacity = Transparency;
+            soundAnimation.Opacity = Transparency;
+            soundDate.Opacity = Transparency;
+            foreach (MonitorInstance mi in monitInstances)
+            {
+                mi.Opacity = Transparency;
+            }
+        }
+
+        private void toolStripMenuItem6_Click(object sender, EventArgs e)
+        {
+            Transparency = 0.7;
+            this.Opacity = Transparency;
+            soundAnimation.Opacity = Transparency;
+            soundDate.Opacity = Transparency;
+            foreach (MonitorInstance mi in monitInstances)
+            {                
+                mi.Opacity = Transparency;
+            }
+        }
     }
 }

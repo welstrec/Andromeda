@@ -43,6 +43,13 @@
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.fadeInAnim = new System.Windows.Forms.Timer(this.components);
             this.infoDisplay = new System.Windows.Forms.Label();
+            this.transparencyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem7 = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -84,58 +91,59 @@
             this.contextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolShow,
             this.toolHide,
+            this.transparencyToolStripMenuItem,
             this.toolInvalid,
             this.toolClose,
             this.viewMailToolStripMenuItem,
             this.toolPos,
             this.closeToolStripMenuItem});
             this.contextMenu.Name = "contextMenu";
-            this.contextMenu.Size = new System.Drawing.Size(234, 190);
+            this.contextMenu.Size = new System.Drawing.Size(166, 186);
             // 
             // toolShow
             // 
             this.toolShow.Name = "toolShow";
-            this.toolShow.Size = new System.Drawing.Size(233, 30);
+            this.toolShow.Size = new System.Drawing.Size(165, 22);
             this.toolShow.Text = "Show";
             this.toolShow.Click += new System.EventHandler(this.toolShow_Click);
             // 
             // toolHide
             // 
             this.toolHide.Name = "toolHide";
-            this.toolHide.Size = new System.Drawing.Size(233, 30);
+            this.toolHide.Size = new System.Drawing.Size(165, 22);
             this.toolHide.Text = "Hide";
             this.toolHide.Click += new System.EventHandler(this.toolHide_Click);
             // 
             // toolInvalid
             // 
             this.toolInvalid.Name = "toolInvalid";
-            this.toolInvalid.Size = new System.Drawing.Size(233, 30);
+            this.toolInvalid.Size = new System.Drawing.Size(165, 22);
             this.toolInvalid.Text = "Toggle Moveable";
             this.toolInvalid.Click += new System.EventHandler(this.toolInvalid_Click);
             // 
             // toolClose
             // 
             this.toolClose.Name = "toolClose";
-            this.toolClose.Size = new System.Drawing.Size(230, 6);
+            this.toolClose.Size = new System.Drawing.Size(162, 6);
             // 
             // viewMailToolStripMenuItem
             // 
             this.viewMailToolStripMenuItem.Name = "viewMailToolStripMenuItem";
-            this.viewMailToolStripMenuItem.Size = new System.Drawing.Size(233, 30);
+            this.viewMailToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
             this.viewMailToolStripMenuItem.Text = "Mail Settings";
             this.viewMailToolStripMenuItem.Click += new System.EventHandler(this.viewMailToolStripMenuItem_Click);
             // 
             // toolPos
             // 
             this.toolPos.Name = "toolPos";
-            this.toolPos.Size = new System.Drawing.Size(233, 30);
+            this.toolPos.Size = new System.Drawing.Size(165, 22);
             this.toolPos.Text = "Save Position";
             this.toolPos.Click += new System.EventHandler(this.toolPos_Click_1);
             // 
             // closeToolStripMenuItem
             // 
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(233, 30);
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
             this.closeToolStripMenuItem.Text = "Close";
             this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click_1);
             // 
@@ -163,6 +171,61 @@
             this.infoDisplay.TabIndex = 38;
             this.infoDisplay.Text = "Welcome Back!\r\n<Please Wait>";
             this.infoDisplay.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // transparencyToolStripMenuItem
+            // 
+            this.transparencyToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem2,
+            this.toolStripMenuItem3,
+            this.toolStripMenuItem7,
+            this.toolStripMenuItem4,
+            this.toolStripMenuItem6,
+            this.toolStripMenuItem5});
+            this.transparencyToolStripMenuItem.Name = "transparencyToolStripMenuItem";
+            this.transparencyToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.transparencyToolStripMenuItem.Text = "Transparency";
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem2.Text = "20%";
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem3.Text = "40%";
+            this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
+            // 
+            // toolStripMenuItem4
+            // 
+            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem4.Text = "60%";
+            this.toolStripMenuItem4.Click += new System.EventHandler(this.toolStripMenuItem4_Click);
+            // 
+            // toolStripMenuItem5
+            // 
+            this.toolStripMenuItem5.Name = "toolStripMenuItem5";
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem5.Text = "80%";
+            this.toolStripMenuItem5.Click += new System.EventHandler(this.toolStripMenuItem5_Click);
+            // 
+            // toolStripMenuItem6
+            // 
+            this.toolStripMenuItem6.Name = "toolStripMenuItem6";
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem6.Text = "70%";
+            this.toolStripMenuItem6.Click += new System.EventHandler(this.toolStripMenuItem6_Click);
+            // 
+            // toolStripMenuItem7
+            // 
+            this.toolStripMenuItem7.Name = "toolStripMenuItem7";
+            this.toolStripMenuItem7.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem7.Text = "50%";
+            this.toolStripMenuItem7.Click += new System.EventHandler(this.toolStripMenuItem7_Click);
             // 
             // MikuDashMain
             // 
@@ -211,6 +274,13 @@
         private System.Windows.Forms.Timer fadeInAnim;
         private System.Windows.Forms.Label infoDisplay;
         private System.Windows.Forms.ToolStripMenuItem viewMailToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem transparencyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem4;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem5;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem7;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem6;
     }
 }
 

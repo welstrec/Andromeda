@@ -241,7 +241,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="andromeda.ico" />
-    <Content Include="icon.ico" />
     <Content Include="IconosMail\base.png" />
     <Content Include="IconosMail\mail1x64.png" />
     <Content Include="IconosMail\mail2x64.png" />
