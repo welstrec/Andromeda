@@ -117,8 +117,13 @@ namespace MikuDash
 
         public MikuDashMain()
         {
-
-            logiDisp = new LogitechScreenApi();
+            try
+            {
+                logiDisp = new LogitechScreenApi();
+            }
+            catch(Exception e)
+            {
+            }            
             
             soundDate = new DateSound(this);
             Font = new Font(Font.Name, 8.25f * 96f / CreateGraphics().DpiX, Font.Style, Font.Unit, Font.GdiCharSet, Font.GdiVerticalFont);
@@ -242,7 +247,7 @@ namespace MikuDash
        
             soundDate.Dispose();
             soundAnimation.Dispose();
-            logiDisp.disconect();
+           // logiDisp.disconect();
             foreach (MonitorInstance mi in monitInstances)
             {
                 mi.Dispose();
@@ -601,7 +606,7 @@ namespace MikuDash
         }
         public void setMonitor(List<CUMonitorUpdate> monitorUpd,int numProc,String netstat)
         {
-            logiDisp.updateMonitorLCD(monitorUpd);
+            //logiDisp.updateMonitorLCD(monitorUpd);
             updateWindowMonitors(monitorUpd);
             
 
@@ -942,10 +947,8 @@ namespace MikuDash
         {
             new VentanaLoginCorreo(this).Visible = true;
         }
-
         public void saveMailSettings(ListBox mailLists)
         {
-
             String[] lst;
             lst = new String[mailLists.Items.Count];
             int i = 0;
@@ -954,9 +957,7 @@ namespace MikuDash
                 lst[i] = itm;
                 i++;
             }
-
-
-            System.IO.File.WriteAllLines(@"mail.ini", lst);
+            File.WriteAllLines(@"mail.ini", lst);
         }
 
         public void loadMailSettings(ListBox mailLists,List<String> host, List<int> port , List<String> mail,List<String> pwd)
@@ -965,7 +966,7 @@ namespace MikuDash
 
             try
             {
-                string[] lines = System.IO.File.ReadAllLines(@"mail.ini");
+                string[] lines = File.ReadAllLines(@"mail.ini");
                 if (mailLists == null)
                 {
                     host.Clear();
@@ -975,8 +976,6 @@ namespace MikuDash
                 }
                 foreach (string line in lines)
                 {
-
-
                     if (mailLists != null)
                     {
                         mailLists.Items.Add(line);

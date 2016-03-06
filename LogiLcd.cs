@@ -448,7 +448,13 @@ namespace Andromeda.logilcd {
 		/// Shuts down the LogiLCD System and frees all the resources.
 		/// </summary>
 		public void Shutdown() {
-			LogiLcd.LogiLcdShutdown();
+            try
+            {
+                LogiLcd.LogiLcdShutdown();
+            }
+            catch (Exception e)
+            { }
+			
 			this.isInitialized = false;
 		}
 

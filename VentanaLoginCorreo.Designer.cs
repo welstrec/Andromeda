@@ -211,6 +211,7 @@
             this.textKey.Name = "textKey";
             this.textKey.Size = new System.Drawing.Size(306, 19);
             this.textKey.TabIndex = 17;
+            this.textKey.UseSystemPasswordChar = true;
             // 
             // button2
             // 

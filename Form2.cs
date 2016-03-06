@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
-using AGaugeApp;
 
 namespace MikuDash
 {
@@ -32,6 +26,8 @@ namespace MikuDash
             ColorKey = 0x1,
             Alpha = 0x2
         }
+        [DllImport("user32.dll")]
+        private static extern IntPtr GetForegroundWindow();
 
         [DllImport("user32.dll", EntryPoint = "GetWindowLong")]
         public static extern int GetWindowLong(IntPtr hWnd, GWL nIndex);
@@ -63,10 +59,29 @@ namespace MikuDash
         public MikuAnim()
         {
             InitializeComponent();
-           
-     
+            if(detectarTamAnimacion())
+            {
+                this.Size= new Size(1024, 768);
+                this.AndromedaBox.Size = new Size(1024,768);
+            }
+            else
+            {
+                this.Size = new Size(420, 400);
+                this.AndromedaBox.Size= new Size(420, 400); 
+            }
             normalRegion();
             CheckForIllegalCrossThreadCalls = false;
+        }
+        private bool detectarTamAnimacion()
+        {
+            bool es4K = false;
+            IntPtr hWnd = GetForegroundWindow();
+            Rectangle screenBounds = Screen.FromHandle(hWnd).Bounds;
+            if ((screenBounds.Width > 1920) && (screenBounds.Height > 1080))
+            {
+                es4K = true;
+            }
+            return es4K;
         }
         private void mikuBox_MouseMove(object sender, MouseEventArgs e)
         {
@@ -75,6 +90,7 @@ namespace MikuDash
                 this.Left = Cursor.Position.X - offsetx;
                 this.Top = Cursor.Position.Y - offsety;
             }
+            
         }
 
         private void mikuBox_MouseUp(object sender, MouseEventArgs e)
@@ -99,11 +115,8 @@ namespace MikuDash
         }
 
         public void changeBox(Bitmap img)
-        {
-
-            //mikuBox.Invalidate();
+        {           
             AndromedaBox.Image = img;
-            //mikuBox.Update(); 
         }
         public void cambiarA1080()
         {
@@ -137,6 +150,16 @@ namespace MikuDash
         private void AndromedaBox_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void MikuAnim_MouseEnter(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void MikuAnim_MouseHover(object sender, EventArgs e)
+        {
+            
         }
     }
 }

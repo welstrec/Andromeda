@@ -256,7 +256,7 @@ public class Listener
                 }
                 catch (Exception e)
                 {
-                    //System.Windows.Forms.MessageBox.Show(e.Message);
+                    
                 }
             }
 
@@ -267,37 +267,30 @@ public class Listener
     {
 
         
-        //Console.WriteLine(Cursor.Position.X - center);
+        
 
         if ((Cursor.Position.Y > (mikuAnim.frame.Top) + (mikuAnim.frame.Height / 3) && Cursor.Position.Y < (mikuAnim.frame.Top + mikuAnim.frame.Height) - (mikuAnim.frame.Height / 3)) && main.invalidateClick && !mikuAnim.walk)
-
         {
             int center = mikuAnim.frame.Left + ((mikuAnim.frame.Size.Width) / 2);
-            //int center = mikuAnim.frame.Left + ((mikuAnim.frame.Left - mikuAnim.frame.Size.Width) / 2);
             int framethrd = mikuAnim.frame.Width / 3;
-            if ((Cursor.Position.X - center) <= 500 && (Cursor.Position.X - center) >= 0)
+            if ((Cursor.Position.X - center) <= 520 && (Cursor.Position.X - center) >= 0)
             {
 
-                int ll =  - framethrd;
+                int ll =  0-framethrd;
                 Console.WriteLine("++" + mikuAnim.frame.Left + " - " + ll);
                     double[] cords = { mikuAnim.frame.Left, ll };
-                    // double[] cords = { mikuAnim.frame.Left, -framethrd};
-                    //double[] cords = { mikuAnim.frame.Left, mikuAnim.frame.Left - framethrd };
                     mikuAnim.walkCords = cords;
                     mikuAnim.walk = true;
                 
             }
-            else if ((Cursor.Position.X - center) >= -500 && (Cursor.Position.X - center) <= 0)
+            else if ((Cursor.Position.X - center) >= -520 && (Cursor.Position.X - center) <= 0)
             {
-
-                int ll = Screen.GetBounds(mikuAnim.frame).Width - (framethrd * 2);
-                Console.WriteLine(">>" + mikuAnim.frame.Left +" - "+ll);
+               
+                    int ll = (int)(Screen.GetBounds(mikuAnim.frame).Width - (framethrd *2));
+                    Console.WriteLine(">>" + mikuAnim.frame.Left +" - "+ll);
                     double[] cords = { mikuAnim.frame.Left, ll };
-                    //double[] cords = { mikuAnim.frame.Left, (mikuAnim.frame.Left + (Screen.GetBounds(mikuAnim.frame).Width - mikuAnim.frame.Left)) - (framethrd * 2) };
-                    // double[] cords = { mikuAnim.frame.Left, (mikuAnim.frame.Left + (Screen.GetBounds(mikuAnim.frame).Width - mikuAnim.frame.Left)) - (framethrd * 2) };
                     mikuAnim.walkCords = cords;
-                    mikuAnim.walk = true;
-                
+                    mikuAnim.walk = true;                
             }
         }
 

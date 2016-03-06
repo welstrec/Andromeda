@@ -11,7 +11,7 @@ public class Animate
 
 
 
-    public static int ANIM_SPEED = 38;
+    public static int ANIM_SPEED = 45;
     public static int MOV_SPEED = 15;
     private List<Bitmap> animSleep;
     private List<List<FileInfo>> animSing;

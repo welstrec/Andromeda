@@ -1,14 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using AGaugeApp;
 using System.Runtime.InteropServices;
-using Andromeda;
 
 namespace MikuDash
 {
@@ -179,7 +173,6 @@ namespace MikuDash
                 {
                     mdm.listener.mikuAnim.notify = true;
                     mdm.notifyMessage = info;
-                    //mdm.playAlertMail();
                 }
             }
             else
