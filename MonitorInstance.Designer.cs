@@ -124,7 +124,7 @@
             this.ramGau.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ramGau.Location = new System.Drawing.Point(118, 22);
             this.ramGau.Name = "ramGau";
-            this.ramGau.Size = new System.Drawing.Size(354, 10);
+            this.ramGau.Size = new System.Drawing.Size(341, 10);
             this.ramGau.TabIndex = 6;
             this.ramGau.TabStop = false;
             // 

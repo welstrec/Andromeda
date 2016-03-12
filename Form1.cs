@@ -123,6 +123,7 @@ namespace MikuDash
             }
             catch(Exception e)
             {
+                logiDisp = null;
             }            
             
             soundDate = new DateSound(this);
@@ -247,7 +248,10 @@ namespace MikuDash
        
             soundDate.Dispose();
             soundAnimation.Dispose();
-           // logiDisp.disconect();
+            if (logiDisp != null)
+            {
+                logiDisp.disconect();
+            }
             foreach (MonitorInstance mi in monitInstances)
             {
                 mi.Dispose();
@@ -606,7 +610,10 @@ namespace MikuDash
         }
         public void setMonitor(List<CUMonitorUpdate> monitorUpd,int numProc,String netstat)
         {
-            //logiDisp.updateMonitorLCD(monitorUpd);
+            if (logiDisp != null)
+            {
+                logiDisp.updateMonitorLCD(monitorUpd);
+            }
             updateWindowMonitors(monitorUpd);
             
 

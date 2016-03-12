@@ -269,25 +269,25 @@ public class Listener
         
         
 
-        if ((Cursor.Position.Y > (mikuAnim.frame.Top) + (mikuAnim.frame.Height / 3) && Cursor.Position.Y < (mikuAnim.frame.Top + mikuAnim.frame.Height) - (mikuAnim.frame.Height / 3)) && main.invalidateClick && !mikuAnim.walk)
+        if (Cursor.Position.Y > mikuAnim.frame.Top && Cursor.Position.Y < (mikuAnim.frame.Top + mikuAnim.frame.Height) && main.invalidateClick && !mikuAnim.walk)
         {
             int center = mikuAnim.frame.Left + ((mikuAnim.frame.Size.Width) / 2);
             int framethrd = mikuAnim.frame.Width / 3;
-            if ((Cursor.Position.X - center) <= 520 && (Cursor.Position.X - center) >= 0)
+            if (Math.Abs(Cursor.Position.X - center) <= (mikuAnim.frame.Size.Width / 3) && (Cursor.Position.X - center) >= 0)
             {
 
                 int ll =  0-framethrd;
-                Console.WriteLine("++" + mikuAnim.frame.Left + " - " + ll);
+                //Console.WriteLine("++" + mikuAnim.frame.Left + " - " + ll);
                     double[] cords = { mikuAnim.frame.Left, ll };
                     mikuAnim.walkCords = cords;
                     mikuAnim.walk = true;
                 
             }
-            else if ((Cursor.Position.X - center) >= -520 && (Cursor.Position.X - center) <= 0)
+            else if (Math.Abs(Cursor.Position.X - center) <= (mikuAnim.frame.Size.Width / 3) && (Cursor.Position.X - center) < 0)
             {
                
                     int ll = (int)(Screen.GetBounds(mikuAnim.frame).Width - (framethrd *2));
-                    Console.WriteLine(">>" + mikuAnim.frame.Left +" - "+ll);
+                    //Console.WriteLine(">>" + mikuAnim.frame.Left +" - "+ll);
                     double[] cords = { mikuAnim.frame.Left, ll };
                     mikuAnim.walkCords = cords;
                     mikuAnim.walk = true;                
