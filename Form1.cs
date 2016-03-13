@@ -53,7 +53,6 @@ namespace MikuDash
         private Clock clk;
         private LogitechScreenApi logiDisp;
         private Thread clkThr;
-        //private Correo correo = new Correo();
         private Thread mailThr;
         public List<Bitmap> fall = new List<Bitmap>();
 
@@ -117,12 +116,15 @@ namespace MikuDash
 
         public MikuDashMain()
         {
+            this.Icon = Andromeda.Properties.Resources.basePrincipalForm;
+            this.ShowIcon = true;
             try
             {
                 logiDisp = new LogitechScreenApi();
             }
             catch(Exception e)
             {
+                logiDisp = null;
             }            
             
             soundDate = new DateSound(this);
@@ -247,7 +249,10 @@ namespace MikuDash
        
             soundDate.Dispose();
             soundAnimation.Dispose();
-           // logiDisp.disconect();
+            if (logiDisp != null)
+            {
+                logiDisp.disconect();
+            }
             foreach (MonitorInstance mi in monitInstances)
             {
                 mi.Dispose();
@@ -373,7 +378,6 @@ namespace MikuDash
                     
                     loadUncompressedAnimations(animSleep, new DirectoryInfo("andromeda/sleep"), 1024, 768);
                     loadUncompressedAnimations(dates, new DirectoryInfo("./dates"), 148, 145);
-                    //loadUncompressedAnimations(fall, new DirectoryInfo("./fall"), 64, 64);
                     loadUncompressedAnimations(cpuUsgL, new DirectoryInfo("./cpugau/usage"), 352, 15);
                     loadUncompressedAnimations(cpuRamL, new DirectoryInfo("./cpugau/ram"), 348, 10);
                     
@@ -414,7 +418,6 @@ namespace MikuDash
                     soundAnimation.cambiarA1080();
                     loadUncompressedAnimations(animSleep, new DirectoryInfo("andromeda/sleep2"), 480, 360);
                     loadUncompressedAnimations(dates, new DirectoryInfo("./dates"), 148, 145);
-                   // loadUncompressedAnimations(fall, new DirectoryInfo("./fall"), 64, 64);
                     loadUncompressedAnimations(cpuUsgL, new DirectoryInfo("./cpugau/usage"), 375, 11);
                     loadUncompressedAnimations(cpuRamL, new DirectoryInfo("./cpugau/ram"), 322, 7);
  
@@ -606,7 +609,10 @@ namespace MikuDash
         }
         public void setMonitor(List<CUMonitorUpdate> monitorUpd,int numProc,String netstat)
         {
-            //logiDisp.updateMonitorLCD(monitorUpd);
+            if (logiDisp != null)
+            {
+                logiDisp.updateMonitorLCD(monitorUpd);
+            }
             updateWindowMonitors(monitorUpd);
             
 

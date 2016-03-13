@@ -151,7 +151,25 @@
   <data name="yahoo64" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\yahoo64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Email" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Email.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="amd" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\amd.1.u.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="gpuNvidia" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\gpuNvidia.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="inteli3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\inteli3.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="inteli5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\inteli5.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="inteli7" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\inteli7.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="RadeonGPU" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\RadeonGPU.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="basePrincipalForm" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\basehigh3.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

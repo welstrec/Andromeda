@@ -124,7 +124,7 @@
             this.ramGau.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ramGau.Location = new System.Drawing.Point(118, 22);
             this.ramGau.Name = "ramGau";
-            this.ramGau.Size = new System.Drawing.Size(354, 10);
+            this.ramGau.Size = new System.Drawing.Size(341, 10);
             this.ramGau.TabIndex = 6;
             this.ramGau.TabStop = false;
             // 
@@ -143,6 +143,7 @@
             this.Controls.Add(this.ramGau);
             this.Controls.Add(this.ldGau);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "MonitorInstance";

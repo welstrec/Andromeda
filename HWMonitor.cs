@@ -54,10 +54,13 @@ namespace Andromeda
             {
                 foreach (IHardware hw in pcCompatibleHardware)
                 {
+                   
                     if (hw.HardwareType == HardwareType.GpuNvidia || hw.HardwareType == HardwareType.GpuAti)
                     {
+                        
                         CUMonitorUpdate updToc = new CUMonitorUpdate();
                         hw.Update();
+                        updToc.fullName = hw.Name;
                         foreach (IHardware subHardware in hw.SubHardware)
                             subHardware.Update();
 
@@ -106,6 +109,7 @@ namespace Andromeda
                     {
                         CUMonitorUpdate updToc = new CUMonitorUpdate();
                         hw.Update();
+                        updToc.fullName = hw.Name;
                         int cpuclkThick = 0;
                         int cpuclkcounter = 0;
                         foreach (IHardware subHardware in hw.SubHardware)

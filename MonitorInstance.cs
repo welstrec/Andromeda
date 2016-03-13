@@ -1,14 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Media;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Andromeda
@@ -99,7 +94,39 @@ namespace Andromeda
         {
             if (init) { 
             monNameDsp.Text = upd.devName;
-            this.Text = upd.devName +" Monitor";
+            this.Text = upd.fullName +" Monitor";
+            Console.WriteLine("tipo: "+ upd.getIconInfo());
+            int type = upd.getIconInfo();
+            if (type==1)
+            {
+                    this.Icon = Properties.Resources.gpuNvidia;
+                    this.ShowIcon = true;
+            }
+            if(type==2)
+            {
+                    this.Icon = Properties.Resources.RadeonGPU;
+                    this.ShowIcon = true;
+            }
+            if (type==3)
+            {
+                    this.Icon = Properties.Resources.inteli3;
+                    this.ShowIcon = true;
+            }
+            if (type==4)
+            {
+                  this.Icon = Properties.Resources.inteli5;
+                  this.ShowIcon = true;
+            }
+            if(type==5)
+            {
+                    this.Icon = Properties.Resources.inteli7;
+                    this.ShowIcon = true;
+            }
+            if (type==6)
+            {
+                    this.Icon = Properties.Resources.amd;
+                    this.ShowIcon = true;
+            }
             if (upd.deviceType == CUMonitorUpdate.DEV_TYPE_GPU)
             {
                 ALERT_RAM = Int32.MaxValue;
@@ -108,7 +135,7 @@ namespace Andromeda
             {
                 ALERT_RAM = 94;
             }
-
+           
             ALERT_TEMP = upd.tjmax;
         }
           ldDsp.Text = "" + upd.load.ToString("D3");
@@ -117,7 +144,6 @@ namespace Andromeda
             clkDsp.Text = "" + upd.clk.ToString("D4");
             setGauge(ldGau, upd.load, cpuUsgL);
             setGauge(ramGau, upd.ramUsage, cpuRamL);
-
             if ((upd.ramUsage > ALERT_RAM) && !overrideAlert)
             {
                 if (!playingMemAlert)

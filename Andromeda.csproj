@@ -251,6 +251,13 @@
     <None Include="Resources\yahoo64.png" />
     <None Include="Resources\botonAgregar.png" />
     <None Include="Resources\Email.png" />
+    <None Include="Resources\gpuNvidia.ico" />
+    <None Include="Resources\RadeonGPU.ico" />
+    <None Include="Resources\inteli7.ico" />
+    <None Include="Resources\inteli5.ico" />
+    <None Include="Resources\inteli3.ico" />
+    <None Include="Resources\amd.1.u.ico" />
+    <None Include="Resources\basehigh3.ico" />
     <Content Include="Sonido\click.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

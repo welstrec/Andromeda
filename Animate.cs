@@ -11,7 +11,7 @@ public class Animate
 
 
 
-    public static int ANIM_SPEED = 45;
+    public static int ANIM_SPEED = 40;
     public static int MOV_SPEED = 15;
     private List<Bitmap> animSleep;
     private List<List<FileInfo>> animSing;
@@ -328,7 +328,7 @@ public class Animate
         }
         else if (listen)
         {
-            decideFromListen ();
+            decideFromIdle();
         }
         else
         {
@@ -398,7 +398,7 @@ public class Animate
         }
         else if (sing)
         {
-            decideFromSing();
+            decideFromIdle();
         }
         else
         {
@@ -552,7 +552,7 @@ public class Animate
             animLock = false;
 
             if(t ==danceDelay){
-                danceDelay = rndDance.Next(1, 6);
+                danceDelay = 1;
 
                     playAnimation(animSing, true);
                 
