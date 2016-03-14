@@ -76,7 +76,7 @@
             // BotonGmail
             // 
             this.BotonGmail.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(25)))), ((int)(((byte)(41)))));
-            this.BotonGmail.BackgroundImage = global::Andromeda.Properties.Resources.GMAIL_ICON64;
+            this.BotonGmail.BackgroundImage = global::Andromeda.Properties.Resources.GMAILICON64;
             this.BotonGmail.Location = new System.Drawing.Point(411, 214);
             this.BotonGmail.Name = "BotonGmail";
             this.BotonGmail.Size = new System.Drawing.Size(64, 64);
@@ -87,7 +87,7 @@
             // BotonHotmail
             // 
             this.BotonHotmail.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(25)))), ((int)(((byte)(41)))));
-            this.BotonHotmail.BackgroundImage = global::Andromeda.Properties.Resources.outlook_icon64;
+            this.BotonHotmail.BackgroundImage = global::Andromeda.Properties.Resources.outlookIcon64;
             this.BotonHotmail.Location = new System.Drawing.Point(411, 138);
             this.BotonHotmail.Name = "BotonHotmail";
             this.BotonHotmail.Size = new System.Drawing.Size(64, 64);
