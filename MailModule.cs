@@ -91,13 +91,13 @@ namespace Andromeda
                     if (newCount > oldUids)
                     {
                         MailMessage msg = session.GetMessage(latest, FetchOptions.HeadersOnly, false);
-                        stat.BeginInvoke(new updateMail(stat.updateMail), new Object[] { "" + newCount, true, newCount>oldUidslast, msg.From.User + "\nNew Mail!" });
+                        stat.BeginInvoke(new updateMail(main.updateMail), new Object[] { "" + newCount, true, newCount>oldUidslast, msg.From.User + "\nNew Mail!" });
                         
                         
                     }
                     else if (newCount <= oldUids)
                     {
-                        stat.BeginInvoke(new updateMail(stat.updateMail), new Object[] { ""+newCount, false,false,"" });
+                        stat.BeginInvoke(new updateMail(main.updateMail), new Object[] { ""+newCount, false,false,"" });
                         oldUids = newCount;
                     }
                     oldUidslast = newCount;
@@ -108,7 +108,7 @@ namespace Andromeda
                 }
                 catch (Exception e)
                 {
-                    stat.BeginInvoke(new updateMail(stat.updateMail), new Object[] {"ERR", true,false,"" });
+                    stat.BeginInvoke(new updateMail(main.updateMail), new Object[] {"ERR", true,false,"" });
                     Thread.Sleep(MAIL_ERR_UPD_INTERVAL);
                     Console.WriteLine(e);
                     

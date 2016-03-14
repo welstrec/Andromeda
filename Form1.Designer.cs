@@ -50,7 +50,14 @@
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.fadeInAnim = new System.Windows.Forms.Timer(this.components);
             this.infoDisplay = new System.Windows.Forms.Label();
+            this.schLbl = new System.Windows.Forms.Label();
+            this.mailLbl = new System.Windows.Forms.Label();
+            this.listenLedImg = new System.Windows.Forms.PictureBox();
+            this.sprLedImg = new System.Windows.Forms.PictureBox();
+            this.listenerBlinker = new System.Windows.Forms.Timer(this.components);
             this.contextMenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.listenLedImg)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sprLedImg)).BeginInit();
             this.SuspendLayout();
             // 
             // ampmLbl
@@ -58,7 +65,7 @@
             this.ampmLbl.BackColor = System.Drawing.Color.Transparent;
             this.ampmLbl.Font = new System.Drawing.Font("Consolas", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
             this.ampmLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(134)))), ((int)(((byte)(255)))));
-            this.ampmLbl.Location = new System.Drawing.Point(207, 35);
+            this.ampmLbl.Location = new System.Drawing.Point(207, 31);
             this.ampmLbl.Name = "ampmLbl";
             this.ampmLbl.Size = new System.Drawing.Size(34, 24);
             this.ampmLbl.TabIndex = 28;
@@ -74,7 +81,7 @@
             this.clockLbl.BackColor = System.Drawing.Color.Transparent;
             this.clockLbl.Font = new System.Drawing.Font("Consolas", 45F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.clockLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(134)))), ((int)(((byte)(255)))));
-            this.clockLbl.Location = new System.Drawing.Point(67, 13);
+            this.clockLbl.Location = new System.Drawing.Point(67, 9);
             this.clockLbl.Name = "clockLbl";
             this.clockLbl.Size = new System.Drawing.Size(157, 53);
             this.clockLbl.TabIndex = 27;
@@ -220,12 +227,65 @@
             this.infoDisplay.BackColor = System.Drawing.Color.Transparent;
             this.infoDisplay.Font = new System.Drawing.Font("Consolas", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.infoDisplay.ForeColor = System.Drawing.Color.White;
-            this.infoDisplay.Location = new System.Drawing.Point(56, 85);
+            this.infoDisplay.Location = new System.Drawing.Point(56, 89);
             this.infoDisplay.Name = "infoDisplay";
             this.infoDisplay.Size = new System.Drawing.Size(192, 56);
             this.infoDisplay.TabIndex = 38;
             this.infoDisplay.Text = "Welcome Back!\r\n<Please Wait>";
             this.infoDisplay.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // schLbl
+            // 
+            this.schLbl.BackColor = System.Drawing.Color.Transparent;
+            this.schLbl.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.schLbl.ForeColor = System.Drawing.Color.White;
+            this.schLbl.Location = new System.Drawing.Point(198, 65);
+            this.schLbl.Name = "schLbl";
+            this.schLbl.Size = new System.Drawing.Size(47, 22);
+            this.schLbl.TabIndex = 40;
+            this.schLbl.Text = "---";
+            this.schLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // mailLbl
+            // 
+            this.mailLbl.BackColor = System.Drawing.Color.Transparent;
+            this.mailLbl.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.mailLbl.ForeColor = System.Drawing.Color.White;
+            this.mailLbl.Location = new System.Drawing.Point(144, 65);
+            this.mailLbl.Name = "mailLbl";
+            this.mailLbl.Size = new System.Drawing.Size(47, 22);
+            this.mailLbl.TabIndex = 39;
+            this.mailLbl.Text = "---";
+            this.mailLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // listenLedImg
+            // 
+            this.listenLedImg.BackColor = System.Drawing.Color.Transparent;
+            this.listenLedImg.Image = ((System.Drawing.Image)(resources.GetObject("listenLedImg.Image")));
+            this.listenLedImg.Location = new System.Drawing.Point(114, 72);
+            this.listenLedImg.Name = "listenLedImg";
+            this.listenLedImg.Size = new System.Drawing.Size(10, 10);
+            this.listenLedImg.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.listenLedImg.TabIndex = 42;
+            this.listenLedImg.TabStop = false;
+            this.listenLedImg.Visible = false;
+            // 
+            // sprLedImg
+            // 
+            this.sprLedImg.BackColor = System.Drawing.Color.Transparent;
+            this.sprLedImg.Image = ((System.Drawing.Image)(resources.GetObject("sprLedImg.Image")));
+            this.sprLedImg.Location = new System.Drawing.Point(87, 72);
+            this.sprLedImg.Name = "sprLedImg";
+            this.sprLedImg.Size = new System.Drawing.Size(10, 10);
+            this.sprLedImg.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.sprLedImg.TabIndex = 41;
+            this.sprLedImg.TabStop = false;
+            this.sprLedImg.Visible = false;
+            // 
+            // listenerBlinker
+            // 
+            this.listenerBlinker.Interval = 500;
+            this.listenerBlinker.Tick += new System.EventHandler(this.listenerBlinker_Tick);
             // 
             // MikuDashMain
             // 
@@ -235,6 +295,10 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(306, 153);
             this.ControlBox = false;
+            this.Controls.Add(this.listenLedImg);
+            this.Controls.Add(this.sprLedImg);
+            this.Controls.Add(this.schLbl);
+            this.Controls.Add(this.mailLbl);
             this.Controls.Add(this.infoDisplay);
             this.Controls.Add(this.ampmLbl);
             this.Controls.Add(this.clockLbl);
@@ -255,6 +319,8 @@
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.mikuBox_MouseMove);
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.mikuBox_MouseUp);
             this.contextMenu.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.listenLedImg)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sprLedImg)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -281,6 +347,11 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem5;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem7;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem6;
+        public System.Windows.Forms.Label schLbl;
+        public System.Windows.Forms.Label mailLbl;
+        public System.Windows.Forms.PictureBox listenLedImg;
+        public System.Windows.Forms.PictureBox sprLedImg;
+        public System.Windows.Forms.Timer listenerBlinker;
     }
 }
 

@@ -33,7 +33,7 @@ class Clock
 
     }
     public delegate void setClock(String time, bool date, bool dot);
-    public delegate void setDate(Bitmap time, String month,String yr);
+    public delegate void setDate(Bitmap time, Bitmap month,String yr);
     public void getTime()
     {
         pcMonitor.initialize();
@@ -57,7 +57,7 @@ class Clock
 
                 }
                 int daynum = DateTime.Now.Day;
-                frame.BeginInvoke(new setDate(frame.setDate), new Object[] { days[daynum], DateTime.Now.ToString("MMMM"), DateTime.Now.ToString("yyyy") });
+                frame.BeginInvoke(new setDate(frame.setDate), new Object[] { days[daynum], days[DateTime.Now.Month], DateTime.Now.ToString("yyyy") });
 
 
                 dots = !dots;

@@ -41,13 +41,7 @@ namespace MikuDash
         [DllImport("user32.dll", EntryPoint = "SetLayeredWindowAttributes")]
         public static extern bool SetLayeredWindowAttributes(IntPtr hWnd, int crKey, byte alpha, LWA dwFlags);
 
-        public void sprLedOn(){
 
-            sprLedImg.Visible =true;
-        }
-        public void sprLedOff(){
-            sprLedImg.Visible =false;
-        }
 
        
 
@@ -56,130 +50,193 @@ namespace MikuDash
             mdm = mn;
             InitializeComponent();
         }
-        public void setLevel(int valL,int valR, int l, int r, int c, int sl, int sr, int rl, int rr, int sw)
+        public void setLevel(int valL,int lc, int l, int r, int c, int sl, int sr, int rl, int rr, int sw)
         {
-
-
-            if (l >= SPK_ACT)
+            if (ldg.Visible)
             {
-                li.Visible = true;
-            }
-            else
-            {
-                li.Visible = false;
-            }
-            if (r >= SPK_ACT)
-            {
-                ri.Visible = true;
-            }
-            else
-            {
-                ri.Visible = false;
-            }
-            if (c >= SPK_ACT)
-            {
-                ci.Visible = true;
-            }
-            else
-            {
-                ci.Visible = false;
-            }
-            if (sl >= SPK_ACT)
-            {
-                sli.Visible = true;
-            }
-            else
-            {
-                sli.Visible = false;
-            }
-            if (sr >= SPK_ACT)
-            {
-                sri.Visible = true;
-            }
-            else
-            {
-                sri.Visible = false;
-            }
-            if (rl >= SPK_ACT)
-            {
-                rli.Visible = true;
-            }
-            else
-            {
-                rli.Visible = false;
-            }
-            if (rr >= SPK_ACT)
-            {
-                rri.Visible = true;
-            }
-            else
-            {
-                rri.Visible = false;
-            }
-            if (sw >= SPK_ACT)
-            {
-                swi.Visible = true;
-            }
-            else
-            {
-                swi.Visible = false;
+                ldg.Visible = false;
             }
 
-            //updateVU(vuL, valL);
-            if (valR == 6)
+            if (lc == 1)
             {
-                lfeLbl.Text = "1";
-                chLbl.Text = "5";
+                updateVU(ch1Lv, -1, "", ch1L);
+                updateVU(ch2Lv, -1, "", ch2L);
+                updateVU(ch3Lv, -1, "", ch3L);
+                updateVU(ch4Lv, c, "C", ch4L);
+                updateVU(ch5Lv, -1, "", ch5L);
+                updateVU(ch6Lv, -1, "", ch6L);
+                updateVU(ch7Lv, -1, "", ch7L);
+                updateVU(ch8Lv, -1, "", ch8L);
+
+                adit.Visible = true;
+                adit.Text = "Mono\n\n1.0";
             }
-            else if (valR == 8)
+            else if (lc == 2)
             {
-                lfeLbl.Text = "1";
-                chLbl.Text = "7";
+                updateVU(ch1Lv, -1, "", ch1L);
+                updateVU(ch2Lv, -1, "", ch2L);
+                updateVU(ch3Lv, -1, "", ch3L);
+                updateVU(ch4Lv, l, "L", ch4L);
+                updateVU(ch5Lv, r, "R", ch5L);
+                updateVU(ch6Lv, -1, "", ch6L);
+                updateVU(ch7Lv, -1, "", ch7L);
+                updateVU(ch8Lv, -1, "", ch8L);
+                adit.Visible = true;
+                adit.Text = "Stereo\n\n2.0";
+
+               
             }
-            else
+            else if (lc == 3)
             {
-                chLbl.Text = ""+valR;
-                lfeLbl.Text = "0";
+                updateVU(ch1Lv, -1, "", ch1L);
+                updateVU(ch2Lv, -1, "", ch2L);
+                updateVU(ch3Lv, l, "L", ch3L);
+                updateVU(ch4Lv, c, "C", ch4L);
+                updateVU(ch5Lv, r, "R", ch5L);
+                updateVU(ch6Lv, -1, "", ch6L);
+                updateVU(ch7Lv, -1, "", ch7L);
+                updateVU(ch8Lv, -1, "", ch8L);
+                adit.Visible = true;
+                adit.Text = "Stereo\n\nCenter\n\n3.0";
             }
+            else if (lc == 4)
+            {
+                updateVU(ch1Lv, l, "L", ch1L);
+                updateVU(ch2Lv, r, "R", ch2L);
+                updateVU(ch3Lv, sl, "SL", ch3L);
+                updateVU(ch4Lv, sr, "SR", ch4L);
+                updateVU(ch5Lv, -1, "", ch5L);
+                updateVU(ch6Lv, -1, "", ch6L);
+                updateVU(ch7Lv, -1, "", ch7L);
+                updateVU(ch8Lv, -1, "", ch8L);
+                adit.Visible = true;
+                adit.Text = "Quad\n\nSurrnd\n\n4.0";
+
+            }
+            else if (lc == 5)
+            {
+                updateVU(ch1Lv, l, "L", ch1L);
+                updateVU(ch2Lv, c, "C", ch2L);
+                updateVU(ch3Lv, r, "R", ch3L);
+                updateVU(ch4Lv, sl, "SL", ch4L);
+                updateVU(ch5Lv, sr, "SR", ch5L);
+                updateVU(ch6Lv, -1, "", ch6L);
+                updateVU(ch7Lv, -1, "", ch7L);
+                updateVU(ch8Lv, -1, "", ch8L);
+                adit.Visible = true;
+                adit.Text = "Surrnd\n\n5.0";
+            }
+            else if (lc == 6)
+            {
+                updateVU(ch1Lv, l, "L", ch1L);
+                updateVU(ch2Lv, c, "C", ch2L);
+                updateVU(ch3Lv, r, "R", ch3L);
+                updateVU(ch4Lv, sw, "SW", ch4L);
+                updateVU(ch5Lv, sl, "SL", ch5L);
+                updateVU(ch6Lv, sr, "SR", ch6L);
+                updateVU(ch7Lv, -1, "", ch7L);
+                updateVU(ch8Lv, -1, "", ch8L);
+                adit.Visible = true;
+                adit.Text = "Surrnd\n\nLFE\n\n5.1";
+
+   
+            }
+            else if (lc == 7)
+            {
+                updateVU(ch1Lv, l, "L", ch1L);
+                updateVU(ch2Lv, c, "C", ch2L);
+                updateVU(ch3Lv, r, "R", ch3L);
+                updateVU(ch4Lv, sl, "SL", ch4L);
+                updateVU(ch5Lv, sr, "SR", ch5L);
+                updateVU(ch6Lv, rl, "RL", ch6L);
+                updateVU(ch7Lv, rr, "RR", ch7L);
+                updateVU(ch8Lv, -1, "", ch8L);
+                adit.Visible = false;
+                adit.Text = "Surrnd\n\n7.0";
+
+
+            }
+            else if (lc == 8)
+            {
+                updateVU(ch1Lv, l, "L", ch1L);
+                updateVU(ch2Lv, c, "C", ch2L);
+                updateVU(ch3Lv, r, "R", ch3L);
+                updateVU(ch4Lv, sl, "SL", ch4L);
+                updateVU(ch5Lv, sr, "SR", ch5L);
+                updateVU(ch6Lv, rl, "RL", ch6L);
+                updateVU(ch7Lv, rr, "RR", ch7L);
+                updateVU(ch8Lv, sw, "SW", ch8L);
+                adit.Visible = false;
+                adit.Text = "Surrnd\n\nLFE\n\n7.1";
+
+
+            }
+
+            
 
         }
 
-        public void updateVU(AGauge vu, int newVal)
+        /**/
+
+        public void updateVU(Label vu, int newVal, String chname, Label ch)
         {
-            if (vu.Value < newVal)
+
+            if (newVal == -1)
             {
-                if (vu.Value < 101)
-                {
-                    vu.Value = newVal - vu.Value < VU_INCREASE_INTERVAL ? newVal : vu.Value + VU_INCREASE_INTERVAL;
-                }
+                vu.Visible = false;
+                ch.Visible = false;
+                vu.Text = "";
             }
             else
             {
-                if (vu.Value > 0)
+                
+                if (newVal == 0)
                 {
-                    vu.Value = vu.Value - newVal < VU_DECREASE_INTERVAL ? newVal : vu.Value - VU_DECREASE_INTERVAL;
+                    vu.Text = "";
+                    ch.ForeColor = Color.DarkGray;
+                    vu.ForeColor = Color.DarkGray;
                 }
+                else if (newVal <= 20)
+                {
+                    vu.Text = "";
+                    ch.ForeColor = Color.White;
+                    vu.ForeColor = Color.White;
+                }
+                else if (newVal <= 40)
+                {
+                    vu.Text = "";
+                    ch.ForeColor = Color.White;
+                    vu.ForeColor = Color.White;
+                }
+                else if (newVal <= 60)
+                {
+                    vu.Text = "";
+                    ch.ForeColor = Color.White;
+                    vu.ForeColor = Color.White;
+                }
+                else if (newVal <= 80)
+                {
+                    vu.Text = "";
+                    ch.ForeColor = Color.White;
+                    vu.ForeColor = Color.White;
+                }
+                else if (newVal <= 100)
+                {
+                    vu.Text = "";
+                    ch.ForeColor = Color.White;
+                    vu.ForeColor = Color.White;
+                }
+                if (!ch.Visible) { 
+                vu.Visible = true;
+                ch.Visible = true;
             }
+            }
+            
+            ch.Text = chname;
             
         }
 
-        public void updateMail(String num,Boolean newone,Boolean notify,String info)
-        {
-            mailLbl.Text = ""+num;
-            if (newone)
-            {
-                mailLbl.ForeColor = Color.Orange;
-                if (notify)
-                {
-                    mdm.listener.mikuAnim.notify = true;
-                    mdm.notifyMessage = info;
-                }
-            }
-            else
-            {
-                mailLbl.ForeColor = Color.LightGreen;
-            }
-        }
+
         private void mikuBox_MouseMove(object sender, MouseEventArgs e)
         {
             if (flag)
@@ -227,39 +284,10 @@ namespace MikuDash
         {
 
         }
-        public void listenLedBlink()
-        {
-            if (!listenerBlinker.Enabled)
-            {
-                listenerBlinker.Enabled = true;
-               
-            }
-           
-        }
-        public void listenerLedOff()
-        {
-            listenerBlinker.Enabled = false;
-            listenLedImg.Visible = false;
-           
-        }
 
-        public void listenerLedOn()
-        {
-            listenerBlinker.Enabled = false;
-            listenLedImg.Visible = true;
-           
-            
-        }
         private void listenerBlinker_Tick(object sender, EventArgs e)
         {
-            if (listenLedImg.Visible)
-            {
-                listenLedImg.Visible = false;
-            }
-            else
-            {
-                listenLedImg.Visible = true;
-            }
+
             
         }
 
@@ -269,6 +297,16 @@ namespace MikuDash
         }
 
         private void lfeLbl_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listenLedImg_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void sprLedImg_Click(object sender, EventArgs e)
         {
 
         }

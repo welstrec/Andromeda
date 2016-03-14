@@ -28,254 +28,301 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DateSound));
             this.Year = new System.Windows.Forms.Label();
-            this.Month = new System.Windows.Forms.Label();
             this.daysP = new System.Windows.Forms.PictureBox();
-            this.lfeLbl = new System.Windows.Forms.Label();
-            this.chLbl = new System.Windows.Forms.Label();
-            this.sprLedImg = new System.Windows.Forms.PictureBox();
-            this.listenLedImg = new System.Windows.Forms.PictureBox();
-            this.listenerBlinker = new System.Windows.Forms.Timer(this.components);
-            this.mailLbl = new System.Windows.Forms.Label();
-            this.schLbl = new System.Windows.Forms.Label();
-            this.ci = new System.Windows.Forms.PictureBox();
-            this.ri = new System.Windows.Forms.PictureBox();
-            this.li = new System.Windows.Forms.PictureBox();
-            this.sli = new System.Windows.Forms.PictureBox();
-            this.sri = new System.Windows.Forms.PictureBox();
-            this.rli = new System.Windows.Forms.PictureBox();
-            this.rri = new System.Windows.Forms.PictureBox();
-            this.swi = new System.Windows.Forms.PictureBox();
+            this.monthsP = new System.Windows.Forms.PictureBox();
+            this.ch1Lv = new System.Windows.Forms.Label();
+            this.ch3Lv = new System.Windows.Forms.Label();
+            this.ch4Lv = new System.Windows.Forms.Label();
+            this.ch5Lv = new System.Windows.Forms.Label();
+            this.ch7Lv = new System.Windows.Forms.Label();
+            this.ch6Lv = new System.Windows.Forms.Label();
+            this.ch2Lv = new System.Windows.Forms.Label();
+            this.ch8Lv = new System.Windows.Forms.Label();
+            this.ch1L = new System.Windows.Forms.Label();
+            this.ch2L = new System.Windows.Forms.Label();
+            this.ch3L = new System.Windows.Forms.Label();
+            this.ch4L = new System.Windows.Forms.Label();
+            this.ch5L = new System.Windows.Forms.Label();
+            this.ch6L = new System.Windows.Forms.Label();
+            this.ch7L = new System.Windows.Forms.Label();
+            this.ch8L = new System.Windows.Forms.Label();
+            this.ldg = new System.Windows.Forms.Label();
+            this.adit = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.daysP)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sprLedImg)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.listenLedImg)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ci)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ri)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.li)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sli)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sri)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rli)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rri)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.swi)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.monthsP)).BeginInit();
             this.SuspendLayout();
             // 
             // Year
             // 
             this.Year.BackColor = System.Drawing.Color.Transparent;
             this.Year.Font = new System.Drawing.Font("Consolas", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.Year.ForeColor = System.Drawing.Color.Lime;
-            this.Year.Location = new System.Drawing.Point(47, 216);
+            this.Year.ForeColor = System.Drawing.Color.White;
+            this.Year.Location = new System.Drawing.Point(118, 45);
             this.Year.Name = "Year";
-            this.Year.Size = new System.Drawing.Size(94, 35);
+            this.Year.Size = new System.Drawing.Size(66, 35);
             this.Year.TabIndex = 30;
             this.Year.Text = "----";
             this.Year.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // Month
-            // 
-            this.Month.BackColor = System.Drawing.Color.Transparent;
-            this.Month.Font = new System.Drawing.Font("Consolas", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.Month.ForeColor = System.Drawing.Color.Lime;
-            this.Month.Location = new System.Drawing.Point(31, 13);
-            this.Month.Name = "Month";
-            this.Month.Size = new System.Drawing.Size(131, 24);
-            this.Month.TabIndex = 29;
-            this.Month.Text = "----";
-            this.Month.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // daysP
             // 
             this.daysP.BackColor = System.Drawing.Color.Transparent;
             this.daysP.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.daysP.Image = ((System.Drawing.Image)(resources.GetObject("daysP.Image")));
-            this.daysP.Location = new System.Drawing.Point(21, 57);
+            this.daysP.Location = new System.Drawing.Point(47, 32);
             this.daysP.Name = "daysP";
-            this.daysP.Size = new System.Drawing.Size(148, 145);
+            this.daysP.Size = new System.Drawing.Size(64, 71);
             this.daysP.TabIndex = 28;
             this.daysP.TabStop = false;
             this.daysP.MouseDown += new System.Windows.Forms.MouseEventHandler(this.mikuBox_MouseDown);
             this.daysP.MouseMove += new System.Windows.Forms.MouseEventHandler(this.mikuBox_MouseMove);
             this.daysP.MouseUp += new System.Windows.Forms.MouseEventHandler(this.mikuBox_MouseUp);
             // 
-            // lfeLbl
+            // monthsP
             // 
-            this.lfeLbl.BackColor = System.Drawing.Color.Transparent;
-            this.lfeLbl.Font = new System.Drawing.Font("Consolas", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.lfeLbl.ForeColor = System.Drawing.Color.Lime;
-            this.lfeLbl.Location = new System.Drawing.Point(161, 288);
-            this.lfeLbl.Name = "lfeLbl";
-            this.lfeLbl.Size = new System.Drawing.Size(10, 26);
-            this.lfeLbl.TabIndex = 32;
-            this.lfeLbl.Text = "-";
-            this.lfeLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lfeLbl.Click += new System.EventHandler(this.lfeLbl_Click);
+            this.monthsP.BackColor = System.Drawing.Color.Transparent;
+            this.monthsP.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.monthsP.Image = ((System.Drawing.Image)(resources.GetObject("monthsP.Image")));
+            this.monthsP.Location = new System.Drawing.Point(191, 32);
+            this.monthsP.Name = "monthsP";
+            this.monthsP.Size = new System.Drawing.Size(64, 71);
+            this.monthsP.TabIndex = 46;
+            this.monthsP.TabStop = false;
             // 
-            // chLbl
+            // ch1Lv
             // 
-            this.chLbl.BackColor = System.Drawing.Color.Transparent;
-            this.chLbl.Font = new System.Drawing.Font("Consolas", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.chLbl.ForeColor = System.Drawing.Color.Lime;
-            this.chLbl.Location = new System.Drawing.Point(162, 254);
-            this.chLbl.Name = "chLbl";
-            this.chLbl.Size = new System.Drawing.Size(10, 26);
-            this.chLbl.TabIndex = 33;
-            this.chLbl.Text = "-";
-            this.chLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.ch1Lv.BackColor = System.Drawing.Color.Transparent;
+            this.ch1Lv.Font = new System.Drawing.Font("Wingdings 2", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.ch1Lv.ForeColor = System.Drawing.Color.White;
+            this.ch1Lv.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ch1Lv.Location = new System.Drawing.Point(50, 124);
+            this.ch1Lv.Name = "ch1Lv";
+            this.ch1Lv.Size = new System.Drawing.Size(17, 80);
+            this.ch1Lv.TabIndex = 47;
+            this.ch1Lv.Text = "";
+            this.ch1Lv.Visible = false;
             // 
-            // sprLedImg
+            // ch3Lv
             // 
-            this.sprLedImg.Image = ((System.Drawing.Image)(resources.GetObject("sprLedImg.Image")));
-            this.sprLedImg.Location = new System.Drawing.Point(38, 404);
-            this.sprLedImg.Name = "sprLedImg";
-            this.sprLedImg.Size = new System.Drawing.Size(13, 13);
-            this.sprLedImg.TabIndex = 34;
-            this.sprLedImg.TabStop = false;
-            this.sprLedImg.Visible = false;
+            this.ch3Lv.BackColor = System.Drawing.Color.Transparent;
+            this.ch3Lv.Font = new System.Drawing.Font("Wingdings 2", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.ch3Lv.ForeColor = System.Drawing.Color.White;
+            this.ch3Lv.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ch3Lv.Location = new System.Drawing.Point(102, 124);
+            this.ch3Lv.Name = "ch3Lv";
+            this.ch3Lv.Size = new System.Drawing.Size(17, 80);
+            this.ch3Lv.TabIndex = 48;
+            this.ch3Lv.Text = "";
+            this.ch3Lv.Visible = false;
             // 
-            // listenLedImg
+            // ch4Lv
             // 
-            this.listenLedImg.Image = ((System.Drawing.Image)(resources.GetObject("listenLedImg.Image")));
-            this.listenLedImg.Location = new System.Drawing.Point(69, 404);
-            this.listenLedImg.Name = "listenLedImg";
-            this.listenLedImg.Size = new System.Drawing.Size(13, 13);
-            this.listenLedImg.TabIndex = 35;
-            this.listenLedImg.TabStop = false;
-            this.listenLedImg.Visible = false;
+            this.ch4Lv.BackColor = System.Drawing.Color.Transparent;
+            this.ch4Lv.Font = new System.Drawing.Font("Wingdings 2", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.ch4Lv.ForeColor = System.Drawing.Color.White;
+            this.ch4Lv.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ch4Lv.Location = new System.Drawing.Point(128, 124);
+            this.ch4Lv.Name = "ch4Lv";
+            this.ch4Lv.Size = new System.Drawing.Size(17, 80);
+            this.ch4Lv.TabIndex = 49;
+            this.ch4Lv.Text = "";
+            this.ch4Lv.Visible = false;
             // 
-            // listenerBlinker
+            // ch5Lv
             // 
-            this.listenerBlinker.Interval = 500;
-            this.listenerBlinker.Tick += new System.EventHandler(this.listenerBlinker_Tick);
+            this.ch5Lv.BackColor = System.Drawing.Color.Transparent;
+            this.ch5Lv.Font = new System.Drawing.Font("Wingdings 2", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.ch5Lv.ForeColor = System.Drawing.Color.White;
+            this.ch5Lv.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ch5Lv.Location = new System.Drawing.Point(155, 124);
+            this.ch5Lv.Name = "ch5Lv";
+            this.ch5Lv.Size = new System.Drawing.Size(17, 80);
+            this.ch5Lv.TabIndex = 50;
+            this.ch5Lv.Text = "";
+            this.ch5Lv.Visible = false;
             // 
-            // mailLbl
+            // ch7Lv
             // 
-            this.mailLbl.BackColor = System.Drawing.Color.Transparent;
-            this.mailLbl.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.mailLbl.ForeColor = System.Drawing.Color.Lime;
-            this.mailLbl.Location = new System.Drawing.Point(15, 339);
-            this.mailLbl.Name = "mailLbl";
-            this.mailLbl.Size = new System.Drawing.Size(47, 22);
-            this.mailLbl.TabIndex = 36;
-            this.mailLbl.Text = "---";
-            this.mailLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.ch7Lv.BackColor = System.Drawing.Color.Transparent;
+            this.ch7Lv.Font = new System.Drawing.Font("Wingdings 2", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.ch7Lv.ForeColor = System.Drawing.Color.White;
+            this.ch7Lv.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ch7Lv.Location = new System.Drawing.Point(209, 124);
+            this.ch7Lv.Name = "ch7Lv";
+            this.ch7Lv.Size = new System.Drawing.Size(17, 80);
+            this.ch7Lv.TabIndex = 51;
+            this.ch7Lv.Text = "";
+            this.ch7Lv.Visible = false;
             // 
-            // schLbl
+            // ch6Lv
             // 
-            this.schLbl.BackColor = System.Drawing.Color.Transparent;
-            this.schLbl.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.schLbl.ForeColor = System.Drawing.Color.Lime;
-            this.schLbl.Location = new System.Drawing.Point(49, 339);
-            this.schLbl.Name = "schLbl";
-            this.schLbl.Size = new System.Drawing.Size(47, 22);
-            this.schLbl.TabIndex = 37;
-            this.schLbl.Text = "---";
-            this.schLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.ch6Lv.BackColor = System.Drawing.Color.Transparent;
+            this.ch6Lv.Font = new System.Drawing.Font("Wingdings 2", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.ch6Lv.ForeColor = System.Drawing.Color.White;
+            this.ch6Lv.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ch6Lv.Location = new System.Drawing.Point(182, 124);
+            this.ch6Lv.Name = "ch6Lv";
+            this.ch6Lv.Size = new System.Drawing.Size(17, 80);
+            this.ch6Lv.TabIndex = 52;
+            this.ch6Lv.Text = "";
+            this.ch6Lv.Visible = false;
             // 
-            // ci
+            // ch2Lv
             // 
-            this.ci.BackColor = System.Drawing.Color.Transparent;
-            this.ci.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ci.Image = ((System.Drawing.Image)(resources.GetObject("ci.Image")));
-            this.ci.Location = new System.Drawing.Point(66, 262);
-            this.ci.Name = "ci";
-            this.ci.Size = new System.Drawing.Size(28, 15);
-            this.ci.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.ci.TabIndex = 38;
-            this.ci.TabStop = false;
-            this.ci.Visible = false;
+            this.ch2Lv.BackColor = System.Drawing.Color.Transparent;
+            this.ch2Lv.Font = new System.Drawing.Font("Wingdings 2", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.ch2Lv.ForeColor = System.Drawing.Color.White;
+            this.ch2Lv.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ch2Lv.Location = new System.Drawing.Point(76, 124);
+            this.ch2Lv.Name = "ch2Lv";
+            this.ch2Lv.Size = new System.Drawing.Size(17, 80);
+            this.ch2Lv.TabIndex = 53;
+            this.ch2Lv.Text = "";
+            this.ch2Lv.Visible = false;
             // 
-            // ri
+            // ch8Lv
             // 
-            this.ri.BackColor = System.Drawing.Color.Transparent;
-            this.ri.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ri.Image = ((System.Drawing.Image)(resources.GetObject("ri.Image")));
-            this.ri.Location = new System.Drawing.Point(103, 263);
-            this.ri.Name = "ri";
-            this.ri.Size = new System.Drawing.Size(28, 15);
-            this.ri.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.ri.TabIndex = 39;
-            this.ri.TabStop = false;
-            this.ri.Visible = false;
+            this.ch8Lv.BackColor = System.Drawing.Color.Transparent;
+            this.ch8Lv.Font = new System.Drawing.Font("Wingdings 2", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.ch8Lv.ForeColor = System.Drawing.Color.White;
+            this.ch8Lv.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ch8Lv.Location = new System.Drawing.Point(237, 124);
+            this.ch8Lv.Name = "ch8Lv";
+            this.ch8Lv.Size = new System.Drawing.Size(17, 80);
+            this.ch8Lv.TabIndex = 54;
+            this.ch8Lv.Text = "";
+            this.ch8Lv.Visible = false;
             // 
-            // li
+            // ch1L
             // 
-            this.li.BackColor = System.Drawing.Color.Transparent;
-            this.li.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.li.Image = ((System.Drawing.Image)(resources.GetObject("li.Image")));
-            this.li.Location = new System.Drawing.Point(30, 262);
-            this.li.Name = "li";
-            this.li.Size = new System.Drawing.Size(28, 15);
-            this.li.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.li.TabIndex = 40;
-            this.li.TabStop = false;
-            this.li.Visible = false;
+            this.ch1L.BackColor = System.Drawing.Color.Transparent;
+            this.ch1L.Font = new System.Drawing.Font("Consolas", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.ch1L.ForeColor = System.Drawing.Color.White;
+            this.ch1L.Location = new System.Drawing.Point(46, 202);
+            this.ch1L.Name = "ch1L";
+            this.ch1L.Size = new System.Drawing.Size(33, 22);
+            this.ch1L.TabIndex = 55;
+            this.ch1L.Text = "C1";
+            this.ch1L.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.ch1L.Visible = false;
             // 
-            // sli
+            // ch2L
             // 
-            this.sli.BackColor = System.Drawing.Color.Transparent;
-            this.sli.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.sli.Image = ((System.Drawing.Image)(resources.GetObject("sli.Image")));
-            this.sli.Location = new System.Drawing.Point(21, 284);
-            this.sli.Name = "sli";
-            this.sli.Size = new System.Drawing.Size(34, 16);
-            this.sli.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.sli.TabIndex = 41;
-            this.sli.TabStop = false;
-            this.sli.Visible = false;
+            this.ch2L.BackColor = System.Drawing.Color.Transparent;
+            this.ch2L.Font = new System.Drawing.Font("Consolas", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.ch2L.ForeColor = System.Drawing.Color.White;
+            this.ch2L.Location = new System.Drawing.Point(71, 202);
+            this.ch2L.Name = "ch2L";
+            this.ch2L.Size = new System.Drawing.Size(33, 22);
+            this.ch2L.TabIndex = 56;
+            this.ch2L.Text = "C2";
+            this.ch2L.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.ch2L.Visible = false;
             // 
-            // sri
+            // ch3L
             // 
-            this.sri.BackColor = System.Drawing.Color.Transparent;
-            this.sri.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.sri.Image = ((System.Drawing.Image)(resources.GetObject("sri.Image")));
-            this.sri.Location = new System.Drawing.Point(105, 284);
-            this.sri.Name = "sri";
-            this.sri.Size = new System.Drawing.Size(34, 16);
-            this.sri.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.sri.TabIndex = 42;
-            this.sri.TabStop = false;
-            this.sri.Visible = false;
+            this.ch3L.BackColor = System.Drawing.Color.Transparent;
+            this.ch3L.Font = new System.Drawing.Font("Consolas", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.ch3L.ForeColor = System.Drawing.Color.White;
+            this.ch3L.Location = new System.Drawing.Point(97, 202);
+            this.ch3L.Name = "ch3L";
+            this.ch3L.Size = new System.Drawing.Size(33, 22);
+            this.ch3L.TabIndex = 57;
+            this.ch3L.Text = "C3";
+            this.ch3L.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.ch3L.Visible = false;
             // 
-            // rli
+            // ch4L
             // 
-            this.rli.BackColor = System.Drawing.Color.Transparent;
-            this.rli.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.rli.Image = ((System.Drawing.Image)(resources.GetObject("rli.Image")));
-            this.rli.Location = new System.Drawing.Point(35, 304);
-            this.rli.Name = "rli";
-            this.rli.Size = new System.Drawing.Size(34, 17);
-            this.rli.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.rli.TabIndex = 43;
-            this.rli.TabStop = false;
-            this.rli.Visible = false;
+            this.ch4L.BackColor = System.Drawing.Color.Transparent;
+            this.ch4L.Font = new System.Drawing.Font("Consolas", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.ch4L.ForeColor = System.Drawing.Color.White;
+            this.ch4L.Location = new System.Drawing.Point(124, 202);
+            this.ch4L.Name = "ch4L";
+            this.ch4L.Size = new System.Drawing.Size(33, 22);
+            this.ch4L.TabIndex = 58;
+            this.ch4L.Text = "C4";
+            this.ch4L.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.ch4L.Visible = false;
             // 
-            // rri
+            // ch5L
             // 
-            this.rri.BackColor = System.Drawing.Color.Transparent;
-            this.rri.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.rri.Image = ((System.Drawing.Image)(resources.GetObject("rri.Image")));
-            this.rri.Location = new System.Drawing.Point(90, 304);
-            this.rri.Name = "rri";
-            this.rri.Size = new System.Drawing.Size(34, 17);
-            this.rri.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.rri.TabIndex = 44;
-            this.rri.TabStop = false;
-            this.rri.Visible = false;
+            this.ch5L.BackColor = System.Drawing.Color.Transparent;
+            this.ch5L.Font = new System.Drawing.Font("Consolas", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.ch5L.ForeColor = System.Drawing.Color.White;
+            this.ch5L.Location = new System.Drawing.Point(150, 202);
+            this.ch5L.Name = "ch5L";
+            this.ch5L.Size = new System.Drawing.Size(33, 22);
+            this.ch5L.TabIndex = 59;
+            this.ch5L.Text = "C5";
+            this.ch5L.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.ch5L.Visible = false;
             // 
-            // swi
+            // ch6L
             // 
-            this.swi.BackColor = System.Drawing.Color.Transparent;
-            this.swi.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.swi.Image = ((System.Drawing.Image)(resources.GetObject("swi.Image")));
-            this.swi.Location = new System.Drawing.Point(62, 284);
-            this.swi.Name = "swi";
-            this.swi.Size = new System.Drawing.Size(36, 16);
-            this.swi.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.swi.TabIndex = 45;
-            this.swi.TabStop = false;
-            this.swi.Visible = false;
+            this.ch6L.BackColor = System.Drawing.Color.Transparent;
+            this.ch6L.Font = new System.Drawing.Font("Consolas", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.ch6L.ForeColor = System.Drawing.Color.White;
+            this.ch6L.Location = new System.Drawing.Point(178, 202);
+            this.ch6L.Name = "ch6L";
+            this.ch6L.Size = new System.Drawing.Size(33, 22);
+            this.ch6L.TabIndex = 60;
+            this.ch6L.Text = "C6";
+            this.ch6L.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.ch6L.Visible = false;
+            // 
+            // ch7L
+            // 
+            this.ch7L.BackColor = System.Drawing.Color.Transparent;
+            this.ch7L.Font = new System.Drawing.Font("Consolas", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.ch7L.ForeColor = System.Drawing.Color.White;
+            this.ch7L.Location = new System.Drawing.Point(205, 202);
+            this.ch7L.Name = "ch7L";
+            this.ch7L.Size = new System.Drawing.Size(33, 22);
+            this.ch7L.TabIndex = 61;
+            this.ch7L.Text = "C7";
+            this.ch7L.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.ch7L.Visible = false;
+            // 
+            // ch8L
+            // 
+            this.ch8L.BackColor = System.Drawing.Color.Transparent;
+            this.ch8L.Font = new System.Drawing.Font("Consolas", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.ch8L.ForeColor = System.Drawing.Color.White;
+            this.ch8L.Location = new System.Drawing.Point(231, 202);
+            this.ch8L.Name = "ch8L";
+            this.ch8L.Size = new System.Drawing.Size(33, 22);
+            this.ch8L.TabIndex = 62;
+            this.ch8L.Text = "C8";
+            this.ch8L.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.ch8L.Visible = false;
+            // 
+            // ldg
+            // 
+            this.ldg.BackColor = System.Drawing.Color.Transparent;
+            this.ldg.Font = new System.Drawing.Font("Consolas", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.ldg.ForeColor = System.Drawing.Color.White;
+            this.ldg.Location = new System.Drawing.Point(46, 141);
+            this.ldg.Name = "ldg";
+            this.ldg.Size = new System.Drawing.Size(215, 67);
+            this.ldg.TabIndex = 63;
+            this.ldg.Text = "Audio Monitor\r\n<Loading>";
+            this.ldg.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // adit
+            // 
+            this.adit.BackColor = System.Drawing.Color.Transparent;
+            this.adit.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.adit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(164)))), ((int)(((byte)(255)))));
+            this.adit.Location = new System.Drawing.Point(195, 120);
+            this.adit.Name = "adit";
+            this.adit.Size = new System.Drawing.Size(73, 100);
+            this.adit.TabIndex = 64;
+            this.adit.Text = "Mono\r\n9.9";
+            this.adit.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.adit.Visible = false;
             // 
             // DateSound
             // 
@@ -283,24 +330,28 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(205, 465);
-            this.Controls.Add(this.swi);
-            this.Controls.Add(this.rri);
-            this.Controls.Add(this.rli);
-            this.Controls.Add(this.sri);
-            this.Controls.Add(this.sli);
-            this.Controls.Add(this.li);
-            this.Controls.Add(this.ri);
-            this.Controls.Add(this.ci);
-            this.Controls.Add(this.schLbl);
-            this.Controls.Add(this.mailLbl);
-            this.Controls.Add(this.listenLedImg);
-            this.Controls.Add(this.sprLedImg);
-            this.Controls.Add(this.chLbl);
-            this.Controls.Add(this.lfeLbl);
+            this.ClientSize = new System.Drawing.Size(300, 254);
+            this.Controls.Add(this.ch8Lv);
+            this.Controls.Add(this.ch2Lv);
+            this.Controls.Add(this.ch6Lv);
+            this.Controls.Add(this.ch7Lv);
+            this.Controls.Add(this.ch5Lv);
+            this.Controls.Add(this.ch4Lv);
+            this.Controls.Add(this.ch3Lv);
+            this.Controls.Add(this.ch1Lv);
+            this.Controls.Add(this.monthsP);
             this.Controls.Add(this.Year);
-            this.Controls.Add(this.Month);
             this.Controls.Add(this.daysP);
+            this.Controls.Add(this.ch8L);
+            this.Controls.Add(this.ch7L);
+            this.Controls.Add(this.ch6L);
+            this.Controls.Add(this.ch5L);
+            this.Controls.Add(this.ch4L);
+            this.Controls.Add(this.ch3L);
+            this.Controls.Add(this.ch2L);
+            this.Controls.Add(this.ch1L);
+            this.Controls.Add(this.ldg);
+            this.Controls.Add(this.adit);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -317,16 +368,7 @@
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.mikuBox_MouseMove);
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.mikuBox_MouseUp);
             ((System.ComponentModel.ISupportInitialize)(this.daysP)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sprLedImg)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.listenLedImg)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ci)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ri)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.li)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sli)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sri)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rli)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rri)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.swi)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.monthsP)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -334,22 +376,25 @@
         #endregion
 
         public System.Windows.Forms.Label Year;
-        public System.Windows.Forms.Label Month;
         public System.Windows.Forms.PictureBox daysP;
-        public System.Windows.Forms.Label lfeLbl;
-        public System.Windows.Forms.Label chLbl;
-        public System.Windows.Forms.PictureBox sprLedImg;
-        public System.Windows.Forms.PictureBox listenLedImg;
-        public System.Windows.Forms.Timer listenerBlinker;
-        public System.Windows.Forms.Label mailLbl;
-        public System.Windows.Forms.Label schLbl;
-        public System.Windows.Forms.PictureBox ci;
-        public System.Windows.Forms.PictureBox ri;
-        public System.Windows.Forms.PictureBox li;
-        public System.Windows.Forms.PictureBox sli;
-        public System.Windows.Forms.PictureBox sri;
-        public System.Windows.Forms.PictureBox rli;
-        public System.Windows.Forms.PictureBox rri;
-        public System.Windows.Forms.PictureBox swi;
+        public System.Windows.Forms.PictureBox monthsP;
+        private System.Windows.Forms.Label ch1Lv;
+        private System.Windows.Forms.Label ch3Lv;
+        private System.Windows.Forms.Label ch4Lv;
+        private System.Windows.Forms.Label ch5Lv;
+        private System.Windows.Forms.Label ch7Lv;
+        private System.Windows.Forms.Label ch6Lv;
+        private System.Windows.Forms.Label ch2Lv;
+        private System.Windows.Forms.Label ch8Lv;
+        private System.Windows.Forms.Label ch1L;
+        private System.Windows.Forms.Label ch2L;
+        private System.Windows.Forms.Label ch3L;
+        private System.Windows.Forms.Label ch4L;
+        private System.Windows.Forms.Label ch5L;
+        private System.Windows.Forms.Label ch6L;
+        private System.Windows.Forms.Label ch7L;
+        private System.Windows.Forms.Label ch8L;
+        private System.Windows.Forms.Label ldg;
+        private System.Windows.Forms.Label adit;
     }
 }

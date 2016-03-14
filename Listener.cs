@@ -60,7 +60,7 @@ public class Listener
                 try
                 {
 
-                    System.Threading.Thread.Sleep(800);
+                    System.Threading.Thread.Sleep(100);
                     devDel++;
               
                     int val = 0;
@@ -158,7 +158,7 @@ public class Listener
 
                         if (!mikuAnim.animLock)
                         {
-                            mdm.BeginInvoke(new listenerLedOper(mdm.listenerLedOn));
+                            mdm.BeginInvoke(new listenerLedOper(main.listenerLedOn));
                             mikuAnim.sleep = false;
                             mikuAnim.sing = false;
                             mikuAnim.listen = true;
@@ -171,7 +171,7 @@ public class Listener
                                 mikuAnim.command = false;
                                 mikuAnim.sleep = true;
                                 spRec.active = false;
-                                mdm.BeginInvoke(new listenerLedOper(mdm.listenerLedOff));
+                                mdm.BeginInvoke(new listenerLedOper(main.listenerLedOff));
                                
                             }
                             else if (spRec.cmdStack.Count != 0 || spRec.programCmds.Count != 0)
@@ -213,7 +213,7 @@ public class Listener
                         else
                         {
 
-                            mdm.BeginInvoke(new listenerLedOper(mdm.listenLedBlink));
+                            mdm.BeginInvoke(new listenerLedOper(main.listenLedBlink));
                         }
                         
                         //executecmd

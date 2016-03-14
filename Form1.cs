@@ -288,6 +288,23 @@ namespace MikuDash
             }
             
         }
+        public void updateMail(String num, Boolean newone, Boolean notify, String info)
+        {
+            mailLbl.Text = "" + num;
+            if (newone)
+            {
+                mailLbl.ForeColor = Color.Orange;
+                if (notify)
+                {
+                    listener.mikuAnim.notify = true;
+                    notifyMessage = info;
+                }
+            }
+            else
+            {
+                mailLbl.ForeColor = Color.White;
+            }
+        }
 
         public void startAnimationAndListenThread()
         {
@@ -377,7 +394,7 @@ namespace MikuDash
                 {
                     
                     loadUncompressedAnimations(animSleep, new DirectoryInfo("andromeda/sleep"), 1024, 768);
-                    loadUncompressedAnimations(dates, new DirectoryInfo("./dates"), 148, 145);
+                    loadUncompressedAnimations(dates, new DirectoryInfo("./dates"), 64, 71);
                     loadUncompressedAnimations(cpuUsgL, new DirectoryInfo("./cpugau/usage"), 352, 15);
                     loadUncompressedAnimations(cpuRamL, new DirectoryInfo("./cpugau/ram"), 348, 10);
                     
@@ -417,7 +434,7 @@ namespace MikuDash
 
                     soundAnimation.cambiarA1080();
                     loadUncompressedAnimations(animSleep, new DirectoryInfo("andromeda/sleep2"), 480, 360);
-                    loadUncompressedAnimations(dates, new DirectoryInfo("./dates"), 148, 145);
+                    loadUncompressedAnimations(dates, new DirectoryInfo("./dates"), 64, 71);
                     loadUncompressedAnimations(cpuUsgL, new DirectoryInfo("./cpugau/usage"), 375, 11);
                     loadUncompressedAnimations(cpuRamL, new DirectoryInfo("./cpugau/ram"), 322, 7);
  
@@ -561,10 +578,10 @@ namespace MikuDash
                 this.ampmLbl.Text = spl[2].Equals("a.m.") ? "AM" : "PM";
             }
         }
-        public void setDate(Bitmap bm,String month,String yr)
+        public void setDate(Bitmap bm,Bitmap month,String yr)
         {
            soundDate.daysP.Image = bm;
-           soundDate.Month.Text = month.ToUpper();
+           soundDate.monthsP.Image = month;
            soundDate.Year.Text = yr;
         }
 
@@ -851,14 +868,14 @@ namespace MikuDash
             {
                 
                 spr.disableRecognizer = false;
-                soundDate.sprLedOn();
+                sprLedOn();
             }
             else
             {
                 spr.disableRecognizer = true;
                 spr.active = false;
                 spr.cmdId = -1;
-                soundDate.sprLedOff();
+                sprLedOff();
             }
         }
 
@@ -867,7 +884,7 @@ namespace MikuDash
            
             
                 spr.disableRecognizer = false;
-                soundDate.sprLedOn();
+                sprLedOn();
             
         }
 
@@ -876,7 +893,7 @@ namespace MikuDash
 
 
             spr.disableRecognizer = true;
-            soundDate.sprLedOff();
+            sprLedOff();
             
 
         }
@@ -1071,6 +1088,49 @@ namespace MikuDash
             foreach (MonitorInstance mi in monitInstances)
             {                
                 mi.Opacity = Transparency;
+            }
+        }
+        public void listenLedBlink()
+        {
+            if (!listenerBlinker.Enabled)
+            {
+                listenerBlinker.Enabled = true;
+
+            }
+
+        }
+        public void listenerLedOff()
+        {
+            listenerBlinker.Enabled = false;
+            listenLedImg.Visible = false;
+
+        }
+
+        public void listenerLedOn()
+        {
+            listenerBlinker.Enabled = false;
+            listenLedImg.Visible = true;
+
+
+        }
+        public void sprLedOn()
+        {
+
+            sprLedImg.Visible = true;
+        }
+        public void sprLedOff()
+        {
+            sprLedImg.Visible = false;
+        }
+        private void listenerBlinker_Tick(object sender, EventArgs e)
+        {
+            if (listenLedImg.Visible)
+            {
+                listenLedImg.Visible = false;
+            }
+            else
+            {
+                listenLedImg.Visible = true;
             }
         }
     }
