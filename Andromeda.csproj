@@ -258,6 +258,11 @@
     <None Include="Resources\inteli3.ico" />
     <None Include="Resources\amd.1.u.ico" />
     <None Include="Resources\basehigh3.ico" />
+    <None Include="Resources\saveIcon.png" />
+    <None Include="Resources\Toggle_moveable.png" />
+    <None Include="Resources\closeIcon.png" />
+    <None Include="Resources\showIcon.png" />
+    <None Include="Resources\hide.png" />
     <Content Include="Sonido\click.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

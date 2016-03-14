@@ -105,19 +105,21 @@
             this.toolPos,
             this.closeToolStripMenuItem});
             this.contextMenu.Name = "contextMenu";
-            this.contextMenu.Size = new System.Drawing.Size(234, 220);
+            this.contextMenu.Size = new System.Drawing.Size(174, 242);
             // 
             // toolShow
             // 
+            this.toolShow.Image = global::Andromeda.Properties.Resources.showIcon;
             this.toolShow.Name = "toolShow";
-            this.toolShow.Size = new System.Drawing.Size(233, 30);
+            this.toolShow.Size = new System.Drawing.Size(173, 30);
             this.toolShow.Text = "Show";
             this.toolShow.Click += new System.EventHandler(this.toolShow_Click);
             // 
             // toolHide
             // 
+            this.toolHide.Image = global::Andromeda.Properties.Resources.hide;
             this.toolHide.Name = "toolHide";
-            this.toolHide.Size = new System.Drawing.Size(233, 30);
+            this.toolHide.Size = new System.Drawing.Size(173, 30);
             this.toolHide.Text = "Hide";
             this.toolHide.Click += new System.EventHandler(this.toolHide_Click);
             // 
@@ -131,81 +133,85 @@
             this.toolStripMenuItem6,
             this.toolStripMenuItem5});
             this.transparencyToolStripMenuItem.Name = "transparencyToolStripMenuItem";
-            this.transparencyToolStripMenuItem.Size = new System.Drawing.Size(233, 30);
+            this.transparencyToolStripMenuItem.Size = new System.Drawing.Size(173, 30);
             this.transparencyToolStripMenuItem.Text = "Transparency";
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(132, 30);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(96, 22);
             this.toolStripMenuItem2.Text = "80%";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(132, 30);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(96, 22);
             this.toolStripMenuItem3.Text = "60%";
             this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
             // 
             // toolStripMenuItem7
             // 
             this.toolStripMenuItem7.Name = "toolStripMenuItem7";
-            this.toolStripMenuItem7.Size = new System.Drawing.Size(132, 30);
+            this.toolStripMenuItem7.Size = new System.Drawing.Size(96, 22);
             this.toolStripMenuItem7.Text = "50%";
             this.toolStripMenuItem7.Click += new System.EventHandler(this.toolStripMenuItem7_Click);
             // 
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(132, 30);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(96, 22);
             this.toolStripMenuItem4.Text = "40%";
             this.toolStripMenuItem4.Click += new System.EventHandler(this.toolStripMenuItem4_Click);
             // 
             // toolStripMenuItem6
             // 
             this.toolStripMenuItem6.Name = "toolStripMenuItem6";
-            this.toolStripMenuItem6.Size = new System.Drawing.Size(132, 30);
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(96, 22);
             this.toolStripMenuItem6.Text = "30%";
             this.toolStripMenuItem6.Click += new System.EventHandler(this.toolStripMenuItem6_Click);
             // 
             // toolStripMenuItem5
             // 
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(132, 30);
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(96, 22);
             this.toolStripMenuItem5.Text = "20%";
             this.toolStripMenuItem5.Click += new System.EventHandler(this.toolStripMenuItem5_Click);
             // 
             // toolInvalid
             // 
+            this.toolInvalid.Image = global::Andromeda.Properties.Resources.Toggle_moveable;
             this.toolInvalid.Name = "toolInvalid";
-            this.toolInvalid.Size = new System.Drawing.Size(233, 30);
+            this.toolInvalid.Size = new System.Drawing.Size(173, 30);
             this.toolInvalid.Text = "Toggle Moveable";
             this.toolInvalid.Click += new System.EventHandler(this.toolInvalid_Click);
             // 
             // toolClose
             // 
             this.toolClose.Name = "toolClose";
-            this.toolClose.Size = new System.Drawing.Size(230, 6);
+            this.toolClose.Size = new System.Drawing.Size(170, 6);
             // 
             // viewMailToolStripMenuItem
             // 
+            this.viewMailToolStripMenuItem.Image = global::Andromeda.Properties.Resources._base;
             this.viewMailToolStripMenuItem.Name = "viewMailToolStripMenuItem";
-            this.viewMailToolStripMenuItem.Size = new System.Drawing.Size(233, 30);
+            this.viewMailToolStripMenuItem.Size = new System.Drawing.Size(173, 30);
             this.viewMailToolStripMenuItem.Text = "Mail Settings";
             this.viewMailToolStripMenuItem.Click += new System.EventHandler(this.viewMailToolStripMenuItem_Click);
             // 
             // toolPos
             // 
+            this.toolPos.Image = global::Andromeda.Properties.Resources.saveIcon;
             this.toolPos.Name = "toolPos";
-            this.toolPos.Size = new System.Drawing.Size(233, 30);
+            this.toolPos.Size = new System.Drawing.Size(173, 30);
             this.toolPos.Text = "Save Position";
             this.toolPos.Click += new System.EventHandler(this.toolPos_Click_1);
             // 
             // closeToolStripMenuItem
             // 
+            this.closeToolStripMenuItem.Image = global::Andromeda.Properties.Resources.closeIcon;
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(233, 30);
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(173, 30);
             this.closeToolStripMenuItem.Text = "Close";
             this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click_1);
             // 

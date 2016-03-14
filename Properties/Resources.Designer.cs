@@ -103,6 +103,16 @@ namespace Andromeda.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap closeIcon {
+            get {
+                object obj = ResourceManager.GetObject("closeIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Email {
             get {
                 object obj = ResourceManager.GetObject("Email", resourceCulture);
@@ -123,9 +133,9 @@ namespace Andromeda.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap GMAIL_ICON64 {
+        internal static System.Drawing.Bitmap GMAILICON64 {
             get {
-                object obj = ResourceManager.GetObject("GMAIL ICON64", resourceCulture);
+                object obj = ResourceManager.GetObject("GMAILICON64", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -137,6 +147,16 @@ namespace Andromeda.Properties {
             get {
                 object obj = ResourceManager.GetObject("gpuNvidia", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap hide {
+            get {
+                object obj = ResourceManager.GetObject("hide", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -213,9 +233,9 @@ namespace Andromeda.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap outlook_icon64 {
+        internal static System.Drawing.Bitmap outlookIcon64 {
             get {
-                object obj = ResourceManager.GetObject("outlook-icon64", resourceCulture);
+                object obj = ResourceManager.GetObject("outlookIcon64", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -227,6 +247,36 @@ namespace Andromeda.Properties {
             get {
                 object obj = ResourceManager.GetObject("RadeonGPU", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap saveIcon {
+            get {
+                object obj = ResourceManager.GetObject("saveIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap showIcon {
+            get {
+                object obj = ResourceManager.GetObject("showIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Toggle_moveable {
+            get {
+                object obj = ResourceManager.GetObject("Toggle_moveable", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
