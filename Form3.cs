@@ -311,6 +311,86 @@ namespace MikuDash
 
         }
 
+        private void ch2Lv_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ch6Lv_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ch7Lv_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ch5Lv_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ch4Lv_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ch3Lv_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ch1Lv_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ch8Lv_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ch8L_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ch7L_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ch6L_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ch5L_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ch4L_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ch3L_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ch2L_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ch1L_Click(object sender, EventArgs e)
+        {
+
+        }
+
 
     }
 }

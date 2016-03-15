@@ -394,7 +394,7 @@ namespace MikuDash
                 {
                     
                     loadUncompressedAnimations(animSleep, new DirectoryInfo("andromeda/sleep"), 1024, 768);
-                    loadUncompressedAnimations(dates, new DirectoryInfo("./dates"), 64, 71);
+                    loadUncompressedAnimations(dates, new DirectoryInfo("./dates"), 70, 83);
                     loadUncompressedAnimations(cpuUsgL, new DirectoryInfo("./cpugau/usage"), 352, 15);
                     loadUncompressedAnimations(cpuRamL, new DirectoryInfo("./cpugau/ram"), 348, 10);
                     
@@ -434,7 +434,7 @@ namespace MikuDash
 
                     soundAnimation.cambiarA1080();
                     loadUncompressedAnimations(animSleep, new DirectoryInfo("andromeda/sleep2"), 480, 360);
-                    loadUncompressedAnimations(dates, new DirectoryInfo("./dates"), 64, 71);
+                    loadUncompressedAnimations(dates, new DirectoryInfo("./dates"), 70, 83);
                     loadUncompressedAnimations(cpuUsgL, new DirectoryInfo("./cpugau/usage"), 375, 11);
                     loadUncompressedAnimations(cpuRamL, new DirectoryInfo("./cpugau/ram"), 322, 7);
  
@@ -578,11 +578,84 @@ namespace MikuDash
                 this.ampmLbl.Text = spl[2].Equals("a.m.") ? "AM" : "PM";
             }
         }
-        public void setDate(Bitmap bm,Bitmap month,String yr)
+        public void setDate(Bitmap bm,String month,String yr,int dayweek)
         {
            soundDate.daysP.Image = bm;
-           soundDate.monthsP.Image = month;
+           soundDate.Month.Text = month;
            soundDate.Year.Text = yr;
+
+           switch (dayweek)
+           {
+               case 1:
+                   soundDate.monLed.Visible = true;
+                   soundDate.tueLed.Visible = false;
+                   soundDate.wedLed.Visible = false;
+                   soundDate.thuLed.Visible = false;
+                   soundDate.friLed.Visible = false;
+                   soundDate.satLed.Visible = false;
+                   soundDate.sunLed.Visible = false;
+                   break;
+
+               case 2:
+                   soundDate.monLed.Visible = false;
+                   soundDate.tueLed.Visible = true;
+                   soundDate.wedLed.Visible = false;
+                   soundDate.thuLed.Visible = false;
+                   soundDate.friLed.Visible = false;
+                   soundDate.satLed.Visible = false;
+                   soundDate.sunLed.Visible = false;
+                   break;
+
+               case 3:
+                   soundDate.monLed.Visible = false;
+                   soundDate.tueLed.Visible = false;
+                   soundDate.wedLed.Visible = true;
+                   soundDate.thuLed.Visible = false;
+                   soundDate.friLed.Visible = false;
+                   soundDate.satLed.Visible = false;
+                   soundDate.sunLed.Visible = false;
+                   break;
+
+               case 4:
+                   soundDate.monLed.Visible = false;
+                   soundDate.tueLed.Visible = false;
+                   soundDate.wedLed.Visible = false;
+                   soundDate.thuLed.Visible = true;
+                   soundDate.friLed.Visible = false;
+                   soundDate.satLed.Visible = false;
+                   soundDate.sunLed.Visible = false;
+                   break;
+
+               case 5:
+                   soundDate.monLed.Visible = false;
+                   soundDate.tueLed.Visible = false;
+                   soundDate.wedLed.Visible = false;
+                   soundDate.thuLed.Visible = false;
+                   soundDate.friLed.Visible = true;
+                   soundDate.satLed.Visible = false;
+                   soundDate.sunLed.Visible = false;
+                   break;
+
+               case 6:
+                   soundDate.monLed.Visible = false;
+                   soundDate.tueLed.Visible = false;
+                   soundDate.wedLed.Visible = false;
+                   soundDate.thuLed.Visible = false;
+                   soundDate.friLed.Visible = false;
+                   soundDate.satLed.Visible = true;
+                   soundDate.sunLed.Visible = false;
+                   break;
+
+               case 7:
+                   soundDate.monLed.Visible = false;
+                   soundDate.tueLed.Visible = false;
+                   soundDate.wedLed.Visible = false;
+                   soundDate.thuLed.Visible = false;
+                   soundDate.friLed.Visible = false;
+                   soundDate.satLed.Visible = false;
+                   soundDate.sunLed.Visible = true;
+                   break;
+           }
         }
 
 

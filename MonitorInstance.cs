@@ -94,7 +94,7 @@ namespace Andromeda
         {
             if (init) { 
             monNameDsp.Text = upd.devName;
-            this.Text = upd.fullName +" Monitor";
+            this.Text = upd.devName+" "+upd.fullName +" Monitor";
             Console.WriteLine("tipo: "+ upd.getIconInfo());
             int type = upd.getIconInfo();
             if (type==1)
