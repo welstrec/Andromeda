@@ -1,17 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using System.Threading;
 using AGaugeApp;
 using System.IO;
 using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
-using System.Media;
 using System.Diagnostics;
 using Andromeda;
 
@@ -44,7 +39,12 @@ namespace MikuDash
 
 
         private bool initializing = true;
+        //Transparency
+
         private double Transparency = 1;
+        public Boolean dinamyTransparency = false;
+        private System.Windows.Forms.Timer mouseTransparencyThread;
+        //
         public Boolean invalidateClick = false;
         public Animate mikuAnim;
         public Listener listener;
@@ -218,22 +218,22 @@ namespace MikuDash
                 soundDate.Top = Convert.ToInt32(text.Split(';')[4]);                
                 soundDate.Left = Convert.ToInt32(text.Split(';')[5]);
                 Transparency = Convert.ToDouble(text.Split(';')[6]);
+                dinamyTransparency = Convert.ToBoolean(text.Split(';')[7]);
                 foreach (MonitorInstance mi in monitInstances)
                 {
                     mi.loadPosition();
                 }
-
             }
             catch (Exception e)
             {
                 Rectangle resolution = Screen.PrimaryScreen.Bounds;
                 this.Top = 0;
                 this.Left = (resolution.Width / 2) - (this.Width / 2);
-
+                dinamyTransparency = false;
             }
         }
         public void saveCoords(){
-            string[] lines = { this.Top + ";" + this.Left + ";" + soundAnimation.Top + ";" + soundAnimation.Left + ";" + soundDate.Top + ";" + soundDate.Left + ";" + Transparency};
+            string[] lines = { this.Top + ";" + this.Left + ";" + soundAnimation.Top + ";" + soundAnimation.Left + ";" + soundDate.Top + ";" + soundDate.Left + ";" + Transparency + ";" + dinamyTransparency};
 
         File.WriteAllLines(@"init.ini", lines);
         foreach (MonitorInstance mi in monitInstances)
@@ -257,10 +257,7 @@ namespace MikuDash
             {
                 mi.Dispose();
             }
-            this.Dispose();
-            
-          
-
+            this.Dispose();            
         }
 
         public void terminateThreads()
@@ -317,6 +314,77 @@ namespace MikuDash
             listenThr = new Thread(new ThreadStart(listener.listen));
             listenThr.Start();
 
+            mouseTransparencyThread = new System.Windows.Forms.Timer();
+            mouseTransparencyThread.Tick += new EventHandler(mouseTransparencyMethod);
+            mouseTransparencyThread.Interval = 300;
+            mouseTransparencyThread.Start();
+
+        }
+        private void mouseTransparencyMethod(object sender, EventArgs e)
+        {
+
+            if (dinamyTransparency)
+            {
+                Point MousePositionPrincipal = this.PointToClient(Cursor.Position);
+                int principalX = MousePositionPrincipal.X;
+                int principalY = MousePositionPrincipal.Y;
+                Point sAPosition = soundAnimation.PointToClient(Cursor.Position);
+                int sAx = sAPosition.X;
+                int sAy = sAPosition.Y;
+                Point SDosition = soundDate.PointToClient(Cursor.Position);
+                bool enableMonitorTransparency = true;
+                int SDx = SDosition.X;
+                int SDy = SDosition.Y;
+                if (((principalX > 0) && (principalX < this.Width)) && ((principalY > 0) && (principalY < this.Height)))
+                {
+                    this.Opacity = Transparency;
+                    enableMonitorTransparency = false;
+                }
+                if (((principalX < 0)|| (principalX >this.Width)) ||((principalY < 0)|| (principalY > this.Height)))
+                {
+                    this.Opacity = 1;
+                }
+                
+                if (((sAx > 0) && (sAx < soundAnimation.Width)) && ((sAy > 0) && (sAy < soundAnimation.Height)))
+                {
+                    soundAnimation.Opacity = Transparency;
+                    enableMonitorTransparency = false;
+                }
+                if (((sAx < 0) || (sAx > soundAnimation.Width)) || ((sAy < 0) || (sAy > soundAnimation.Height)))
+                {
+                    soundAnimation.Opacity = 1;
+                }
+                if (((SDx > 0) && (SDx < soundDate.Width)) && ((SDy > 0) && (SDy < soundDate.Height)))
+                {
+                    soundDate.Opacity = Transparency;
+                    enableMonitorTransparency = false;
+                }
+                if (((SDx < 0) || (SDx > soundDate.Width)) || ((SDy < 0) || (SDy > soundDate.Height)))
+                {
+                    soundDate.Opacity = 1;
+                }
+                if(enableMonitorTransparency)
+                {
+                    int yMonitor;
+                    int xMonitor;
+                    Point MonitorPos;
+                    
+                    foreach (MonitorInstance mi in monitInstances)
+                    {
+                        MonitorPos = mi.PointToClient(Cursor.Position);
+                        yMonitor = MonitorPos.Y;
+                        xMonitor = MonitorPos.X;
+                        if (((xMonitor > 0) && (xMonitor < mi.Width)) && ((yMonitor > 0) && (yMonitor < mi.Height)))
+                        {
+                            mi.Opacity = Transparency;
+                        }
+                        else
+                        {
+                            mi.Opacity = 1;
+                        }
+                    }
+                }
+            }
         }
         public void terminateAnimationAndListenThread()
         {
@@ -333,7 +401,6 @@ namespace MikuDash
 
         public void startThreads()
         {
-
             startAnimationAndListenThread();
 
             clk.runLoop = true;
@@ -342,16 +409,12 @@ namespace MikuDash
             mailModule.mailActive = true;
             mailThr = new Thread(new ThreadStart(mailModule.actualizarMensajesSinLeer));
             mailThr.Start();
-
-
-
         }
 
         public void loadAnimations()
         {
             try
             {
-
                 List<Bitmap> animSleep = new List<Bitmap>();
 
                 List<List<FileInfo>> animSing = new List<List<FileInfo>> ();
@@ -467,14 +530,6 @@ namespace MikuDash
                     loadAnimations(animStopTurnLeftIdling, new DirectoryInfo("andromeda/animStopTurnLeftIdling2"));
                     loadAnimations(animStopTurnRightIdling, new DirectoryInfo("andromeda/animStopTurnRightIdling2"));
                     loadAnimations(animNotify, new DirectoryInfo("andromeda/notify2"));
-
-
-
-
-
-
-
-
                 }
                 
                 clk = new Clock(this,dates);
@@ -530,13 +585,8 @@ namespace MikuDash
                 }
                 list.Add(bb);
                 stream.Dispose();
-                //animTrans.Add(new Bitmap(file.FullName));
-
-
             }
         }
-
-
         private void loadAnimations(List<List<FileInfo>> list, DirectoryInfo dir)
         {
             foreach (DirectoryInfo di in dir.GetDirectories())
@@ -549,7 +599,6 @@ namespace MikuDash
                 }
 
                 list.Add(filst);
-
             }
         }
 
@@ -704,12 +753,8 @@ namespace MikuDash
                 logiDisp.updateMonitorLCD(monitorUpd);
             }
             updateWindowMonitors(monitorUpd);
-            
-
             infoDisplay.Text = "Processes: " + numProc + "\n" + netstat;
             Application.DoEvents();
-
-        
         }
         private void updateVU(AGauge vu, int newVal)
         {
@@ -747,21 +792,14 @@ namespace MikuDash
 
         private void mikuBox_MouseDown(object sender, MouseEventArgs e)
         {
-            
                 offsetx = Cursor.Position.X - this.Location.X;
                 offsety = Cursor.Position.Y - this.Location.Y;
                 flag = true;
-            
-        }
-
-        
-
+        }        
         private void mikuBox_Click(object sender, EventArgs e)
         {
             this.TopMost = true;
         }
-
-       
         private int wllast;
         public void invalidateActions()
         {
@@ -772,10 +810,8 @@ namespace MikuDash
         }
         public void validateActions()
         {
-
             SetWindowLong(this.Handle, GWL.ExStyle, wllast);
         }
-
         private void closeToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             close();
@@ -871,9 +907,6 @@ namespace MikuDash
         {
             hideApps();
         }
-
-       
-
         private void fadeInAnim_Tick(object sender, EventArgs e)
         {
             if (opac == 0)
@@ -907,7 +940,7 @@ namespace MikuDash
             }
             else
             {
-                //System.Threading.Thread.Sleep(50);
+                
                 this.Opacity += 0.03;
                 foreach (MonitorInstance mi in monitInstances)
                 {
@@ -924,14 +957,16 @@ namespace MikuDash
                 opac++;
                 del1++;
                 del2++;
-                //Application.DoEvents();
             }
-            this.Opacity = Transparency;
-            soundAnimation.Opacity = Transparency;
-            soundDate.Opacity = Transparency;
-            foreach (MonitorInstance mi in monitInstances)
+            if(!dinamyTransparency)
             {
-                mi.Opacity = Transparency;
+                this.Opacity = Transparency;
+                soundAnimation.Opacity = Transparency;
+                soundDate.Opacity = Transparency;
+                foreach (MonitorInstance mi in monitInstances)
+                {
+                    mi.Opacity = Transparency;
+                }
             }
 
         }
@@ -1204,6 +1239,18 @@ namespace MikuDash
             else
             {
                 listenLedImg.Visible = true;
+            }
+        }
+
+        private void dynamicToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if(dinamyTransparency==false)
+            {
+                dinamyTransparency = true;
+            }
+            else
+            {
+                dinamyTransparency = false;
             }
         }
     }

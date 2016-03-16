@@ -25,35 +25,29 @@ namespace Andromeda
             if(fullName.Contains("NVIDIA"))
             {
                 type = 1;
-                Console.WriteLine("Entro1");
             }
             else if(fullName.Contains("ATI"))
             {
                 type = 2;
-                Console.WriteLine("Entro2");
             }
             else if(fullName.Contains("Intel"))
             {
                 if(fullName.Contains("i3"))
                 {
                     type = 3;
-                    Console.WriteLine("Entro3");
                 }
                 if (fullName.Contains("i5"))
                 {
                     type = 4;
-                    Console.WriteLine("Entro4");
                 }
                 if(fullName.Contains("i7"))
                 {
                     type = 5;
-                    Console.WriteLine("Entro5");
                 }                
             }
             else
             {
                 type = 6;
-                Console.WriteLine("Entro6");
             }
             return type;
         }

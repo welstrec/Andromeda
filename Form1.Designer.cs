@@ -55,6 +55,7 @@
             this.listenLedImg = new System.Windows.Forms.PictureBox();
             this.sprLedImg = new System.Windows.Forms.PictureBox();
             this.listenerBlinker = new System.Windows.Forms.Timer(this.components);
+            this.dynamicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.listenLedImg)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sprLedImg)).BeginInit();
@@ -126,6 +127,7 @@
             // transparencyToolStripMenuItem
             // 
             this.transparencyToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.dynamicToolStripMenuItem,
             this.toolStripMenuItem2,
             this.toolStripMenuItem3,
             this.toolStripMenuItem7,
@@ -139,42 +141,42 @@
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(96, 22);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
             this.toolStripMenuItem2.Text = "80%";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(96, 22);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(152, 22);
             this.toolStripMenuItem3.Text = "60%";
             this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
             // 
             // toolStripMenuItem7
             // 
             this.toolStripMenuItem7.Name = "toolStripMenuItem7";
-            this.toolStripMenuItem7.Size = new System.Drawing.Size(96, 22);
+            this.toolStripMenuItem7.Size = new System.Drawing.Size(152, 22);
             this.toolStripMenuItem7.Text = "50%";
             this.toolStripMenuItem7.Click += new System.EventHandler(this.toolStripMenuItem7_Click);
             // 
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(96, 22);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(152, 22);
             this.toolStripMenuItem4.Text = "40%";
             this.toolStripMenuItem4.Click += new System.EventHandler(this.toolStripMenuItem4_Click);
             // 
             // toolStripMenuItem6
             // 
             this.toolStripMenuItem6.Name = "toolStripMenuItem6";
-            this.toolStripMenuItem6.Size = new System.Drawing.Size(96, 22);
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(152, 22);
             this.toolStripMenuItem6.Text = "30%";
             this.toolStripMenuItem6.Click += new System.EventHandler(this.toolStripMenuItem6_Click);
             // 
             // toolStripMenuItem5
             // 
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(96, 22);
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(152, 22);
             this.toolStripMenuItem5.Text = "20%";
             this.toolStripMenuItem5.Click += new System.EventHandler(this.toolStripMenuItem5_Click);
             // 
@@ -293,6 +295,13 @@
             this.listenerBlinker.Interval = 500;
             this.listenerBlinker.Tick += new System.EventHandler(this.listenerBlinker_Tick);
             // 
+            // dynamicToolStripMenuItem
+            // 
+            this.dynamicToolStripMenuItem.Name = "dynamicToolStripMenuItem";
+            this.dynamicToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.dynamicToolStripMenuItem.Text = "Dynamic";
+            this.dynamicToolStripMenuItem.Click += new System.EventHandler(this.dynamicToolStripMenuItem_Click);
+            // 
             // MikuDashMain
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -358,6 +367,7 @@
         public System.Windows.Forms.PictureBox listenLedImg;
         public System.Windows.Forms.PictureBox sprLedImg;
         public System.Windows.Forms.Timer listenerBlinker;
+        private System.Windows.Forms.ToolStripMenuItem dynamicToolStripMenuItem;
     }
 }
 
