@@ -3,8 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Andromeda
 {
@@ -37,10 +35,7 @@ namespace Andromeda
                 {
                     pcCompatibleHardware.Add(hardwareItem);
                     hardwareItem.Update();
-
                 }
-
-
             }
         }
         public List<CUMonitorUpdate> updateHardwareStats()
@@ -116,10 +111,6 @@ namespace Andromeda
                         {
                             subHardware.Update();
                         }
-                            
-
-
-                            
                             foreach (var sensor in hw.Sensors)
                             {
                                 
@@ -162,10 +153,6 @@ namespace Andromeda
                         updcpu.Add(updToc);
                         cpuCount++;
                     }
-
-
-
-
                 }
             }
 

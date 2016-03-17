@@ -277,7 +277,6 @@ public class Listener
             {
 
                 int ll =  0-framethrd;
-                //Console.WriteLine("++" + mikuAnim.frame.Left + " - " + ll);
                     double[] cords = { mikuAnim.frame.Left, ll };
                     mikuAnim.walkCords = cords;
                     mikuAnim.walk = true;
@@ -287,7 +286,6 @@ public class Listener
             {
                
                     int ll = (int)(Screen.GetBounds(mikuAnim.frame).Width - (framethrd *2));
-                    //Console.WriteLine(">>" + mikuAnim.frame.Left +" - "+ll);
                     double[] cords = { mikuAnim.frame.Left, ll };
                     mikuAnim.walkCords = cords;
                     mikuAnim.walk = true;                
@@ -319,7 +317,7 @@ public class Listener
     {
         if (init)
         {
-            System.Threading.Thread.Sleep(15000);
+            Thread.Sleep(15000);
         }
        MMDeviceEnumerator DevEnum = new MMDeviceEnumerator();
         device = DevEnum.GetDefaultAudioEndpoint(EDataFlow.eRender, ERole.eMultimedia);

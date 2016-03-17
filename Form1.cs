@@ -159,12 +159,10 @@ namespace MikuDash
 
         public void inhibitToFullScreen()
         {
-            //Console.WriteLine("trg");
+           
             if (!detectAppOnFullScreen())
             
             {
-               
-                //Console.WriteLine("nlz");
                 if (lazyDahsboard)
                 {
                     lazyDahsboard = false;
@@ -174,7 +172,6 @@ namespace MikuDash
             }
             else
             {
-                //Console.WriteLine("lz");
                 if (!lazyDahsboard)
                 {
 
@@ -335,7 +332,7 @@ namespace MikuDash
                 bool enableMonitorTransparency = true;
                 int SDx = SDosition.X;
                 int SDy = SDosition.Y;
-                if (((principalX > 0) && (principalX < this.Width)) && ((principalY > 0) && (principalY < this.Height)))
+                if (((principalX > 0) && (principalX < (this.Width-5))) && ((principalY > 0) && (principalY < (this.Height-5))))
                 {
                     this.Opacity = Transparency;
                     enableMonitorTransparency = false;
@@ -345,7 +342,7 @@ namespace MikuDash
                     this.Opacity = 1;
                 }
                 
-                if (((sAx > 0) && (sAx < soundAnimation.Width)) && ((sAy > 0) && (sAy < soundAnimation.Height)))
+                if (((sAx > 0) && (sAx < (soundAnimation.Width-5))) && ((sAy > 0) && (sAy < (soundAnimation.Height-5))))
                 {
                     soundAnimation.Opacity = Transparency;
                     enableMonitorTransparency = false;
@@ -354,7 +351,7 @@ namespace MikuDash
                 {
                     soundAnimation.Opacity = 1;
                 }
-                if (((SDx > 0) && (SDx < soundDate.Width)) && ((SDy > 0) && (SDy < soundDate.Height)))
+                if (((SDx > 0) && (SDx < (soundDate.Width-5))) && ((SDy > 0) && (SDy < (soundDate.Height-5))))
                 {
                     soundDate.Opacity = Transparency;
                     enableMonitorTransparency = false;
@@ -374,7 +371,7 @@ namespace MikuDash
                         MonitorPos = mi.PointToClient(Cursor.Position);
                         yMonitor = MonitorPos.Y;
                         xMonitor = MonitorPos.X;
-                        if (((xMonitor > 0) && (xMonitor < mi.Width)) && ((yMonitor > 0) && (yMonitor < mi.Height)))
+                        if (((xMonitor > 0) && (xMonitor < (mi.Width-15))) && ((yMonitor > 0) && (yMonitor < (mi.Height-15))))
                         {
                             mi.Opacity = Transparency;
                         }
@@ -561,7 +558,7 @@ namespace MikuDash
             }
             catch (Exception e)
             {
-                System.Windows.Forms.MessageBox.Show(e.Message);
+                MessageBox.Show(e.Message);
             }
         }
 
@@ -1247,10 +1244,12 @@ namespace MikuDash
             if(dinamyTransparency==false)
             {
                 dinamyTransparency = true;
+                MessageBox.Show("Dynamic Transparency enable");
             }
             else
             {
                 dinamyTransparency = false;
+                MessageBox.Show("Dynamic Transparency disable");
             }
         }
     }

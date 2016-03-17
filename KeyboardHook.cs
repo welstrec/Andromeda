@@ -1,8 +1,6 @@
 ﻿using System.Windows.Forms;
 using Utilities;
 using System;
-using System.Runtime.InteropServices;
-using System.Windows;
 
 namespace MikuDash
 {
@@ -19,11 +17,6 @@ namespace MikuDash
             gkh.OnKeyPressed += KeyDown;
 
             gkh.HookKeyboard();
-
-            //actHook.OnMouseActivity += new MouseEventHandler(MouseMoved);
-            //HookManager.KeyDown += KeyDown;
-            //actHook.KeyPress += new KeyPressEventHandler(MyKeyPress);
-            // HookManager.KeyUp += KeyUp;
         }
 
 

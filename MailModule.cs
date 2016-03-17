@@ -1,17 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Windows.Forms;
 using System.Threading;
 
 using S22.Imap;
 using System.Net.Mail;
-using System.Windows.Media;
-using System.Windows.Threading;
 using MikuDash;
 namespace Andromeda
 {

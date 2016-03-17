@@ -190,9 +190,6 @@
     <Compile Include="VentanaMensajesCorreo.Designer.cs">
       <DependentUpon>VentanaMensajesCorreo.cs</DependentUpon>
     </Compile>
-    <Compile Include="VentanaTransparencia.xaml.cs">
-      <DependentUpon>VentanaTransparencia.xaml</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="Correo.resx">
       <DependentUpon>Correo.cs</DependentUpon>
     </EmbeddedResource>
@@ -301,12 +298,6 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\typings\node\node.d.ts" />
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include="VentanaTransparencia.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
