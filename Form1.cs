@@ -217,6 +217,11 @@ namespace MikuDash
                 soundDate.Left = Convert.ToInt32(text.Split(';')[5]);
                 Transparency = Convert.ToDouble(text.Split(';')[6]);
                 dinamyTransparency = Convert.ToBoolean(text.Split(';')[7]);
+
+                if (dinamyTransparency)
+                {
+                    dynamicToolStripMenuItem.Checked = true;
+                }
                 foreach (MonitorInstance mi in monitInstances)
                 {
                     mi.loadPosition();
@@ -1248,12 +1253,26 @@ namespace MikuDash
             if(dinamyTransparency==false)
             {
                 dinamyTransparency = true;
-                MessageBox.Show("Dynamic Transparency enable");
+                dynamicToolStripMenuItem.Checked = true;
+                //MessageBox.Show("Dynamic Transparency enable");
             }
             else
             {
                 dinamyTransparency = false;
-                MessageBox.Show("Dynamic Transparency disable");
+                dynamicToolStripMenuItem.Checked = true;
+                //MessageBox.Show("Dynamic Transparency disable");
+            }
+        }
+
+        private void toolStripMenuItem8_Click(object sender, EventArgs e)
+        {
+            Transparency = 1;
+            this.Opacity = Transparency;
+            soundAnimation.Opacity = Transparency;
+            soundDate.Opacity = Transparency;
+            foreach (MonitorInstance mi in monitInstances)
+            {
+                mi.Opacity = Transparency;
             }
         }
 
