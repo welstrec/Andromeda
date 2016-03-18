@@ -36,6 +36,7 @@
             this.toolShow = new System.Windows.Forms.ToolStripMenuItem();
             this.toolHide = new System.Windows.Forms.ToolStripMenuItem();
             this.transparencyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dynamicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem7 = new System.Windows.Forms.ToolStripMenuItem();
@@ -55,7 +56,9 @@
             this.listenLedImg = new System.Windows.Forms.PictureBox();
             this.sprLedImg = new System.Windows.Forms.PictureBox();
             this.listenerBlinker = new System.Windows.Forms.Timer(this.components);
-            this.dynamicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.contextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.listenLedImg)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sprLedImg)).BeginInit();
@@ -106,13 +109,13 @@
             this.toolPos,
             this.closeToolStripMenuItem});
             this.contextMenu.Name = "contextMenu";
-            this.contextMenu.Size = new System.Drawing.Size(174, 242);
+            this.contextMenu.Size = new System.Drawing.Size(267, 253);
             // 
             // toolShow
             // 
             this.toolShow.Image = global::Andromeda.Properties.Resources.showIcon;
             this.toolShow.Name = "toolShow";
-            this.toolShow.Size = new System.Drawing.Size(173, 30);
+            this.toolShow.Size = new System.Drawing.Size(266, 30);
             this.toolShow.Text = "Show";
             this.toolShow.Click += new System.EventHandler(this.toolShow_Click);
             // 
@@ -120,7 +123,7 @@
             // 
             this.toolHide.Image = global::Andromeda.Properties.Resources.hide;
             this.toolHide.Name = "toolHide";
-            this.toolHide.Size = new System.Drawing.Size(173, 30);
+            this.toolHide.Size = new System.Drawing.Size(266, 30);
             this.toolHide.Text = "Hide";
             this.toolHide.Click += new System.EventHandler(this.toolHide_Click);
             // 
@@ -128,55 +131,65 @@
             // 
             this.transparencyToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.dynamicToolStripMenuItem,
+            this.toolStripSeparator1,
             this.toolStripMenuItem2,
             this.toolStripMenuItem3,
             this.toolStripMenuItem7,
             this.toolStripMenuItem4,
             this.toolStripMenuItem6,
-            this.toolStripMenuItem5});
+            this.toolStripMenuItem5,
+            this.toolStripSeparator2,
+            this.toolStripMenuItem8});
             this.transparencyToolStripMenuItem.Name = "transparencyToolStripMenuItem";
-            this.transparencyToolStripMenuItem.Size = new System.Drawing.Size(173, 30);
+            this.transparencyToolStripMenuItem.Size = new System.Drawing.Size(266, 30);
             this.transparencyToolStripMenuItem.Text = "Transparency";
+            // 
+            // dynamicToolStripMenuItem
+            // 
+            this.dynamicToolStripMenuItem.Name = "dynamicToolStripMenuItem";
+            this.dynamicToolStripMenuItem.Size = new System.Drawing.Size(326, 30);
+            this.dynamicToolStripMenuItem.Text = "Transparent on Mouse Hover";
+            this.dynamicToolStripMenuItem.Click += new System.EventHandler(this.dynamicToolStripMenuItem_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(326, 30);
             this.toolStripMenuItem2.Text = "80%";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(326, 30);
             this.toolStripMenuItem3.Text = "60%";
             this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
             // 
             // toolStripMenuItem7
             // 
             this.toolStripMenuItem7.Name = "toolStripMenuItem7";
-            this.toolStripMenuItem7.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem7.Size = new System.Drawing.Size(326, 30);
             this.toolStripMenuItem7.Text = "50%";
             this.toolStripMenuItem7.Click += new System.EventHandler(this.toolStripMenuItem7_Click);
             // 
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(326, 30);
             this.toolStripMenuItem4.Text = "40%";
             this.toolStripMenuItem4.Click += new System.EventHandler(this.toolStripMenuItem4_Click);
             // 
             // toolStripMenuItem6
             // 
             this.toolStripMenuItem6.Name = "toolStripMenuItem6";
-            this.toolStripMenuItem6.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(326, 30);
             this.toolStripMenuItem6.Text = "30%";
             this.toolStripMenuItem6.Click += new System.EventHandler(this.toolStripMenuItem6_Click);
             // 
             // toolStripMenuItem5
             // 
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(326, 30);
             this.toolStripMenuItem5.Text = "20%";
             this.toolStripMenuItem5.Click += new System.EventHandler(this.toolStripMenuItem5_Click);
             // 
@@ -184,20 +197,20 @@
             // 
             this.toolInvalid.Image = global::Andromeda.Properties.Resources.Toggle_moveable;
             this.toolInvalid.Name = "toolInvalid";
-            this.toolInvalid.Size = new System.Drawing.Size(173, 30);
+            this.toolInvalid.Size = new System.Drawing.Size(266, 30);
             this.toolInvalid.Text = "Toggle Moveable";
             this.toolInvalid.Click += new System.EventHandler(this.toolInvalid_Click);
             // 
             // toolClose
             // 
             this.toolClose.Name = "toolClose";
-            this.toolClose.Size = new System.Drawing.Size(170, 6);
+            this.toolClose.Size = new System.Drawing.Size(263, 6);
             // 
             // viewMailToolStripMenuItem
             // 
             this.viewMailToolStripMenuItem.Image = global::Andromeda.Properties.Resources._base;
             this.viewMailToolStripMenuItem.Name = "viewMailToolStripMenuItem";
-            this.viewMailToolStripMenuItem.Size = new System.Drawing.Size(173, 30);
+            this.viewMailToolStripMenuItem.Size = new System.Drawing.Size(266, 30);
             this.viewMailToolStripMenuItem.Text = "Mail Settings";
             this.viewMailToolStripMenuItem.Click += new System.EventHandler(this.viewMailToolStripMenuItem_Click);
             // 
@@ -205,15 +218,15 @@
             // 
             this.toolPos.Image = global::Andromeda.Properties.Resources.saveIcon;
             this.toolPos.Name = "toolPos";
-            this.toolPos.Size = new System.Drawing.Size(173, 30);
-            this.toolPos.Text = "Save Position";
+            this.toolPos.Size = new System.Drawing.Size(266, 30);
+            this.toolPos.Text = "Save Current Settings";
             this.toolPos.Click += new System.EventHandler(this.toolPos_Click_1);
             // 
             // closeToolStripMenuItem
             // 
             this.closeToolStripMenuItem.Image = global::Andromeda.Properties.Resources.closeIcon;
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(173, 30);
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(266, 30);
             this.closeToolStripMenuItem.Text = "Close";
             this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click_1);
             // 
@@ -295,12 +308,22 @@
             this.listenerBlinker.Interval = 500;
             this.listenerBlinker.Tick += new System.EventHandler(this.listenerBlinker_Tick);
             // 
-            // dynamicToolStripMenuItem
+            // toolStripMenuItem8
             // 
-            this.dynamicToolStripMenuItem.Name = "dynamicToolStripMenuItem";
-            this.dynamicToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.dynamicToolStripMenuItem.Text = "Dynamic";
-            this.dynamicToolStripMenuItem.Click += new System.EventHandler(this.dynamicToolStripMenuItem_Click);
+            this.toolStripMenuItem8.Name = "toolStripMenuItem8";
+            this.toolStripMenuItem8.Size = new System.Drawing.Size(326, 30);
+            this.toolStripMenuItem8.Text = "Disable";
+            this.toolStripMenuItem8.Click += new System.EventHandler(this.toolStripMenuItem8_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(323, 6);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(323, 6);
             // 
             // MikuDashMain
             // 
@@ -368,6 +391,9 @@
         public System.Windows.Forms.PictureBox sprLedImg;
         public System.Windows.Forms.Timer listenerBlinker;
         private System.Windows.Forms.ToolStripMenuItem dynamicToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem8;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
     }
 }
 
