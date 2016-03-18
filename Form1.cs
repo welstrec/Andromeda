@@ -9,6 +9,7 @@ using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
 using System.Diagnostics;
 using Andromeda;
+using cifrador;
 
 namespace MikuDash
 {
@@ -39,8 +40,9 @@ namespace MikuDash
 
 
         private bool initializing = true;
+        private string contrasegnia = "Por,QueDeT@lMaNEr@Amò@lMuNd0";
+        DESEncrypt cripto = new DESEncrypt();
         //Transparency
-
         private double Transparency = 1;
         public Boolean dinamyTransparency = false;
         private System.Windows.Forms.Timer mouseTransparencyThread;
@@ -57,7 +59,7 @@ namespace MikuDash
         public List<Bitmap> fall = new List<Bitmap>();
 
 
-
+        private Reminder reminder = new Reminder();
 
 
         private int offsetx;
@@ -152,7 +154,6 @@ namespace MikuDash
             kbH = new KeyboardHook(this);
             desktopHandle = GetDesktopWindow();
             shellHandle = GetShellWindow();
-
             
             
         }
@@ -573,11 +574,10 @@ namespace MikuDash
                 Image Dummy = Image.FromFile(file.FullName);
 
                 Dummy.Save(stream, ImageFormat.Bmp);
-                Bitmap bb = new Bitmap(w,h);
+                Bitmap bb = new Bitmap(w,h, PixelFormat.Format32bppPArgb);
 
                 using (Graphics g = Graphics.FromImage(bb))
                 {
-
                     g.DrawImage(Dummy, 0, 0, w, h);
                 }
                 list.Add(bb);
@@ -1082,9 +1082,11 @@ namespace MikuDash
             int i = 0;
             foreach (String itm in mailLists.Items)
             {
-                lst[i] = itm;
+                string correoCifrado = cripto.EncriptarCadenaDeCaracteres(itm, contrasegnia);
+                lst[i] = correoCifrado;
                 i++;
             }
+            
             File.WriteAllLines(@"mail.ini", lst);
         }
 
@@ -1106,11 +1108,13 @@ namespace MikuDash
                 {
                     if (mailLists != null)
                     {
-                        mailLists.Items.Add(line);
+                        String correoDesencriptado=cripto.DesencriptarCadenaDeCaracteres(line, contrasegnia);
+                        mailLists.Items.Add(correoDesencriptado);
                     }
                     else
                     {
-                        String[] acc = line.Split(';');
+                        String correoDesencriptado = cripto.DesencriptarCadenaDeCaracteres(line, contrasegnia);
+                        String[] acc = correoDesencriptado.Split(';');
                         host.Add(acc[0]);
                         port.Add(Convert.ToInt32(acc[1]));
                         mail.Add(acc[2]);
@@ -1250,6 +1254,19 @@ namespace MikuDash
             {
                 dinamyTransparency = false;
                 MessageBox.Show("Dynamic Transparency disable");
+            }
+        }
+
+        private void reminderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            bool visility = reminder.Visible;
+            if(visility)
+            {
+                reminder.Visible = false;
+            }
+            else
+            {
+                reminder.Visible = true;
             }
         }
     }

@@ -36,6 +36,7 @@
             this.toolShow = new System.Windows.Forms.ToolStripMenuItem();
             this.toolHide = new System.Windows.Forms.ToolStripMenuItem();
             this.transparencyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dynamicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem7 = new System.Windows.Forms.ToolStripMenuItem();
@@ -45,6 +46,7 @@
             this.toolInvalid = new System.Windows.Forms.ToolStripMenuItem();
             this.toolClose = new System.Windows.Forms.ToolStripSeparator();
             this.viewMailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reminderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolPos = new System.Windows.Forms.ToolStripMenuItem();
             this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
@@ -55,7 +57,6 @@
             this.listenLedImg = new System.Windows.Forms.PictureBox();
             this.sprLedImg = new System.Windows.Forms.PictureBox();
             this.listenerBlinker = new System.Windows.Forms.Timer(this.components);
-            this.dynamicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.listenLedImg)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sprLedImg)).BeginInit();
@@ -103,10 +104,11 @@
             this.toolInvalid,
             this.toolClose,
             this.viewMailToolStripMenuItem,
+            this.reminderToolStripMenuItem,
             this.toolPos,
             this.closeToolStripMenuItem});
             this.contextMenu.Name = "contextMenu";
-            this.contextMenu.Size = new System.Drawing.Size(174, 242);
+            this.contextMenu.Size = new System.Drawing.Size(174, 250);
             // 
             // toolShow
             // 
@@ -138,45 +140,52 @@
             this.transparencyToolStripMenuItem.Size = new System.Drawing.Size(173, 30);
             this.transparencyToolStripMenuItem.Text = "Transparency";
             // 
+            // dynamicToolStripMenuItem
+            // 
+            this.dynamicToolStripMenuItem.Name = "dynamicToolStripMenuItem";
+            this.dynamicToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
+            this.dynamicToolStripMenuItem.Text = "Dynamic";
+            this.dynamicToolStripMenuItem.Click += new System.EventHandler(this.dynamicToolStripMenuItem_Click);
+            // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(121, 22);
             this.toolStripMenuItem2.Text = "80%";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(121, 22);
             this.toolStripMenuItem3.Text = "60%";
             this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
             // 
             // toolStripMenuItem7
             // 
             this.toolStripMenuItem7.Name = "toolStripMenuItem7";
-            this.toolStripMenuItem7.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem7.Size = new System.Drawing.Size(121, 22);
             this.toolStripMenuItem7.Text = "50%";
             this.toolStripMenuItem7.Click += new System.EventHandler(this.toolStripMenuItem7_Click);
             // 
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(121, 22);
             this.toolStripMenuItem4.Text = "40%";
             this.toolStripMenuItem4.Click += new System.EventHandler(this.toolStripMenuItem4_Click);
             // 
             // toolStripMenuItem6
             // 
             this.toolStripMenuItem6.Name = "toolStripMenuItem6";
-            this.toolStripMenuItem6.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(121, 22);
             this.toolStripMenuItem6.Text = "30%";
             this.toolStripMenuItem6.Click += new System.EventHandler(this.toolStripMenuItem6_Click);
             // 
             // toolStripMenuItem5
             // 
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(121, 22);
             this.toolStripMenuItem5.Text = "20%";
             this.toolStripMenuItem5.Click += new System.EventHandler(this.toolStripMenuItem5_Click);
             // 
@@ -200,6 +209,14 @@
             this.viewMailToolStripMenuItem.Size = new System.Drawing.Size(173, 30);
             this.viewMailToolStripMenuItem.Text = "Mail Settings";
             this.viewMailToolStripMenuItem.Click += new System.EventHandler(this.viewMailToolStripMenuItem_Click);
+            // 
+            // reminderToolStripMenuItem
+            // 
+            this.reminderToolStripMenuItem.Image = global::Andromeda.Properties.Resources.postit;
+            this.reminderToolStripMenuItem.Name = "reminderToolStripMenuItem";
+            this.reminderToolStripMenuItem.Size = new System.Drawing.Size(173, 30);
+            this.reminderToolStripMenuItem.Text = "Reminder";
+            this.reminderToolStripMenuItem.Click += new System.EventHandler(this.reminderToolStripMenuItem_Click);
             // 
             // toolPos
             // 
@@ -295,13 +312,6 @@
             this.listenerBlinker.Interval = 500;
             this.listenerBlinker.Tick += new System.EventHandler(this.listenerBlinker_Tick);
             // 
-            // dynamicToolStripMenuItem
-            // 
-            this.dynamicToolStripMenuItem.Name = "dynamicToolStripMenuItem";
-            this.dynamicToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.dynamicToolStripMenuItem.Text = "Dynamic";
-            this.dynamicToolStripMenuItem.Click += new System.EventHandler(this.dynamicToolStripMenuItem_Click);
-            // 
             // MikuDashMain
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -368,6 +378,7 @@
         public System.Windows.Forms.PictureBox sprLedImg;
         public System.Windows.Forms.Timer listenerBlinker;
         private System.Windows.Forms.ToolStripMenuItem dynamicToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem reminderToolStripMenuItem;
     }
 }
 

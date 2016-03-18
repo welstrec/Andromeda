@@ -27,7 +27,6 @@ namespace Andromeda
         public Boolean mailActive = false;
         ImapClient session;
         private DateSound stat;
-        //public VentanaMensajesCorreo vmc;
         private MikuDashMain main;
 
         public String latestSubject;
@@ -41,13 +40,7 @@ namespace Andromeda
             this.contra = pwd;
             this.stat = roostUpdate;
             this.main = main;
-            
-
         }
-
-        
-       
-
         public delegate void updateMail(String num,Boolean newone,Boolean notify,String info);
 
         public void actualizarMensajesSinLeer()
@@ -114,22 +107,6 @@ namespace Andromeda
 
         public void getMessages()
         {
-            /*session = new ImapClient(imapHost, imapPort, miCorreo, contra, AuthMethod.Login, true);
-            IList<uint> newUids = (IList<uint>)session.Search(SearchCondition.All().And(SearchCondition.SentSince(DateTime.Today.AddDays(-1))));
-
-
-            foreach (uint id in newUids)
-            {
-                Console.WriteLine("FETCH: "+ id);
-                MailMessage msg = session.GetMessage(id,FetchOptions.HeadersOnly,false);
-                listaRecividostemp.Add("["+msg.Sender+"]"+msg.Subject);
-                mensajes.Add(id);
-            }
-
-            vmc.OnLoadedMessages();
-             * */
-            
-
         }
 
         public String getMessageBody(uint msg)

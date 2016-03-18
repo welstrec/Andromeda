@@ -73,6 +73,16 @@ namespace Andromeda.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Icon similar a (Icono).
         /// </summary>
+        internal static System.Drawing.Icon alarma {
+            get {
+                object obj = ResourceManager.GetObject("alarma", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Icon similar a (Icono).
+        /// </summary>
         internal static System.Drawing.Icon amd {
             get {
                 object obj = ResourceManager.GetObject("amd", resourceCulture);
@@ -106,16 +116,6 @@ namespace Andromeda.Properties {
         internal static System.Drawing.Bitmap closeIcon {
             get {
                 object obj = ResourceManager.GetObject("closeIcon", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Email {
-            get {
-                object obj = ResourceManager.GetObject("Email", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -236,6 +236,16 @@ namespace Andromeda.Properties {
         internal static System.Drawing.Bitmap outlookIcon64 {
             get {
                 object obj = ResourceManager.GetObject("outlookIcon64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap postit {
+            get {
+                object obj = ResourceManager.GetObject("postit", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

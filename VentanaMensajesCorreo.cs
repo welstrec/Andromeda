@@ -65,7 +65,6 @@ namespace Andromeda
 
         private void ListaCorreo_DoubleClick(object sender, EventArgs e)
         {
-            //Console.WriteLine(" - " + mm.mensajes[ListaCorreo.SelectedIndex] + " - " + ListaCorreo.SelectedIndex);
             msgViewer.DocumentText = mm.getMessageBody(mm.mensajes[ListaCorreo.SelectedIndex]);
         }
     }

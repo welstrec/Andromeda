@@ -61,7 +61,7 @@
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.BackgroundImage = global::Andromeda.Properties.Resources.Email;
+            
             this.ClientSize = new System.Drawing.Size(1009, 772);
             this.Controls.Add(this.msgViewer);
             this.Controls.Add(this.ListaCorreo);

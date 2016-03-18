@@ -13,6 +13,13 @@
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ApplicationIcon>andromeda.ico</ApplicationIcon>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkProfile />
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -25,15 +32,8 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <FileUpgradeFlags>
-    </FileUpgradeFlags>
-    <UpgradeBackupLocation>
-    </UpgradeBackupLocation>
-    <OldToolsVersion>3.5</OldToolsVersion>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -45,6 +45,8 @@
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
     <PlatformTarget>x64</PlatformTarget>
+    <CodeAnalysisRuleSet>MixedMinimumRules.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -130,6 +132,7 @@
     </Compile>
     <Compile Include="Animate.cs" />
     <Compile Include="CUMonitorUpdate.cs" />
+    <Compile Include="desencrypt.cs" />
     <Compile Include="GlobalKeyboardHook.cs" />
     <Compile Include="HWMonitor.cs" />
     <Compile Include="LogiLcd.cs" />
@@ -154,6 +157,12 @@
     </Compile>
     <Compile Include="MonitorInstance.Designer.cs">
       <DependentUpon>MonitorInstance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reminder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reminder.Designer.cs">
+      <DependentUpon>Reminder.cs</DependentUpon>
     </Compile>
     <Compile Include="SpeechRecognizer.cs" />
     <Compile Include="Clock.cs" />
@@ -222,6 +231,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Reminder.resx">
+      <DependentUpon>Reminder.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VentanaLoginCorreo.resx">
       <DependentUpon>VentanaLoginCorreo.cs</DependentUpon>
     </EmbeddedResource>
@@ -251,7 +263,6 @@
     <None Include="Resources\outlook-icon64.png" />
     <None Include="Resources\yahoo64.png" />
     <None Include="Resources\botonAgregar.png" />
-    <None Include="Resources\Email.png" />
     <None Include="Resources\gpuNvidia.ico" />
     <None Include="Resources\RadeonGPU.ico" />
     <None Include="Resources\inteli7.ico" />
@@ -264,6 +275,8 @@
     <None Include="Resources\closeIcon.png" />
     <None Include="Resources\showIcon.png" />
     <None Include="Resources\hide.png" />
+    <None Include="Resources\postit.jpg" />
+    <None Include="Resources\alarma.ico" />
     <Content Include="Sonido\click.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -289,6 +302,11 @@
       <Visible>False</Visible>
       <ProductName>.NET Framework 3.5</ProductName>
       <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
       <Visible>False</Visible>
