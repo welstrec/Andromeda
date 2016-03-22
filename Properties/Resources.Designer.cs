@@ -81,6 +81,15 @@ namespace Andromeda.Properties {
         }
         
         /// <summary>
+        ///   Busca un recurso adaptado de tipo System.IO.UnmanagedMemoryStream similar a System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream alarmaSonido {
+            get {
+                return ResourceManager.GetStream("alarmaSonido", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Icon similar a (Icono).
         /// </summary>
         internal static System.Drawing.Icon amd {
@@ -106,6 +115,16 @@ namespace Andromeda.Properties {
         internal static System.Drawing.Bitmap botonAgregar {
             get {
                 object obj = ResourceManager.GetObject("botonAgregar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap close {
+            get {
+                object obj = ResourceManager.GetObject("close", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -233,6 +252,16 @@ namespace Andromeda.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap metalico {
+            get {
+                object obj = ResourceManager.GetObject("metalico", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap outlookIcon64 {
             get {
                 object obj = ResourceManager.GetObject("outlookIcon64", resourceCulture);
@@ -276,6 +305,16 @@ namespace Andromeda.Properties {
         internal static System.Drawing.Bitmap showIcon {
             get {
                 object obj = ResourceManager.GetObject("showIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap stopImage {
+            get {
+                object obj = ResourceManager.GetObject("stopImage", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

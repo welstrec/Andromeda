@@ -47,6 +47,11 @@
             this.botonEliminarAlarma = new System.Windows.Forms.Button();
             this.labelHora = new System.Windows.Forms.Label();
             this.labelMinuto = new System.Windows.Forms.Label();
+            this.labelSegundo = new System.Windows.Forms.Label();
+            this.labelPMAM = new System.Windows.Forms.Label();
+            this.Calendario = new System.Windows.Forms.MonthCalendar();
+            this.labelRecodatorio = new System.Windows.Forms.Label();
+            this.BotonCerrar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // checkBoxMonday
@@ -138,12 +143,13 @@
             this.checkBoxActivateAlarm.AutoSize = true;
             this.checkBoxActivateAlarm.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBoxActivateAlarm.ForeColor = System.Drawing.Color.Cyan;
-            this.checkBoxActivateAlarm.Location = new System.Drawing.Point(71, 685);
+            this.checkBoxActivateAlarm.Location = new System.Drawing.Point(59, 685);
             this.checkBoxActivateAlarm.Name = "checkBoxActivateAlarm";
-            this.checkBoxActivateAlarm.Size = new System.Drawing.Size(243, 41);
+            this.checkBoxActivateAlarm.Size = new System.Drawing.Size(268, 41);
             this.checkBoxActivateAlarm.TabIndex = 7;
-            this.checkBoxActivateAlarm.Text = "Activate Alarm";
+            this.checkBoxActivateAlarm.Text = "Advance Setting";
             this.checkBoxActivateAlarm.UseVisualStyleBackColor = true;
+            this.checkBoxActivateAlarm.CheckedChanged += new System.EventHandler(this.checkBoxActivateAlarm_CheckedChanged);
             // 
             // comboBoxHora
             // 
@@ -198,14 +204,21 @@
             // listaAlarma
             // 
             this.listaAlarma.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.listaAlarma.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listaAlarma.ForeColor = System.Drawing.Color.Cyan;
             this.listaAlarma.FormattingEnabled = true;
+            this.listaAlarma.ItemHeight = 18;
             this.listaAlarma.Location = new System.Drawing.Point(953, 152);
             this.listaAlarma.Name = "listaAlarma";
-            this.listaAlarma.Size = new System.Drawing.Size(262, 429);
+            this.listaAlarma.Size = new System.Drawing.Size(262, 414);
             this.listaAlarma.TabIndex = 13;
+            this.listaAlarma.SelectedIndexChanged += new System.EventHandler(this.listaAlarma_SelectedIndexChanged);
             // 
             // botonAgregarAlarma
             // 
+            this.botonAgregarAlarma.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(43)))), ((int)(((byte)(63)))));
+            this.botonAgregarAlarma.FlatAppearance.BorderSize = 2;
+            this.botonAgregarAlarma.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.botonAgregarAlarma.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.botonAgregarAlarma.ForeColor = System.Drawing.Color.Cyan;
             this.botonAgregarAlarma.Location = new System.Drawing.Point(954, 667);
@@ -214,9 +227,12 @@
             this.botonAgregarAlarma.TabIndex = 14;
             this.botonAgregarAlarma.Text = "Add Alarm";
             this.botonAgregarAlarma.UseVisualStyleBackColor = true;
+            this.botonAgregarAlarma.Click += new System.EventHandler(this.botonAgregarAlarma_Click);
             // 
             // botonEliminarAlarma
             // 
+            this.botonEliminarAlarma.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(43)))), ((int)(((byte)(63)))));
+            this.botonEliminarAlarma.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.botonEliminarAlarma.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.botonEliminarAlarma.ForeColor = System.Drawing.Color.Cyan;
             this.botonEliminarAlarma.Location = new System.Drawing.Point(949, 584);
@@ -225,6 +241,7 @@
             this.botonEliminarAlarma.TabIndex = 15;
             this.botonEliminarAlarma.Text = "Delete Alarm";
             this.botonEliminarAlarma.UseVisualStyleBackColor = true;
+            this.botonEliminarAlarma.Click += new System.EventHandler(this.botonEliminarAlarma_Click);
             // 
             // labelHora
             // 
@@ -242,11 +259,68 @@
             this.labelMinuto.AutoSize = true;
             this.labelMinuto.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelMinuto.ForeColor = System.Drawing.Color.Cyan;
-            this.labelMinuto.Location = new System.Drawing.Point(476, 244);
+            this.labelMinuto.Location = new System.Drawing.Point(477, 242);
             this.labelMinuto.Name = "labelMinuto";
             this.labelMinuto.Size = new System.Drawing.Size(57, 20);
             this.labelMinuto.TabIndex = 17;
             this.labelMinuto.Text = "Minute";
+            // 
+            // labelSegundo
+            // 
+            this.labelSegundo.AutoSize = true;
+            this.labelSegundo.BackColor = System.Drawing.Color.MintCream;
+            this.labelSegundo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelSegundo.ForeColor = System.Drawing.Color.Cyan;
+            this.labelSegundo.Location = new System.Drawing.Point(604, 288);
+            this.labelSegundo.Name = "labelSegundo";
+            this.labelSegundo.Size = new System.Drawing.Size(64, 20);
+            this.labelSegundo.TabIndex = 18;
+            this.labelSegundo.Text = "Second";
+            // 
+            // labelPMAM
+            // 
+            this.labelPMAM.AutoSize = true;
+            this.labelPMAM.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPMAM.ForeColor = System.Drawing.Color.Cyan;
+            this.labelPMAM.Location = new System.Drawing.Point(731, 333);
+            this.labelPMAM.Name = "labelPMAM";
+            this.labelPMAM.Size = new System.Drawing.Size(60, 20);
+            this.labelPMAM.TabIndex = 19;
+            this.labelPMAM.Text = "PM/AM";
+            // 
+            // Calendario
+            // 
+            this.Calendario.ForeColor = System.Drawing.Color.Aqua;
+            this.Calendario.Location = new System.Drawing.Point(64, 263);
+            this.Calendario.Name = "Calendario";
+            this.Calendario.TabIndex = 20;
+            this.Calendario.Visible = false;
+            // 
+            // labelRecodatorio
+            // 
+            this.labelRecodatorio.AutoSize = true;
+            this.labelRecodatorio.Font = new System.Drawing.Font("Monotype Corsiva", 32.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelRecodatorio.ForeColor = System.Drawing.Color.Cyan;
+            this.labelRecodatorio.Location = new System.Drawing.Point(385, 682);
+            this.labelRecodatorio.Name = "labelRecodatorio";
+            this.labelRecodatorio.Size = new System.Drawing.Size(0, 52);
+            this.labelRecodatorio.TabIndex = 21;
+            // 
+            // BotonCerrar
+            // 
+            this.BotonCerrar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(33)))), ((int)(((byte)(55)))));
+            this.BotonCerrar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(136)))), ((int)(((byte)(190)))));
+            this.BotonCerrar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Maroon;
+            this.BotonCerrar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.BotonCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BotonCerrar.ForeColor = System.Drawing.Color.Red;
+            this.BotonCerrar.Location = new System.Drawing.Point(1189, 24);
+            this.BotonCerrar.Name = "BotonCerrar";
+            this.BotonCerrar.Size = new System.Drawing.Size(65, 29);
+            this.BotonCerrar.TabIndex = 22;
+            this.BotonCerrar.Text = "X";
+            this.BotonCerrar.UseVisualStyleBackColor = false;
+            this.BotonCerrar.Click += new System.EventHandler(this.BotonCerrar_Click);
             // 
             // Reminder
             // 
@@ -254,6 +328,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1280, 948);
+            this.Controls.Add(this.BotonCerrar);
+            this.Controls.Add(this.labelRecodatorio);
+            this.Controls.Add(this.Calendario);
+            this.Controls.Add(this.labelPMAM);
+            this.Controls.Add(this.labelSegundo);
             this.Controls.Add(this.labelMinuto);
             this.Controls.Add(this.labelHora);
             this.Controls.Add(this.botonEliminarAlarma);
@@ -301,5 +380,10 @@
         private System.Windows.Forms.Button botonEliminarAlarma;
         private System.Windows.Forms.Label labelHora;
         private System.Windows.Forms.Label labelMinuto;
+        private System.Windows.Forms.Label labelSegundo;
+        private System.Windows.Forms.Label labelPMAM;
+        private System.Windows.Forms.MonthCalendar Calendario;
+        private System.Windows.Forms.Label labelRecodatorio;
+        private System.Windows.Forms.Button BotonCerrar;
     }
 }

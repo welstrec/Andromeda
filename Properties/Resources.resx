@@ -190,4 +190,16 @@
   <data name="alarma" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\alarma.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="close" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\close.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="stopImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\stopImage.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="alarmaSonido" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\alarma.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="metalico" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\metalico.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>
