@@ -17,6 +17,7 @@ public class Listener
    
     private int devDel = 0;
     public delegate void topmostApp();
+    public delegate void inhibitToFullScreen();
     public Listener(MikuDashMain md, Animate anim,SpeechRecognizer spr, DateSound mdm)
     {
         this.mdm = mdm;
@@ -72,6 +73,7 @@ public class Listener
                         getSession(false);
                         devDel = 0;
                         mikuAnim.frameMain.BeginInvoke(new topmostApp(mikuAnim.frameMain.topmostApp), new Object[] { });
+                        mikuAnim.frameMain.BeginInvoke(new inhibitToFullScreen(mikuAnim.frameMain.inhibitToFullScreen), new Object[] { });
 
                     }
 
@@ -198,6 +200,7 @@ public class Listener
                                         spRec.cmdStack.Clear();
                                         spRec.programCmds.Clear();
                                         mikuAnim.frameMain.BeginInvoke(new topmostApp(mikuAnim.frameMain.topmostApp), new Object[] { });
+                                        mikuAnim.frameMain.BeginInvoke(new inhibitToFullScreen(mikuAnim.frameMain.inhibitToFullScreen), new Object[] { });
                                         mikuAnim.cmdExecuted = false;
                                     }
 

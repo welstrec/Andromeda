@@ -23,6 +23,32 @@ namespace Andromeda
         public bool overrideAlert = false;
         private int offsetx;
         private int offsety;
+        private Boolean hide = false;
+        private Boolean hideOnFullScreen = false;
+
+        public Boolean getHidePerm()
+        {
+            return hide;
+        }
+
+        public Boolean getHideOnFullScreen()
+        {
+            return  hideOnFullScreen;
+        }
+
+
+        public void setHidePerm(Boolean val)
+        {
+            hide = val;
+
+        }
+
+        public void setHideOnFullScreen(Boolean val)
+        {
+            hideOnFullScreen = val;
+        }
+
+
         bool flag = false;
         public enum GWL
         {
@@ -287,6 +313,8 @@ namespace Andromeda
                 streamReader.Close();
                 this.Top = Convert.ToInt32(text.Split(';')[0]);
                 this.Left = Convert.ToInt32(text.Split(';')[1]);
+                this.hide = Convert.ToBoolean(text.Split(';')[2]);
+                this.hideOnFullScreen = Convert.ToBoolean(text.Split(';')[3]);
 
 
 
@@ -302,7 +330,7 @@ namespace Andromeda
         }
         public void savePosition()
         {
-            string[] lines = { this.Top + ";" + this.Left };
+            string[] lines = { this.Top + ";" + this.Left+";"+this.hide+";"+this.hideOnFullScreen };
 
             System.IO.File.WriteAllLines(@Text+".ini", lines);
         }
@@ -351,6 +379,39 @@ namespace Andromeda
             alertTemp.SoundLocation = @"./sound/newmail.wav";
             alertTemp.LoadAsync();
             alertTemp.Play();
+
+        }
+
+        private void hidPerm_Click(object sender, EventArgs e)
+        {
+            if (hide)
+            {
+                hide = false;
+                hidPerm.Checked = false;
+            }
+            else
+            {
+                hide = true;
+                hidPerm.Checked = true;
+            }
+        }
+
+        private void hidFull_Click(object sender, EventArgs e)
+        {
+            if (hideOnFullScreen)
+            {
+                hideOnFullScreen = false;
+                hidFull.Checked = false;
+            }
+            else
+            {
+                hideOnFullScreen = true;
+                hidFull.Checked = true;
+            }
+        }
+
+        private void MonitorInstance_Load(object sender, EventArgs e)
+        {
 
         }
 

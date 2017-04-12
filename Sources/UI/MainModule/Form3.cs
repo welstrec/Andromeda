@@ -41,9 +41,29 @@ namespace MikuDash
         [DllImport("user32.dll", EntryPoint = "SetLayeredWindowAttributes")]
         public static extern bool SetLayeredWindowAttributes(IntPtr hWnd, int crKey, byte alpha, LWA dwFlags);
 
+        private Boolean hide = false;
+        private Boolean hideOnFullScreen = false;
+
+        public Boolean getHidePerm()
+        {
+            return hide;
+        }
+
+        public Boolean getHideOnFullScreen()
+        {
+            return hideOnFullScreen;
+        }
 
 
-       
+        public void setHidePerm(Boolean val)
+        {
+            hide = val;
+        }
+
+        public void setHideOnFullScreen(Boolean val)
+        {
+            hideOnFullScreen = val;
+        }
 
         public DateSound(MikuDashMain mn)
         {
@@ -389,6 +409,34 @@ namespace MikuDash
         private void ch1L_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void hidPerm_Click(object sender, EventArgs e)
+        {
+            if (hide)
+            {
+                hide = false;
+                hidPerm.Checked = false;
+            }
+            else
+            {
+                hide = true;
+                hidPerm.Checked = true;
+            }
+        }
+
+        private void hidFull_Click(object sender, EventArgs e)
+        {
+            if (hideOnFullScreen)
+            {
+                hideOnFullScreen = false;
+                hidFull.Checked = false;
+            }
+            else
+            {
+                hideOnFullScreen = true;
+                hidFull.Checked = true;
+            }
         }
 
 

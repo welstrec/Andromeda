@@ -146,7 +146,12 @@ namespace Andromeda
                                  updToc.tjmax = 40;
                             }
                         updToc.deviceType = CUMonitorUpdate.DEV_TYPE_CPU;
-                        updToc.clk = (cpuclkThick / cpuclkcounter);
+
+                        if (cpuclkcounter != 0)
+                        {
+                            updToc.clk = (cpuclkThick / cpuclkcounter);
+                        }
+
                         updToc.devName = "CPU" + cpuCount;
                         updToc.ramUsage = Convert.ToInt32(new PerformanceCounter("Memory", "% Committed Bytes In Use", true).NextValue());
 

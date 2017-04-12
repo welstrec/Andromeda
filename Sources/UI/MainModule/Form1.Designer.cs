@@ -37,12 +37,15 @@
             this.toolHide = new System.Windows.Forms.ToolStripMenuItem();
             this.transparencyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dynamicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem7 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolInvalid = new System.Windows.Forms.ToolStripMenuItem();
             this.toolClose = new System.Windows.Forms.ToolStripSeparator();
             this.viewMailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -57,14 +60,14 @@
             this.listenLedImg = new System.Windows.Forms.PictureBox();
             this.sprLedImg = new System.Windows.Forms.PictureBox();
             this.listenerBlinker = new System.Windows.Forms.Timer(this.components);
-
-            this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-
+            this.monitorOptions = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.hidPerm = new System.Windows.Forms.ToolStripMenuItem();
+            this.hidFull = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolShowAll = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.listenLedImg)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sprLedImg)).BeginInit();
+            this.monitorOptions.SuspendLayout();
             this.SuspendLayout();
             // 
             // ampmLbl
@@ -105,6 +108,7 @@
             this.contextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolShow,
             this.toolHide,
+            this.toolShowAll,
             this.transparencyToolStripMenuItem,
             this.toolInvalid,
             this.toolClose,
@@ -113,7 +117,7 @@
             this.toolPos,
             this.closeToolStripMenuItem});
             this.contextMenu.Name = "contextMenu";
-            this.contextMenu.Size = new System.Drawing.Size(174, 250);
+            this.contextMenu.Size = new System.Drawing.Size(267, 280);
             // 
             // toolShow
             // 
@@ -155,6 +159,11 @@
             this.dynamicToolStripMenuItem.Text = "Transparent on Mouse Hover";
             this.dynamicToolStripMenuItem.Click += new System.EventHandler(this.dynamicToolStripMenuItem_Click);
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(323, 6);
+            // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
@@ -165,7 +174,6 @@
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-
             this.toolStripMenuItem3.Size = new System.Drawing.Size(326, 30);
             this.toolStripMenuItem3.Text = "60%";
             this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
@@ -198,6 +206,18 @@
             this.toolStripMenuItem5.Text = "20%";
             this.toolStripMenuItem5.Click += new System.EventHandler(this.toolStripMenuItem5_Click);
             // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(323, 6);
+            // 
+            // toolStripMenuItem8
+            // 
+            this.toolStripMenuItem8.Name = "toolStripMenuItem8";
+            this.toolStripMenuItem8.Size = new System.Drawing.Size(326, 30);
+            this.toolStripMenuItem8.Text = "Disable";
+            this.toolStripMenuItem8.Click += new System.EventHandler(this.toolStripMenuItem8_Click);
+            // 
             // toolInvalid
             // 
             this.toolInvalid.Image = global::Andromeda.Properties.Resources.Toggle_moveable;
@@ -223,7 +243,7 @@
             // 
             this.reminderToolStripMenuItem.Image = global::Andromeda.Properties.Resources.postit;
             this.reminderToolStripMenuItem.Name = "reminderToolStripMenuItem";
-            this.reminderToolStripMenuItem.Size = new System.Drawing.Size(173, 30);
+            this.reminderToolStripMenuItem.Size = new System.Drawing.Size(266, 30);
             this.reminderToolStripMenuItem.Text = "Reminder";
             this.reminderToolStripMenuItem.Click += new System.EventHandler(this.reminderToolStripMenuItem_Click);
             // 
@@ -253,7 +273,7 @@
             // 
             // fadeInAnim
             // 
-            this.fadeInAnim.Interval = 5;
+            this.fadeInAnim.Interval = 3;
             this.fadeInAnim.Tick += new System.EventHandler(this.fadeInAnim_Tick);
             // 
             // infoDisplay
@@ -321,23 +341,37 @@
             this.listenerBlinker.Interval = 500;
             this.listenerBlinker.Tick += new System.EventHandler(this.listenerBlinker_Tick);
             // 
-
-            // toolStripMenuItem8
+            // monitorOptions
             // 
-            this.toolStripMenuItem8.Name = "toolStripMenuItem8";
-            this.toolStripMenuItem8.Size = new System.Drawing.Size(326, 30);
-            this.toolStripMenuItem8.Text = "Disable";
-            this.toolStripMenuItem8.Click += new System.EventHandler(this.toolStripMenuItem8_Click);
+            this.monitorOptions.ImageScalingSize = new System.Drawing.Size(24, 24);
+            this.monitorOptions.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.hidPerm,
+            this.hidFull});
+            this.monitorOptions.Name = "monitorOptions";
+            this.monitorOptions.Size = new System.Drawing.Size(250, 64);
             // 
-            // toolStripSeparator1
+            // hidPerm
             // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(323, 6);
+            this.hidPerm.CheckOnClick = true;
+            this.hidPerm.Name = "hidPerm";
+            this.hidPerm.Size = new System.Drawing.Size(249, 30);
+            this.hidPerm.Text = "Hide Permanently";
+            this.hidPerm.Click += new System.EventHandler(this.hidPerm_Click);
             // 
-            // toolStripSeparator2
+            // hidFull
             // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(323, 6);
+            this.hidFull.CheckOnClick = true;
+            this.hidFull.Name = "hidFull";
+            this.hidFull.Size = new System.Drawing.Size(249, 30);
+            this.hidFull.Text = "Hide on Full Screen";
+            this.hidFull.Click += new System.EventHandler(this.hidFull_Click);
+            // 
+            // toolShowAll
+            // 
+            this.toolShowAll.Name = "toolShowAll";
+            this.toolShowAll.Size = new System.Drawing.Size(266, 30);
+            this.toolShowAll.Text = "Show All";
+            this.toolShowAll.Click += new System.EventHandler(this.toolShowAll_Click);
             // 
             // MikuDashMain
             // 
@@ -346,6 +380,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(306, 153);
+            this.ContextMenuStrip = this.monitorOptions;
             this.ControlBox = false;
             this.Controls.Add(this.listenLedImg);
             this.Controls.Add(this.sprLedImg);
@@ -373,6 +408,7 @@
             this.contextMenu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.listenLedImg)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sprLedImg)).EndInit();
+            this.monitorOptions.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -409,6 +445,10 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem8;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ContextMenuStrip monitorOptions;
+        private System.Windows.Forms.ToolStripMenuItem hidPerm;
+        private System.Windows.Forms.ToolStripMenuItem hidFull;
+        private System.Windows.Forms.ToolStripMenuItem toolShowAll;
     }
 }
 

@@ -88,6 +88,21 @@ namespace MikuDash
 
         public List<Bitmap> cpuUsgL = new List<Bitmap>();
         public List<Bitmap> cpuRamL = new List<Bitmap>();
+
+        private Boolean hide = false;
+        private Boolean hideOnFullScreen = false;
+        private Boolean forceShow = false;
+        public Boolean getHidePerm()
+        {
+            return hide;
+        }
+
+        public Boolean getHideOnFullScreen()
+        {
+            return hideOnFullScreen;
+        }
+
+
         public enum GWL
         {
             ExStyle = -20
@@ -146,8 +161,9 @@ namespace MikuDash
             Microsoft.Win32.SystemEvents.DisplaySettingsChanged += new EventHandler(ScreenHandler);
             MinimizeFootprint();
             loadAnimations();
-            soundAnimation.Visible = true;
-            soundDate.Visible = true;
+            soundAnimation.Hide();
+            soundDate.Hide();
+            this.Hide();
             enableClicks();
             showApps();
             CheckForIllegalCrossThreadCalls = false;
@@ -160,6 +176,8 @@ namespace MikuDash
 
         public void inhibitToFullScreen()
         {
+
+
            
             if (!detectAppOnFullScreen())
             
@@ -173,6 +191,24 @@ namespace MikuDash
             }
             else
             {
+                if (this.getHideOnFullScreen())
+                {
+                    this.Hide();
+                }
+
+                if (soundDate.getHideOnFullScreen())
+                {
+                    soundDate.Hide();
+                }
+
+                foreach (MonitorInstance mi in monitInstances)
+                {
+                    if (mi.getHideOnFullScreen())
+                    {
+                        mi.Hide();
+                    }
+                }
+
                 if (!lazyDahsboard)
                 {
 
@@ -180,8 +216,11 @@ namespace MikuDash
                 
                     try
                     {
-                        listener.stopAnim();
-                        soundAnimation.Hide();
+                        if (soundAnimation.getHideOnFullScreen())
+                        {
+                            listener.stopAnim();
+                            soundAnimation.Hide();
+                        }
                     }
                     catch (Exception ef)
                     {
@@ -218,6 +257,15 @@ namespace MikuDash
                 Transparency = Convert.ToDouble(text.Split(';')[6]);
                 dinamyTransparency = Convert.ToBoolean(text.Split(';')[7]);
 
+                this.hide  = Convert.ToBoolean(text.Split(';')[8]);
+                this.hideOnFullScreen = Convert.ToBoolean(text.Split(';')[9]);
+
+                soundAnimation.setHidePerm(Convert.ToBoolean(text.Split(';')[10]));
+                soundAnimation.setHideOnFullScreen(Convert.ToBoolean(text.Split(';')[11]));
+
+                soundDate.setHidePerm(Convert.ToBoolean(text.Split(';')[12]));
+                soundDate.setHideOnFullScreen(Convert.ToBoolean(text.Split(';')[13]));
+                
                 if (dinamyTransparency)
                 {
                     dynamicToolStripMenuItem.Checked = true;
@@ -236,7 +284,7 @@ namespace MikuDash
             }
         }
         public void saveCoords(){
-            string[] lines = { this.Top + ";" + this.Left + ";" + soundAnimation.Top + ";" + soundAnimation.Left + ";" + soundDate.Top + ";" + soundDate.Left + ";" + Transparency + ";" + dinamyTransparency};
+            string[] lines = { this.Top + ";" + this.Left + ";" + soundAnimation.Top + ";" + soundAnimation.Left + ";" + soundDate.Top + ";" + soundDate.Left + ";" + Transparency + ";" + dinamyTransparency + ";" +this.hide+ ";" +this.hideOnFullScreen+ ";" +soundAnimation.getHidePerm()+ ";" +soundAnimation.getHideOnFullScreen()+ ";" +soundDate.getHidePerm()+ ";" +soundDate.getHideOnFullScreen()};
 
         File.WriteAllLines(@"init.ini", lines);
         foreach (MonitorInstance mi in monitInstances)
@@ -727,7 +775,10 @@ namespace MikuDash
                     if (initializing)
                     {
                         nm.loadPosition();
-                        nm.Show();
+                        if (!nm.getHidePerm())
+                        {
+                            nm.Show();
+                        }
                        
                     }
 
@@ -900,9 +951,10 @@ namespace MikuDash
                         mi.TopMost=true;
                     }
                 }
-                inhibitToFullScreen();
+                
 
             }
+            
         }
 
         private void toolHide_Click(object sender, EventArgs e)
@@ -919,22 +971,36 @@ namespace MikuDash
                 foreach (MonitorInstance mi in monitInstances)
                 {
                     mi.Opacity = 0;
-                    mi.Show();
+                    if (!mi.getHidePerm() || forceShow)
+                    {
+                       mi.Show();
+                    }
                 }
-                this.Show();
-                soundDate.Show();
 
+                if (!this.getHidePerm() || forceShow)
+                {
+                    this.Show();
+                }
+
+                if (!soundDate.getHidePerm() || forceShow)
+                {
+                    soundDate.Show();
+                }
                 if (!lazyDahsboard)
                 {
-                    soundAnimation.Show();
+                    if (!soundAnimation.getHidePerm() || forceShow)
+                    {
+                        soundAnimation.Show();
+                    }
                 }
-              
+                forceShow = false;
                 opac++;
                 
             }
             else if (opac == 200)
             {
                 topmostApp();
+                inhibitToFullScreen();
                 fadeInAnim.Enabled = false;
                 opac = 0;
                 del1 = 0;
@@ -1287,6 +1353,40 @@ namespace MikuDash
             {
                 reminder.Visible = true;
             }
+        }
+
+        private void hidPerm_Click(object sender, EventArgs e)
+        {
+            if (hide)
+            {
+                hide = false;
+                hidPerm.Checked = false;
+            }
+            else
+            {
+                hide = true;
+                hidPerm.Checked = true;
+            }
+        }
+
+        private void hidFull_Click(object sender, EventArgs e)
+        {
+            if (hideOnFullScreen)
+            {
+                hideOnFullScreen = false;
+                hidFull.Checked = false;
+            }
+            else
+            {
+                hideOnFullScreen = true;
+                hidFull.Checked = true;
+            }
+        }
+
+        private void toolShowAll_Click(object sender, EventArgs e)
+        {
+            forceShow = true;
+            showApps();
         }
     }
 }

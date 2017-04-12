@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MonitorInstance));
             this.monNameDsp = new System.Windows.Forms.Label();
             this.clkDsp = new System.Windows.Forms.Label();
@@ -36,8 +37,12 @@
             this.ramDsp = new System.Windows.Forms.Label();
             this.ldGau = new System.Windows.Forms.PictureBox();
             this.ramGau = new System.Windows.Forms.PictureBox();
+            this.monitorOptions = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.hidPerm = new System.Windows.Forms.ToolStripMenuItem();
+            this.hidFull = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.ldGau)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ramGau)).BeginInit();
+            this.monitorOptions.SuspendLayout();
             this.SuspendLayout();
             // 
             // monNameDsp
@@ -128,6 +133,31 @@
             this.ramGau.TabIndex = 6;
             this.ramGau.TabStop = false;
             // 
+            // monitorOptions
+            // 
+            this.monitorOptions.ImageScalingSize = new System.Drawing.Size(24, 24);
+            this.monitorOptions.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.hidPerm,
+            this.hidFull});
+            this.monitorOptions.Name = "monitorOptions";
+            this.monitorOptions.Size = new System.Drawing.Size(250, 64);
+            // 
+            // hidPerm
+            // 
+            this.hidPerm.CheckOnClick = true;
+            this.hidPerm.Name = "hidPerm";
+            this.hidPerm.Size = new System.Drawing.Size(249, 30);
+            this.hidPerm.Text = "Hide Permanently";
+            this.hidPerm.Click += new System.EventHandler(this.hidPerm_Click);
+            // 
+            // hidFull
+            // 
+            this.hidFull.CheckOnClick = true;
+            this.hidFull.Name = "hidFull";
+            this.hidFull.Size = new System.Drawing.Size(249, 30);
+            this.hidFull.Text = "Hide on Full Screen";
+            this.hidFull.Click += new System.EventHandler(this.hidFull_Click);
+            // 
             // MonitorInstance
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -135,6 +165,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(492, 64);
+            this.ContextMenuStrip = this.monitorOptions;
             this.Controls.Add(this.ramDsp);
             this.Controls.Add(this.ldDsp);
             this.Controls.Add(this.tempDsp);
@@ -143,7 +174,6 @@
             this.Controls.Add(this.ramGau);
             this.Controls.Add(this.ldGau);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "MonitorInstance";
@@ -151,12 +181,14 @@
             this.ShowInTaskbar = false;
             this.Text = "MonitorInstance";
             this.TransparencyKey = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.Load += new System.EventHandler(this.MonitorInstance_Load);
             this.VisibleChanged += new System.EventHandler(this.MonitorInstance_VisibleChanged);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tempDsp_MouseDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.tempDsp_MouseMove);
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.tempDsp_MouseUp);
             ((System.ComponentModel.ISupportInitialize)(this.ldGau)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ramGau)).EndInit();
+            this.monitorOptions.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -171,5 +203,8 @@
         private System.Windows.Forms.Label ramDsp;
         private System.Windows.Forms.PictureBox ldGau;
         private System.Windows.Forms.PictureBox ramGau;
+        private System.Windows.Forms.ContextMenuStrip monitorOptions;
+        private System.Windows.Forms.ToolStripMenuItem hidPerm;
+        private System.Windows.Forms.ToolStripMenuItem hidFull;
     }
 }

@@ -124,109 +124,119 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ActivateAlarm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ActivateAlarm.Designer.cs">
-      <DependentUpon>ActivateAlarm.cs</DependentUpon>
-    </Compile>
     <Compile Include="AGauge.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="AGauge.designer.cs">
       <DependentUpon>AGauge.cs</DependentUpon>
     </Compile>
-    <Compile Include="Animate.cs" />
-    <Compile Include="CUMonitorUpdate.cs" />
-    <Compile Include="desencrypt.cs" />
-    <Compile Include="GlobalKeyboardHook.cs" />
-    <Compile Include="HWMonitor.cs" />
-    <Compile Include="LogiLcd.cs" />
-    <Compile Include="LogitechScreenApi.cs" />
-    <Compile Include="MailModule.cs" />
-    <Compile Include="CommandImpl.cs" />
-    <Compile Include="Correo.cs">
+    <Compile Include="Sources\Logic\MainModule\Listener.cs" />
+    <Compile Include="Sources\Logic\PetModule\AnimationModule\Animate.cs" />
+    <Compile Include="Sources\UI\HWMonitorModule\CoolingMonitorInstance.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Correo.Designer.cs">
-      <DependentUpon>Correo.cs</DependentUpon>
+    <Compile Include="Sources\UI\HWMonitorModule\CoolingMonitorInstance.Designer.cs">
+      <DependentUpon>CoolingMonitorInstance.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form4.cs">
+    <Compile Include="Sources\Logic\HWMonitorModule\CUMonitorUpdate.cs" />
+    <Compile Include="Sources\UI\MainModule\ActivateAlarm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form4.Designer.cs">
+    <Compile Include="Sources\UI\MainModule\ActivateAlarm.Designer.cs">
+      <DependentUpon>ActivateAlarm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sources\UI\MainModule\Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sources\UI\MainModule\Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sources\UI\MainModule\Form3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sources\UI\MainModule\Form3.Designer.cs">
+      <DependentUpon>Form3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sources\UI\MainModule\Form4.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sources\UI\MainModule\Form4.Designer.cs">
       <DependentUpon>Form4.cs</DependentUpon>
     </Compile>
-    <Compile Include="KeyboardHook.cs" />
-    <Compile Include="MonitorInstance.cs">
+    <Compile Include="Sources\UI\MainModule\Reminder.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MonitorInstance.Designer.cs">
-      <DependentUpon>MonitorInstance.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Reminder.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Reminder.Designer.cs">
+    <Compile Include="Sources\UI\MainModule\Reminder.Designer.cs">
       <DependentUpon>Reminder.cs</DependentUpon>
     </Compile>
-    <Compile Include="SpeechRecognizer.cs" />
-    <Compile Include="Clock.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="Sources\Utils\desencrypt.cs" />
+    <Compile Include="Sources\Utils\GlobalKeyboardHook.cs" />
+    <Compile Include="Sources\Logic\HWMonitorModule\HWMonitor.cs" />
+    <Compile Include="Sources\UI\LogitechLCD\LogiLcd.cs" />
+    <Compile Include="Sources\UI\LogitechLCD\LogitechScreenApi.cs" />
+    <Compile Include="Sources\Logic\MailModule\MailModule.cs" />
+    <Compile Include="Sources\Logic\PetModule\SpeechRecognizer\CommandImpl.cs" />
+    <Compile Include="Sources\UI\MailModule\Correo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Sources\UI\MailModule\Correo.Designer.cs">
+      <DependentUpon>Correo.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form2.cs">
+    <Compile Include="Sources\UI\KeyboardHook\KeyboardHook.cs" />
+    <Compile Include="Sources\UI\HWMonitorModule\MonitorInstance.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form2.Designer.cs">
+    <Compile Include="Sources\UI\HWMonitorModule\MonitorInstance.Designer.cs">
+      <DependentUpon>MonitorInstance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sources\Logic\PetModule\SpeechRecognizer\SpeechRecognizer.cs" />
+    <Compile Include="Sources\Logic\ClockModule\Clock.cs" />
+    <Compile Include="Sources\UI\PetModule\Form2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sources\UI\PetModule\Form2.Designer.cs">
       <DependentUpon>Form2.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form3.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form3.Designer.cs">
-      <DependentUpon>Form3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Listener.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="VentanaLoginCorreo.cs">
+    <Compile Include="Sources\UI\MailModule\VentanaLoginCorreo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="VentanaLoginCorreo.Designer.cs">
+    <Compile Include="Sources\UI\MailModule\VentanaLoginCorreo.Designer.cs">
       <DependentUpon>VentanaLoginCorreo.cs</DependentUpon>
     </Compile>
-    <Compile Include="VentanaMensajesCorreo.cs">
+    <Compile Include="Sources\UI\MailModule\VentanaMensajesCorreo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="VentanaMensajesCorreo.Designer.cs">
+    <Compile Include="Sources\UI\MailModule\VentanaMensajesCorreo.Designer.cs">
       <DependentUpon>VentanaMensajesCorreo.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="ActivateAlarm.resx">
-      <DependentUpon>ActivateAlarm.cs</DependentUpon>
+    <EmbeddedResource Include="Sources\UI\HWMonitorModule\CoolingMonitorInstance.resx">
+      <DependentUpon>CoolingMonitorInstance.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Correo.resx">
+    <EmbeddedResource Include="Sources\UI\MailModule\Correo.resx">
       <DependentUpon>Correo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
+    <EmbeddedResource Include="Sources\UI\MainModule\ActivateAlarm.resx">
+      <DependentUpon>ActivateAlarm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sources\UI\MainModule\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form2.resx">
+    <EmbeddedResource Include="Sources\UI\MainModule\Form3.resx">
+      <DependentUpon>Form3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sources\UI\MainModule\Form4.resx">
+      <DependentUpon>Form4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sources\UI\MainModule\Reminder.resx">
+      <DependentUpon>Reminder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sources\UI\PetModule\Form2.resx">
       <DependentUpon>Form2.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form3.resx">
-      <DependentUpon>Form3.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form4.resx">
-      <DependentUpon>Form4.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MonitorInstance.resx">
+    <EmbeddedResource Include="Sources\UI\HWMonitorModule\MonitorInstance.resx">
       <DependentUpon>MonitorInstance.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -240,13 +250,10 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Reminder.resx">
-      <DependentUpon>Reminder.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="VentanaLoginCorreo.resx">
+    <EmbeddedResource Include="Sources\UI\MailModule\VentanaLoginCorreo.resx">
       <DependentUpon>VentanaLoginCorreo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="VentanaMensajesCorreo.resx">
+    <EmbeddedResource Include="Sources\UI\MailModule\VentanaMensajesCorreo.resx">
       <DependentUpon>VentanaMensajesCorreo.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
@@ -331,6 +338,7 @@
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\typings\node\node.d.ts" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

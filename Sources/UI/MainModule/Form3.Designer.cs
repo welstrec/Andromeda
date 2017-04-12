@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DateSound));
             this.Year = new System.Windows.Forms.Label();
             this.daysP = new System.Windows.Forms.PictureBox();
@@ -57,6 +58,9 @@
             this.satLed = new System.Windows.Forms.PictureBox();
             this.sunLed = new System.Windows.Forms.PictureBox();
             this.Month = new System.Windows.Forms.Label();
+            this.monitorOptions = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.hidPerm = new System.Windows.Forms.ToolStripMenuItem();
+            this.hidFull = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.daysP)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.monLed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tueLed)).BeginInit();
@@ -65,6 +69,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.friLed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.satLed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sunLed)).BeginInit();
+            this.monitorOptions.SuspendLayout();
             this.SuspendLayout();
             // 
             // Year
@@ -431,6 +436,31 @@
             this.Month.Text = "----";
             this.Month.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // monitorOptions
+            // 
+            this.monitorOptions.ImageScalingSize = new System.Drawing.Size(24, 24);
+            this.monitorOptions.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.hidPerm,
+            this.hidFull});
+            this.monitorOptions.Name = "monitorOptions";
+            this.monitorOptions.Size = new System.Drawing.Size(250, 97);
+            // 
+            // hidPerm
+            // 
+            this.hidPerm.CheckOnClick = true;
+            this.hidPerm.Name = "hidPerm";
+            this.hidPerm.Size = new System.Drawing.Size(249, 30);
+            this.hidPerm.Text = "Hide Permanently";
+            this.hidPerm.Click += new System.EventHandler(this.hidPerm_Click);
+            // 
+            // hidFull
+            // 
+            this.hidFull.CheckOnClick = true;
+            this.hidFull.Name = "hidFull";
+            this.hidFull.Size = new System.Drawing.Size(249, 30);
+            this.hidFull.Text = "Hide on Full Screen";
+            this.hidFull.Click += new System.EventHandler(this.hidFull_Click);
+            // 
             // DateSound
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -438,6 +468,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(195, 255);
+            this.ContextMenuStrip = this.monitorOptions;
             this.Controls.Add(this.ldg);
             this.Controls.Add(this.Month);
             this.Controls.Add(this.sunLed);
@@ -489,6 +520,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.friLed)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.satLed)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sunLed)).EndInit();
+            this.monitorOptions.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -523,5 +555,8 @@
         public System.Windows.Forms.PictureBox satLed;
         public System.Windows.Forms.PictureBox sunLed;
         public System.Windows.Forms.Label Month;
+        private System.Windows.Forms.ContextMenuStrip monitorOptions;
+        private System.Windows.Forms.ToolStripMenuItem hidPerm;
+        private System.Windows.Forms.ToolStripMenuItem hidFull;
     }
 }
